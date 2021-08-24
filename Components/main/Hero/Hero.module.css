@@ -1,0 +1,79 @@
+.hero {
+  width: 100%;
+  height: 70vh;
+  background: #f5d0d0;
+  position: relative;
+}
+
+.heroImage {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0.1;
+  z-index: 1000;
+}
+
+.containerItems {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  z-index: 2000;
+}
+
+.headContainer{
+    margin-left: 8rem;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.heroCharacter {
+  width: 30rem;
+  height: 28rem;
+  box-shadow: -25px -25px 0px rgb(255 255 255 / 50%);
+}
+
+.headline{
+    padding: .5rem;
+    font-family: 'Allura', cursive;
+    font-size: 6rem;
+    letter-spacing: 5px;
+    position: absolute;
+    top: 4rem;
+    right: -28rem;
+}
+
+.tagLineContainer{
+    margin-top: 4rem;
+    font-family: 'Sulphur Point', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.tagline{
+    font-size: 3rem;
+    letter-spacing: 1.8px;
+    margin: 0 1.5rem;
+}
+.btnCta{
+    margin-top: 1.8rem;
+    padding: .8rem 0;
+    width: 15rem;
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+    border: 1px solid #000;
+    border-radius: 20px;
+    background: #000;
+    color: #fff;
+    cursor: pointer;
+    transition: .5s all;
+}
+.btnCta:hover{
+    background: #c4c4c4;
+    color: black;
+}
