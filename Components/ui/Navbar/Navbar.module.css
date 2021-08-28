@@ -1,13 +1,14 @@
 .nav{
     width: 100%;
     height: 8rem;
-    background: #c4c4c4;
     display: flex;
     align-items: center;
+    justify-content: space-between;
 }
 .iconContainer{
     display: inline-block;
     position: relative;
+    cursor: pointer;
 }
 .icon{
     width: 8rem;
@@ -25,4 +26,46 @@
     font-family: 'Allura', cursive;
     font-size: 4rem;
     letter-spacing: 2px;
+}
+
+.navRight{
+    display: flex;
+    align-items: center;
+    gap: 0 3.5rem;
+}
+
+.user{
+    font-size: 3rem;
+    border-radius: 100%;
+    transition: all .4s;
+    cursor: pointer;
+}
+.user:hover{
+    box-shadow: 0 0 6px #0400ff;
+    color: #0400ff;
+}
+
+.cartContainer{
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+.cartContainer:hover>.cartIcon{
+    color: #da5252;
+}
+.cartIcon{
+    font-size: 3.5rem;
+    transition: color .4s;
+}
+.cartText{
+    margin-left: .3rem;
+    font-family: 'Sulphur Point', sans-serif;
+    font-size: 2rem;
+    letter-spacing: .4px;
+    color: black;
+}
+.itemsNum{
+    margin-left: .3rem;
+    font-size: 2.5rem;
+    color: #da5252;
 }

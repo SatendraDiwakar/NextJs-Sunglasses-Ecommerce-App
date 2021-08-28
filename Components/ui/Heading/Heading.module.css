@@ -1,0 +1,19 @@
+.headContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.heading{
+    font-family: 'Roboto', sans-serif;
+    font-size: 4rem;
+    letter-spacing: 3px;
+    text-transform: capitalize;
+    color: #c05858;
+}
+.headLine{
+    width: 6rem;
+    height: .1rem;
+    background: black;
+}

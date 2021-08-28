@@ -1,0 +1,23 @@
+.container{
+    font-family: 'Sulphur Point', sans-serif;
+    font-size: 2rem;
+    letter-spacing: .4px;
+    text-transform: capitalize;
+    /* imp edit later */
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    color: black;
+}
+.list{
+    list-style: none;
+    display: flex;
+    gap: 0 1.5rem;
+}
+.listItem{
+    cursor: pointer;
+    transition: color .4s;
+}
+.listItem:hover{
+    color: #c55757;
+}

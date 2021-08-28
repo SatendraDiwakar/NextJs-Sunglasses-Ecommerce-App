@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Allura&amp;family=Sulphur+Point:wght@300&amp;family=Roboto:wght@100&amp;display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Allura&family=Sulphur+Point:wght@600&family=Roboto:wght@200&display=swap");
 /* global reset */
 *,
 *::before,
@@ -17,11 +17,12 @@ html {
 section {
   /*TOP      left*/
   /*bottom   right*/
-  padding: 3.9rem 0;
+  padding: 4rem 0;
 }
 
 header {
-  width: 100%;
+  width: 100%;  
+  background: #c4c4c4;
 }
 
 img {

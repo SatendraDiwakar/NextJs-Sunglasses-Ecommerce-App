@@ -1,4 +1,6 @@
 import React from 'react'
+// component
+import ButtonBlack from '../../ui/ButtonBlack';
 // style
 import HeroStyle from './Hero.module.css';
 
@@ -12,9 +14,10 @@ export default function Hero() {
                         <img src="/Images/hero2.png" alt="heroImage" className={HeroStyle.heroCharacter} />
                         <p className={HeroStyle.headline}>Sun Glasses</p>
                     </div>
+
                     <div className={HeroStyle.tagLineContainer}>
                         <p className={HeroStyle.tagline}>Beat the heat this summer</p>
-                        <button className={HeroStyle.btnCta}>Shop Now</button>
+                        <ButtonBlack name="shop now" />
                     </div>
                 </div>
             </div>
