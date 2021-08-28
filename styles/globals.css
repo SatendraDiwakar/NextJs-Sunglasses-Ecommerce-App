@@ -11,7 +11,7 @@
 html {
   font-size: 10px;
   scroll-behavior: smooth;
-  overflow-y: hidden;
+  overflow-x: hidden;
 }
 
 section {
@@ -36,7 +36,7 @@ a {
 
 .container {
   width: 100%;
-  max-width: 122.5rem;
+  max-width: 130rem;
   margin: 0 auto;
   padding: 0 3rem;
 }

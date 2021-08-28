@@ -11,7 +11,7 @@ export default function Hero() {
             <div className="container" style={{ height: '100%' }}>
                 <div className={HeroStyle.containerItems}>
                     <div className={HeroStyle.headContainer}>
-                        <img src="/Images/hero2.png" alt="heroImage" className={HeroStyle.heroCharacter} />
+                        <img src="/Images/heroCharacter.jpg" alt="heroImage" className={HeroStyle.heroCharacter} />
                         <p className={HeroStyle.headline}>Sun Glasses</p>
                     </div>
 

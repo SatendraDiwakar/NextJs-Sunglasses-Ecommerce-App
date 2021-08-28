@@ -1,0 +1,49 @@
+.container {
+  margin-top: 4rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 0 10rem;
+}
+.topSellerLeft {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.gallery {
+  width: 64rem;
+  display: grid;
+  gap: 1.5rem;
+  grid-template-areas:
+    "ts1 ts1 ts2 ts2 ts2"
+    "ts1 ts1 ts4 ts4 ts4"
+    "ts3 ts3 ts4 ts4 ts4"
+    "ts3 ts3 ts4 ts4 ts4";
+}
+
+.gallery > img {
+    cursor: pointer;
+    transition: all .4s;
+}
+.gallery > img:hover {
+  box-shadow: 3px 3px 6px #5f1f1f;
+}
+
+.tsm {
+  width: 40rem;
+  height: 60rem;
+}
+.ts1 {
+  grid-area: ts1;
+  max-height: 35rem;
+}
+.ts2 {
+  grid-area: ts2;
+  min-height: 25rem;
+}
+.ts3 {
+  grid-area: ts3;
+}
+.ts4 {
+  grid-area: ts4;
+  min-height: 25rem;
+}
