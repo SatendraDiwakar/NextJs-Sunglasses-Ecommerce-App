@@ -3,7 +3,7 @@ import Image from 'next/image'
 import Hero from '../Components/main/Hero'
 import TopSeller from '../Components/main/TopSeller'
 import Sale from '../Components/main/Sale'
-
+import OurCollection from '../Components/main/OurCollection'
 import TopBrands from '../Components/main/TopBrands'
 import Footer from '../Components/main/Footer'
 
@@ -12,6 +12,7 @@ export default function Home() {
     <Hero />
     <TopSeller />
     <Sale />
+    <OurCollection />
     <TopBrands />
     <Footer />
   </>

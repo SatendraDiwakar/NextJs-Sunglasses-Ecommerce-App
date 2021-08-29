@@ -1,0 +1,100 @@
+.collectionSection {
+  border-bottom: 1px solid #000;
+}
+
+.container {
+  margin-top: 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* gallery 1 */
+.firstGrid {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 0 4rem;
+}
+.gallery1 {
+  width: 85rem;
+  display: grid;
+  gap: 1.5rem;
+  grid-template-areas:
+    "c1 c1 c2 c2 c5 c5"
+    "c3 c3 c2 c2 c6 c6"
+    "c3 c3 c4 c4 c6 c6"
+    "c3 c3 c4 c4 c6 c6";
+}
+
+.g1car {
+  width: 35rem;
+  height: 50rem;
+}
+.g1col1 {
+  grid-area: c1;
+  min-height: 22rem;
+}
+.g1col2 {
+  grid-area: c2;
+}
+.g1col3 {
+  grid-area: c3;
+  max-height: 24rem;
+}
+.g1col4 {
+  grid-area: c4;
+}
+.g1col5 {
+  grid-area: c5;
+  min-height: 24rem;
+}
+.g1col6 {
+  grid-area: c6;
+  min-height: 24rem;
+}
+
+/* gallery 2 */
+.secondGrid {
+    margin-top: 2rem;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: 0 4rem;
+  }
+  .gallery2 {
+    width: 60rem;
+    display: grid;
+    gap: 1.5rem;
+    grid-template-areas:
+      "c7 c7 c8 c8 c8"
+      "c7 c7 c8 c8 c8"
+      "c7 c7 c10 c10 c10"
+      "c9 c9 c10 c10 c10"
+      "c9 c9 c10 c10 c10"
+      ;
+  }
+  
+  .g2car1 {
+    width: 30rem;
+    height: 50rem;
+  }
+  .g2car2 {
+    width: 30rem;
+    height: 50rem;
+  }
+  .g2col1 {
+    grid-area: c7;
+    min-height: 35rem;
+  }
+  .g2col2 {
+    grid-area: c8;
+    min-height: 25rem;
+  }
+  .g2col3 {
+    grid-area: c9;
+  }
+  .g2col4 {
+    grid-area: c10;
+    min-height: 25rem;
+  }
