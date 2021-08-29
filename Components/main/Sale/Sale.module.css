@@ -20,4 +20,36 @@
   width: 25rem;
   height: 15rem;
   position: relative;
+  transition: transform 0.3s;
+  cursor: pointer;
+  overflow: hidden;
+}
+.saleImage:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 6px #cf2222;
+}
+.price {
+  padding: 1rem;
+  font-size: 1.5rem;
+  border-bottom-left-radius: 30px;
+  color: #fff;
+  background: rgb(0 0 0 / 75%);
+  position: absolute;
+  top: 0;
+  right: 0;
+  transition: all .3s;
+}
+.discountPrice {
+  position: relative;
+  opacity: 0.5;
+}
+.cutLine {
+  width: 90%;
+  height: 1px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%) rotate(45deg);
+  background-color: white;
+  opacity: 1;
 }

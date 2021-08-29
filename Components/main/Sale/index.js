@@ -29,6 +29,7 @@ export default function Sale() {
                                     alt={`Sunglass ${index} on sale`}
                                     layout="fill"
                                 />
+                                <p className={SaleStyle.price}>$49 <span className={SaleStyle.discountPrice}>$99 <div className={SaleStyle.cutLine}></div></span></p>
                             </div>
                         })
                     }
