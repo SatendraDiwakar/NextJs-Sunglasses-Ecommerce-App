@@ -4,17 +4,19 @@ import Image from 'next/image';
 import ButtonBlack from '../../ui/ButtonBlack';
 // style
 import HeroStyle from './Hero.module.css';
+// image
+import hero from '../../../public/Images/hero.jpg'
+import heroCharacter from '../../../public/Images/heroCharacter.jpg'
 
 export default function Hero() {
     return (
         <div className={HeroStyle.hero}>
-
             <div className={HeroStyle.heroImage}>
                 <Image
-                    src="/Images/hero.jpg"
+                    src={hero}
                     alt="sunglass ecommerce heroImage1"
                     layout="fill"
-                    priority
+                    priority={true}
                 />
             </div>
             <div className="container" style={{ height: '100%' }}>
@@ -22,10 +24,11 @@ export default function Hero() {
                     <div className={HeroStyle.headContainer}>
                         <div className={HeroStyle.heroCharacter}>
                             <Image
-                                src="/Images/heroCharacter.jpg"
+                                src={heroCharacter}
                                 alt="sunglass ecommerce heroImage2"
                                 layout="fill"
-                                priority
+                                priority={true}
+                                placeholder='blur'
                             />
                         </div>
                         <p className={HeroStyle.headline}>Sun Glasses</p>
