@@ -1,9 +1,9 @@
 import React from 'react'
 import Link from 'next/link'
 // react-icons
-import { IoGlasses } from 'react-icons/io5';
 import { FaOpencart } from 'react-icons/fa';
 import { AiOutlineUser } from 'react-icons/ai';
+import { GiSunglasses } from 'react-icons/gi';
 // component
 import Navlinks from './Navlinks';
 // style
@@ -20,7 +20,7 @@ export default function Navbar() {
                     <div className={NavStyle.iconContainer}>
                         <div className={NavStyle.icon}>
                             <p className={NavStyle.iconName}>Sun</p>
-                            <IoGlasses className={NavStyle.sungIcon} />
+                            <GiSunglasses className={NavStyle.sungIcon} />
                         </div>
                     </div>
                 </Link>

@@ -21,7 +21,12 @@
     position: absolute;
     top: -.5rem;
     right: 0;
+    transition: color .3s;
 }
+.icon:hover > .sungIcon{
+    color: #d85552;
+}
+
 .iconName{
     font-family: 'Allura', cursive;
     font-size: 4rem;
