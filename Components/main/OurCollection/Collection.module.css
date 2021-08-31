@@ -21,20 +21,22 @@
   position: absolute;
   top: 0;
   right: 0;
-  transform: translateX(100%);
+  transform: translateX(102%);
   transition: transform .5s;
 }
-.hovEffect:hover >.price{
-  transform: translateX(0);
+.overHide {
+  overflow: hidden;
+  transition: all 0.5s;
 }
 /* hover effect */
-.hovEffect {
-  overflow: hidden;
+.hovEffect{
   cursor: pointer;
-  transition: all 0.5s;
 }
 .hovEffect:hover {
   box-shadow: 3px 3px 6px #5f1f1f;
+}
+.hovEffect:hover >.price{
+  transform: translateX(0);
 }
 
 /* gallery 1 */
