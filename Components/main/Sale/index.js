@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Image from 'next/image'
 // component
 import Heading from '../../ui/Heading'
@@ -15,6 +15,20 @@ import sal4 from '../../../public/Images/sale/sal4.jpg'
 export default function Sale() {
 
     const saleImageArr = [sal1, sal2, sal3, sal4];
+    const [loading, setLoading] = useState(false);
+    let count = 0;
+
+    function checkLoaded() {
+        count++;
+        // console.log(count);
+        if (count === 3)
+            setLoading(true);
+    }
+
+    function handleClick(id){
+        if(loading)
+            alert(id)
+    }
 
     return (
         <section id="Sale" className={SaleStyle.saleSection}>
@@ -23,13 +37,19 @@ export default function Sale() {
                 <div className={SaleStyle.gallery}>
                     {
                         saleImageArr.map((itm, index) => {
-                            return <div key={`saleImage${index}`} className={SaleStyle.saleImage}>
+                            return <div
+                                key={`saleImage${index}`}
+                                className={SaleStyle.saleImage + ' ' + `${loading && SaleStyle.hovEffect}`}
+                                onClick={()=>{handleClick("1")}}
+                            >
                                 <Image
                                     src={itm}
                                     alt={`Sunglass ${index} on sale`}
                                     layout="fill"
+                                    placeholder={'blur'}
+                                    onLoadingComplete={checkLoaded}
                                 />
-                                <p className={SaleStyle.price}>$49 <span className={SaleStyle.discountPrice}>$99 <div className={SaleStyle.cutLine}></div></span></p>
+                                {loading && <div className={SaleStyle.price}>$49 <span className={SaleStyle.discountPrice}>$99 <div className={SaleStyle.cutLine}/></span></div>}
                             </div>
                         })
                     }

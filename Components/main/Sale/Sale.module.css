@@ -20,13 +20,13 @@
   width: 25rem;
   height: 15rem;
   position: relative;
-  transition: transform 0.3s;
-  cursor: pointer;
   overflow: hidden;
+  transition: transform 0.3s;
 }
-.saleImage:hover {
+.hovEffect:hover {
   transform: scale(1.05);
   box-shadow: 0 0 6px #cf2222;
+  cursor: pointer;
 }
 .price {
   padding: 1rem;
@@ -37,7 +37,7 @@
   position: absolute;
   top: 0;
   right: 0;
-  transition: all .3s;
+  transition: all 0.3s;
 }
 .discountPrice {
   position: relative;
@@ -49,7 +49,7 @@
   position: absolute;
   left: 50%;
   top: 50%;
-  transform: translate(-50%,-50%) rotate(45deg);
+  transform: translate(-50%, -50%) rotate(45deg);
   background-color: white;
   opacity: 1;
 }
