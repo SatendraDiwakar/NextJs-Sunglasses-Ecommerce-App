@@ -10,7 +10,7 @@
   align-items: center;
 }
 .gallery {
-  width: 64rem;
+  width: 65rem;
   display: grid;
   gap: 1.5rem;
   grid-template-areas:
@@ -20,30 +20,58 @@
     "ts3 ts3 ts4 ts4 ts4";
 }
 
-.gallery > img {
-    cursor: pointer;
-    transition: all .4s;
+/* price */
+.price{
+  width: 5.5rem;
+  padding: 1rem;
+  font-size: 1.5rem;
+  border-bottom-left-radius: 30px;
+  color: #fff;
+  text-align: center;
+  background: rgb(0 0 0 / 75%);
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translateX(102%);
+  transition: transform .5s;
 }
-.gallery > img:hover {
+.overHide {
+  overflow: hidden;
+  transition: all 0.5s;
+}
+/* hover effect */
+.hovEffect{
+  cursor: pointer;
+}
+.hovEffect:hover {
   box-shadow: 3px 3px 6px #5f1f1f;
+}
+.hovEffect:hover >.price{
+  transform: translateX(0);
 }
 
 .tsm {
+  position: relative;
   width: 40rem;
   height: 60rem;
 }
 .ts1 {
+  position: relative;
   grid-area: ts1;
-  max-height: 35rem;
+  min-height: 35rem;
 }
 .ts2 {
+  position: relative;
   grid-area: ts2;
   min-height: 25rem;
 }
 .ts3 {
+  position: relative;
   grid-area: ts3;
+  min-height: 15rem;
 }
 .ts4 {
+  position: relative;
   grid-area: ts4;
   min-height: 25rem;
 }
