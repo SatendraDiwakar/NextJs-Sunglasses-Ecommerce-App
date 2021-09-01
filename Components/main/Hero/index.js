@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Image from 'next/image';
 // component
 import ButtonBlack from '../../ui/ButtonBlack';
@@ -9,6 +9,12 @@ import hero from '../../../public/Images/hero.jpg'
 import heroCharacter from '../../../public/Images/heroCharacter.jpg'
 
 export default function Hero() {
+
+    // useEffect(() => {
+    //     alert(window.innerWidth + ',' + window.innerHeight);
+    //     // 360,759
+    // }, [])
+
     return (
         <div className={HeroStyle.hero}>
             <div className={HeroStyle.heroImage}>
@@ -31,10 +37,9 @@ export default function Hero() {
                                 placeholder='blur'
                             />
                         </div>
-                        <p className={HeroStyle.headline}>Sun Glasses</p>
                     </div>
-
                     <div className={HeroStyle.tagLineContainer}>
+                        <p className={HeroStyle.headline}>Premium Sun Glasses</p>
                         <p className={HeroStyle.tagline}>Beat the heat this summer</p>
                         <ButtonBlack name="shop now" />
                     </div>

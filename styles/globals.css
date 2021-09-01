@@ -46,3 +46,39 @@ a {
   align-items: center;
   justify-content: center;
 }
+
+@media screen and (max-width: 1200px) {
+  html{
+    font-size: 9.5px;
+  }
+}
+@media screen and (max-width: 950px) {
+  html{
+    font-size: 9px;
+  }
+}
+@media screen and (max-width: 900px) {
+  html{
+    font-size: 8.5px;
+  }
+}
+@media screen and (max-width: 850px) {
+  html{
+    font-size: 8px;
+  }
+}
+@media screen and (max-width: 750px) {
+  html{
+    font-size: 7.5px;
+  }
+}
+@media screen and (max-width: 600px) {
+  html{
+    font-size: 7px;
+  }
+}
+@media screen and (max-width: 400px) {
+  html{
+    font-size: 6px;
+  }
+}
