@@ -75,3 +75,108 @@
   grid-area: ts4;
   min-height: 25rem;
 }
+
+@media screen and (max-width: 1150px) {
+  .gallery{
+    width: 60rem;
+  }
+}
+@media screen and (max-width: 1100px) {
+  .gallery{
+    width: 55rem;
+  }
+  .tsm{
+    width: 38rem;
+    height: 58rem;
+  }
+  .container{
+    gap: 0 5rem;
+  }
+}
+@media screen and (max-width: 990px) {
+  .gallery{
+    width: 50rem;
+  }
+  .tsm{
+    width: 36rem;
+    height: 56rem;
+  }
+}
+@media screen and (max-width: 750px) {
+  .gallery{
+    width: 45rem;
+  }
+  .tsm{
+    width: 34rem;
+    height: 54rem;
+  }
+  .ts1{
+    min-height: 30rem;
+  }
+  .ts2{
+    min-height: 23rem;
+  }
+  .ts4{
+    min-height: 23rem;
+  }
+}
+@media screen and (max-width: 650px) {
+  .gallery{
+    width: 40rem;
+  }
+  .tsm{
+    width: 32rem;
+    height: 48rem;
+  }
+  .ts1{
+    min-height: 25rem;
+  }
+  .ts2{
+    min-height: 20rem;
+  }
+  .ts4{
+    min-height: 20rem;
+  }
+}
+@media screen and (max-width: 550px) {
+  .gallery{
+    width: 35rem;
+  }
+  .tsm{
+    height: 46rem;
+  }
+}
+@media screen and (max-width: 400px) {
+  .container{
+    gap: 0 2rem;
+  }
+  .gallery{
+    width: 32rem;
+  }
+  .tsm{
+    height: 40rem;
+  }  
+  .ts1{
+    min-height: 22rem;
+  }
+  .ts2{
+    min-height: 18rem;
+  }
+  .ts3{
+    min-height: 12rem;
+  }
+  .ts4{
+    min-height: 15rem;
+  }
+}
+@media screen and (max-width: 350px) {
+  .container{
+    gap: 0 1.5rem;
+  }
+  .gallery{
+    width: 30rem;
+  }
+  .tsm{
+    height: 40rem;
+  }  
+}
