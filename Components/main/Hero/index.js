@@ -10,11 +10,6 @@ import heroCharacter from '../../../public/Images/heroCharacter.jpg'
 
 export default function Hero() {
 
-    // useEffect(() => {
-    //     alert(window.innerWidth + ',' + window.innerHeight);
-    //     // 360,759
-    // }, [])
-
     return (
         <div className={HeroStyle.hero}>
             <div className={HeroStyle.heroImage}>

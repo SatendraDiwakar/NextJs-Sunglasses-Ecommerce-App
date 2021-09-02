@@ -41,14 +41,14 @@
   box-shadow: -25px -25px 0px rgb(255 255 255 / 50%);
 }
 
-.tagLineContainer {  
+.tagLineContainer {
+  margin-top: 3rem;
   font-family: "Sulphur Point", sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center;
   position: absolute;
   left: 70rem;
-  bottom: 10rem;
 }
 .headline {
   width: max-content;
@@ -70,137 +70,128 @@
 }
 
 @media screen and (max-width: 1150px) {
-  .tagLineContainer{
+  .tagLineContainer {
     left: 59rem;
   }
-  .headline{
+  .headline {
     left: -24rem;
   }
 }
 @media screen and (max-width: 1050px) {
-  .tagLineContainer{
+  .tagLineContainer {
     left: 54rem;
   }
-  .headline{
+  .headline {
     font-size: 5.5rem;
     left: -19rem;
   }
 }
 @media screen and (max-width: 1000px) {
-  .heroCharacter{
+  .heroCharacter {
     width: 30rem;
     height: 28rem;
   }
-  .tagLineContainer{
+  .tagLineContainer {
     left: unset;
     right: 0rem;
   }
-  .headline{
+  .headline {
     left: -18rem;
   }
 }
 
 @media screen and (max-width: 950px) {
-  .tagLineContainer{
-    top: 24rem;
-    bottom: unset;
-  }
-  .headline{
+  .headline {
     left: -20rem;
   }
 }
 @media screen and (max-width: 850px) {
-  .headline{
+  .headline {
     left: -18rem;
   }
-  
 }
 @media screen and (max-width: 800px) {
-  .tagLineContainer{
+  .tagLineContainer {
     right: 5rem;
-    top: 22rem;
   }
-  .headline{
+  .headline {
     font-size: 5rem;
     left: -12rem;
     top: -8rem;
   }
-  .tagline{
+  .tagline {
     font-size: 2.5rem;
   }
 }
 @media screen and (max-width: 750px) {
-  .tagLineContainer{
-    top: 24rem;
+  .tagLineContainer {
     right: 2rem;
   }
-  .headline{
+  .headline {
     left: -14rem;
   }
 }
 @media screen and (max-width: 700px) {
-  .tagLineContainer{
+  .tagLineContainer {
     position: unset;
   }
-  .headline{
+  .headline {
     width: auto;
     position: unset;
   }
 }
 @media screen and (max-width: 600px) {
-  .headContainer{
+  .headContainer {
     margin-left: 4rem;
   }
-  .heroCharacter{
+  .heroCharacter {
     width: 28rem;
     height: 26rem;
     box-shadow: -20px -20px 0px rgb(255 255 255 / 50%);
   }
 }
 @media screen and (max-width: 550px) {
-  .headContainer{
+  .headContainer {
     bottom: 4rem;
   }
-  .heroCharacter{
+  .heroCharacter {
     width: 24rem;
     height: 22rem;
     box-shadow: -20px -20px 0px rgb(255 255 255 / 50%);
   }
+  .tagLineContainer{
+    margin-top: unset;
+  }
 }
 @media screen and (max-width: 500px) {
-  .headline{
+  .headline {
     font-size: 3.9rem;
   }
-  .tagline{
+  .tagline {
     font-size: 2rem;
   }
 }
-@media screen and (max-width: 450px){
-  .containerItems{
+@media screen and (max-width: 450px) {
+  .containerItems {
     flex-direction: column;
     justify-content: center;
     gap: 2rem 0;
   }
-  .headContainer{
+  .headContainer {
     margin-left: 8rem;
     left: -14rem;
     bottom: 0;
   }
-  .tagLineContainer{
+  .tagLineContainer {
     margin-left: 5rem;
   }
 }
-@media screen and (max-width: 350px){
-  .headContainer{
-    left: -12rem;
-  }
-}
-@media screen and (max-width: 300px){
-  .headContainer{
+@media screen and (max-width: 350px) {
+  .headContainer {
     left: unset;
     margin: 0;
   }
-  .tagLineContainer{
+  .tagLineContainer {
     margin-left: 0;
   }
 }
