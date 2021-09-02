@@ -13,8 +13,10 @@
   margin-bottom: 2rem;
   width: 100%;
   display: flex;
+  flex-wrap: wrap;
+  gap: 3rem;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 .saleImage {
   width: 25rem;
@@ -52,4 +54,10 @@
   transform: translate(-50%, -50%) rotate(45deg);
   background-color: white;
   opacity: 1;
+}
+
+@media screen and (max-width: 360px) {
+  .gallery{
+    gap: 1.5rem;
+  }
 }
