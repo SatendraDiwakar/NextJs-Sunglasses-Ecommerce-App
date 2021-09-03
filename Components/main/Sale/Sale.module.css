@@ -56,8 +56,23 @@
   opacity: 1;
 }
 
+@media screen and (max-width: 400px) {
+  .price{
+    padding-left: 1.5rem;
+    font-size: 1.3rem;
+  }
+}
 @media screen and (max-width: 360px) {
-  .gallery{
+  .gallery {
     gap: 1.5rem;
+  }
+  .saleImage {
+    width: 22rem;
+    height: 14rem;
+  }
+}
+@media screen and (max-width: 315px) {
+  .saleImage {
+    width: 20rem;
   }
 }
