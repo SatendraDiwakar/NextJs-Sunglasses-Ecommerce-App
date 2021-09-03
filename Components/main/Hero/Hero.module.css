@@ -38,7 +38,7 @@
 .heroCharacter {
   width: 32rem;
   height: 30rem;
-  box-shadow: -25px -25px 0px rgb(255 255 255 / 50%);
+  box-shadow: -2.5rem -2.5rem 0px rgb(255 255 255 / 50%);
 }
 
 .tagLineContainer {
@@ -147,7 +147,6 @@
   .heroCharacter {
     width: 28rem;
     height: 26rem;
-    box-shadow: -20px -20px 0px rgb(255 255 255 / 50%);
   }
 }
 @media screen and (max-width: 550px) {
@@ -157,9 +156,8 @@
   .heroCharacter {
     width: 24rem;
     height: 22rem;
-    box-shadow: -20px -20px 0px rgb(255 255 255 / 50%);
   }
-  .tagLineContainer{
+  .tagLineContainer {
     margin-top: unset;
   }
 }
@@ -178,9 +176,13 @@
     gap: 2rem 0;
   }
   .headContainer {
-    margin-left: 8rem;
+    margin-left: 2rem;
     left: -14rem;
     bottom: 0;
+  }
+  .heroCharacter {
+    width: 28rem;
+    height: 26rem;
   }
   .tagLineContainer {
     margin-left: 5rem;
