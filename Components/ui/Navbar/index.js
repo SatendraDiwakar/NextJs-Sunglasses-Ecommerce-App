@@ -13,31 +13,30 @@ import NavStyle from './Navbar.module.css';
 
 export default function Navbar() {
 
-    const linkArr = ['home', 'brands', 'about us', 'contact'];
-    const [te, setTe] = useState(false);
+    const [switchUserIconPos, setSwitchUserIconPos] = useState(false);
 
     useEffect(() => {
 
         window.addEventListener('load', () => {
             if (window.innerWidth > 560) {
-                setTe(false);
+                setSwitchUserIconPos(false);
                 document.getElementById('menuLinks').style = 'transform: translateX(-50%)';
             } else {
                 document.getElementsByClassName(NavStyle.menuBar)[0].style = 'display: block';
                 document.getElementsByClassName(NavStyle.closeBtn)[0].style = 'display: none';
                 document.getElementById('menuLinks').style = 'transform: translate(-100%,-50%)';
-                setTe(true);
+                setSwitchUserIconPos(true);
             }
         });
         window.addEventListener('resize', () => {
             if (window.innerWidth > 560) {
-                setTe(false);
+                setSwitchUserIconPos(false);
                 document.getElementById('menuLinks').style = 'transform: translateX(-50%)';
             } else {
                 document.getElementsByClassName(NavStyle.menuBar)[0].style = 'display: block';
                 document.getElementsByClassName(NavStyle.closeBtn)[0].style = 'display: none';
                 document.getElementById('menuLinks').style = 'transform: translate(-100%,-50%)';
-                setTe(true);
+                setSwitchUserIconPos(true);
             }
         });
     }, [])
@@ -53,10 +52,10 @@ export default function Navbar() {
                         </div>
                     </div>
                 </Link>
-                <Navlinks links={linkArr} />
+                <Navlinks />
                 <div className={NavStyle.navRight}>
                     {
-                        te ? <>
+                        switchUserIconPos ? <>
                             <div className={NavStyle.cartContainer}>
                                 <FaOpencart className={NavStyle.cartIcon} />
                                 <p className={NavStyle.cartText}>cart<span className={NavStyle.itemsNum}>0</span></p>
@@ -82,6 +81,8 @@ export default function Navbar() {
                             document.getElementsByClassName(NavStyle.menuBar)[0].style = 'display: block';
                             document.getElementsByClassName(NavStyle.closeBtn)[0].style = 'display: none';
                             document.getElementById('menuLinks').style = 'transform: translate(-100%,-50%)';
+                            if (document.getElementById('brandsLinkList').offsetHeight !== 0)
+                                document.getElementById('brandsLink').click();
                         }} />
                     </div>
                 </div>
