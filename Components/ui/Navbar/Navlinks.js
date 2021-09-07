@@ -3,7 +3,6 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 // styles
 import NavLinkStyle from './Navlinks.module.css';
-import link from 'next/link';
 
 export default function Navlinks() {
 
@@ -11,12 +10,28 @@ export default function Navlinks() {
 
     const router = useRouter();
     // idea useref
-    const prevVal = useRef('');
-    
+    const prevVal = useRef('homeLink');
+
+    useEffect(() => {
+        let colorDef = 'Black';
+        if (window.innerWidth <= 560) {
+            colorDef = 'white';
+        }
+        document.getElementById(prevVal.current).style = `color: ${colorDef}`;
+        if (router.pathname === '/') {
+            prevVal.current = 'homeLink';
+        } else if (router.pathname === '/about') {
+            console.log(prevVal.current);
+            prevVal.current = 'aboutLink';
+        } else if (router.pathname === '/contact') {
+            prevVal.current = 'contactLink';
+        }
+        document.getElementById(prevVal.current).style = 'color: #c55757';
+    }, [router.pathname]);
+
     function handleLinkClick(linkNm) {
         if (window.innerWidth <= 560) {
-            
-            if(linkNm === 'brands'){
+            if (linkNm === 'brands') {
                 document.getElementsByClassName(NavLinkStyle.brandsList)[0].classList.toggle(NavLinkStyle.anima)
             } else {
                 document.getElementById('menuBar').style = 'display: block';
@@ -24,8 +39,9 @@ export default function Navlinks() {
                 document.getElementById('menuLinks').style = 'transform: translate(-100%,-50%)';
             }
         }
-    }    
-    
+        // prevVal.current = router.pathname;
+    }
+
     function handleBrandClick() {
         document.getElementsByClassName(NavLinkStyle.brandsList)[0].classList.toggle(NavLinkStyle.anima);
         if (window.innerWidth <= 560) {
