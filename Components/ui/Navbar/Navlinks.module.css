@@ -25,6 +25,13 @@
 .listItem:hover {
   color: #c55757;
 }
+.brandsLink{
+  display: flex;
+  align-items: center;
+}
+.brandAngleIcon{
+  transition: transform .6s;
+}
 .brandsList {
   padding: 0 1rem;
   max-height: 0;

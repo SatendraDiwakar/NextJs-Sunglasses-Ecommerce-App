@@ -1,8 +1,10 @@
 import React, { useEffect, useRef } from 'react'
-import { useRouter } from 'next/router';
-import Link from 'next/link';
+import { useRouter } from 'next/router'
+import Link from 'next/link'
+// icons
+import { FaAngleDown } from 'react-icons/fa'
 // styles
-import NavLinkStyle from './Navlinks.module.css';
+import NavLinkStyle from './Navlinks.module.css'
 
 export default function Navlinks() {
 
@@ -13,37 +15,59 @@ export default function Navlinks() {
     const prevVal = useRef('homeLink');
 
     useEffect(() => {
-        let colorDef = 'Black';
-        if (window.innerWidth <= 560) {
-            colorDef = 'white';
+        if (!router.pathname.includes('brands')) {
+            if(prevVal.current.includes('brand')){
+                document.getElementById(prevVal.current).style = 'color: white';
+            }else{
+                document.getElementById(prevVal.current).style = 'color: inherit';
+            }
+            if (router.pathname === '/') {
+                prevVal.current = 'homeLink';
+            } else if (router.pathname === '/about') {
+                prevVal.current = 'aboutLink';
+            } else if (router.pathname === '/contact') {
+                prevVal.current = 'contactLink';
+            }
+            document.getElementById(prevVal.current).style = 'color: #c55757';
         }
-        document.getElementById(prevVal.current).style = `color: ${colorDef}`;
-        if (router.pathname === '/') {
-            prevVal.current = 'homeLink';
-        } else if (router.pathname === '/about') {
-            console.log(prevVal.current);
-            prevVal.current = 'aboutLink';
-        } else if (router.pathname === '/contact') {
-            prevVal.current = 'contactLink';
-        }
-        document.getElementById(prevVal.current).style = 'color: #c55757';
     }, [router.pathname]);
 
     function handleLinkClick(linkNm) {
-        if (window.innerWidth <= 560) {
-            if (linkNm === 'brands') {
-                document.getElementsByClassName(NavLinkStyle.brandsList)[0].classList.toggle(NavLinkStyle.anima)
-            } else {
+        if (linkNm === 'brands') {
+            document.getElementById('brandsLink').style = 'color: inherit';
+            document.getElementsByClassName(NavLinkStyle.brandsList)[0].classList.toggle(NavLinkStyle.anima)
+        } else if (linkNm !== 'brands') {
+            if (window.innerWidth <= 560) {
                 document.getElementById('menuBar').style = 'display: block';
                 document.getElementById('closeBtn').style = 'display: none';
                 document.getElementById('menuLinks').style = 'transform: translate(-100%,-50%)';
             }
+            if(document.getElementsByClassName(NavLinkStyle.brandsList)[0].classList.contains(NavLinkStyle.anima)){
+                document.getElementsByClassName(NavLinkStyle.brandsList)[0].classList.remove(NavLinkStyle.anima)
+            }
         }
-        // prevVal.current = router.pathname;
+        if(document.getElementsByClassName(NavLinkStyle.brandsList)[0].classList.contains(NavLinkStyle.anima)){
+            document.getElementsByClassName(NavLinkStyle.brandAngleIcon)[0].style = 'transform: rotate(-180deg)';
+        } else {
+            document.getElementsByClassName(NavLinkStyle.brandAngleIcon)[0].style = 'transform: initial';
+        }
     }
 
-    function handleBrandClick() {
+    function handleBrandClick(item) {
+        // brands active link color change logic
+        if (prevVal.current.includes('brand')) {
+            document.getElementById(prevVal.current).style = 'color: white';
+        } else {
+            document.getElementById(prevVal.current).style = 'color: inherit';
+        }
+        prevVal.current = `brand${item}`
+        document.getElementById(prevVal.current).style = 'color: #c55757';
         document.getElementsByClassName(NavLinkStyle.brandsList)[0].classList.toggle(NavLinkStyle.anima);
+        if(document.getElementsByClassName(NavLinkStyle.brandsList)[0].classList.contains(NavLinkStyle.anima)){
+            document.getElementsByClassName(NavLinkStyle.brandAngleIcon)[0].style = 'transform: rotate(-180deg)';
+        } else {
+            document.getElementsByClassName(NavLinkStyle.brandAngleIcon)[0].style = 'transform: initial';
+        }
         if (window.innerWidth <= 560) {
             handleLinkClick();
         }
@@ -63,9 +87,9 @@ export default function Navlinks() {
                     </Link>
                     <li
                         id='brandsLink'
-                        className={NavLinkStyle.listItem}
+                        className={NavLinkStyle.listItem+' '+NavLinkStyle.brandsLink}
                         onClick={() => handleLinkClick('brands')}
-                    >brands</li>
+                    >brands <FaAngleDown className={NavLinkStyle.brandAngleIcon} /></li>
                     <Link href='/about' >
                         <li
                             id='aboutLink'
@@ -87,8 +111,9 @@ export default function Navlinks() {
                     brandLinkArr.map((itm, index) => {
                         return <Link href={`/brands/${itm}`} key={itm + 'brandLink' + index}>
                             <li
+                                id={`brand${itm}`}
                                 className={NavLinkStyle.brandListItem}
-                                onClick={handleBrandClick}
+                                onClick={() => handleBrandClick(itm)}
                             >{itm}</li></Link>
                     })
                 }
