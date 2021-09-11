@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Image from 'next/image'
 // component
 import Heading from '../../ui/Heading'
@@ -23,9 +23,35 @@ import g2col4 from '../../../public/Images/collection/g2col4.jpg'
 
 export default function OurCollection() {
 
-    function handleHov(className){
+    function handleHov(className) {
+        if (window.innerWidth <= 1000) {
+            document.getElementsByClassName(className)[0].classList.add(collectionStyle.hovEffect);
+            document.getElementsByClassName(className)[0].classList.add(collectionStyle.showPrice);
+        } else {
         document.getElementsByClassName(className)[0].classList.add(collectionStyle.hovEffect);
+        }
     }
+
+    useEffect(() => {
+        let arr = Array.from(document.getElementsByClassName(collectionStyle.overHide));
+
+        function addClassShowPrice() {
+            if (window.innerWidth <= 1000) {
+                arr.forEach(itm => {
+                    if (!itm.classList.contains(collectionStyle.showPrice)) {
+                        itm.classList.add(collectionStyle.showPrice);
+                    }
+                })
+            } else {
+                arr.forEach(itm => {
+                    if (itm.classList.contains(collectionStyle.showPrice)) {
+                        itm.classList.remove(collectionStyle.showPrice);
+                    }
+                })
+            }
+        }
+        window.addEventListener('resize', addClassShowPrice);
+    }, [])
 
     return (
         <section id="OurCollection" className={collectionStyle.collectionSection}>
