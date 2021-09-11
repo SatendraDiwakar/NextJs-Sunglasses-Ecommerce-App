@@ -39,6 +39,9 @@
   overflow: hidden;
   transition: all 0.5s;
 }
+.showPrice > .price {
+  transform: translateX(0);
+}
 /* hover effect */
 .hovEffect{
   cursor: pointer;
@@ -49,6 +52,7 @@
 .hovEffect:hover >.price{
   transform: translateX(0);
 }
+
 
 .tsm {
   position: relative;

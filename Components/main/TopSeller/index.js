@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 // components
 import Heading from '../../ui/Heading';
@@ -15,8 +15,34 @@ import tsm from '../../../public/Images/topSeller/tsm.jpg'
 export default function TopSeller() {
 
     function handleHov(className) {
+        if (window.innerWidth <= 1000) {
+            document.getElementsByClassName(className)[0].classList.add(TopsellerStyle.hovEffect);
+            document.getElementsByClassName(className)[0].classList.add(TopsellerStyle.showPrice);
+        } else {
         document.getElementsByClassName(className)[0].classList.add(TopsellerStyle.hovEffect);
+        }
     }
+
+    useEffect(() => {
+        let arr = Array.from(document.getElementsByClassName(TopsellerStyle.overHide));
+
+        function addClassShowPrice() {
+            if (window.innerWidth <= 1000) {
+                arr.forEach(itm => {
+                    if (!itm.classList.contains(TopsellerStyle.showPrice)) {
+                        itm.classList.add(TopsellerStyle.showPrice);
+                    }
+                })
+            } else {
+                arr.forEach(itm => {
+                    if (itm.classList.contains(TopsellerStyle.showPrice)) {
+                        itm.classList.remove(TopsellerStyle.showPrice);
+                    }
+                })
+            }
+        }
+        window.addEventListener('resize', addClassShowPrice);
+    }, [])
 
     return (
         <section id="TopSeller">
