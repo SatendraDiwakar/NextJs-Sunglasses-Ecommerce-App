@@ -12,7 +12,7 @@ import sal3 from '../../../public/Images/sale/sal3.jpg'
 import sal4 from '../../../public/Images/sale/sal4.jpg'
 
 
-export default function Sale() {
+export default function Sale({saleProd}) {
 
     const saleImageArr = [sal1, sal2, sal3, sal4];
     const [loading, setLoading] = useState(false);
@@ -20,7 +20,6 @@ export default function Sale() {
 
     function checkLoaded() {
         count++;
-        // console.log(count);
         if (count === 3)
             setLoading(true);
     }
@@ -36,20 +35,21 @@ export default function Sale() {
             <div className={`container ${SaleStyle.container}`}>
                 <div className={SaleStyle.gallery}>
                     {
-                        saleImageArr.map((itm, index) => {
+                        saleProd.map((itm, index) => {
                             return <div
                                 key={`saleImage${index}`}
                                 className={SaleStyle.saleImage + ' ' + `${loading && SaleStyle.hovEffect}`}
                                 onClick={()=>{handleClick("1")}}
                             >
                                 <Image
-                                    src={itm}
+                                    src={itm.image}
                                     alt={`Sunglass ${index} on sale`}
                                     layout="fill"
                                     placeholder={'blur'}
+                                    blurDataURL
                                     onLoadingComplete={checkLoaded}
                                 />
-                                {loading && <div className={SaleStyle.price}>$49 <span className={SaleStyle.discountPrice}>$99 <div className={SaleStyle.cutLine}/></span></div>}
+                                {loading && <div className={SaleStyle.price}>$49 <span className={SaleStyle.discountPrice}>{itm.price} <div className={SaleStyle.cutLine}/></span></div>}
                             </div>
                         })
                     }

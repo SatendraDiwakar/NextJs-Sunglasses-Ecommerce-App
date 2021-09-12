@@ -8,16 +8,14 @@ import HeroStyle from './Hero.module.css';
 import hero from '../../../public/Images/hero.jpg'
 import heroCharacter from '../../../public/Images/heroCharacter.jpg'
 
-export default function Hero() {
-
+export default function Hero({heroChar, heroBack}) {
     return (
         <div className={HeroStyle.hero}>
             <div className={HeroStyle.heroImage}>
                 <Image
-                    src={hero}
+                    src={heroBack}
                     alt="sunglass ecommerce heroImage1"
                     layout="fill"
-                    priority={true}
                 />
             </div>
             <div className="container" style={{ height: '100%' }}>
@@ -25,10 +23,11 @@ export default function Hero() {
                     <div className={HeroStyle.headContainer}>
                         <div className={HeroStyle.heroCharacter}>
                             <Image
-                                src={heroCharacter}
+                                src={heroChar}
                                 alt="sunglass ecommerce heroImage2"
                                 layout="fill"
                                 placeholder='blur'
+                                blurDataURL
                             />
                         </div>
                     </div>
