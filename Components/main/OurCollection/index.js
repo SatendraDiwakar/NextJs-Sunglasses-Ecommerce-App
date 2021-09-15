@@ -4,37 +4,39 @@ import Image from 'next/image'
 import Heading from '../../ui/Heading'
 import ButtonBlack from '../../ui/ButtonBlack'
 // style
-import collectionStyle from './Collection.module.css'
+import CollectionStyle from './Collection.module.css'
 
 export default function OurCollection({ collectionChars, collectionProd }) {
 
     const { g1car, g2car1, g2car2 } = collectionChars;
-    const gal1Prod = collectionProd.slice(0,6);
+    const gal1Prod = collectionProd.slice(0, 6);
     const gal2Prod = collectionProd.slice(6);
 
     function handleHov(className) {
         if (window.innerWidth <= 1000) {
-            document.getElementsByClassName(className)[0].classList.add(collectionStyle.hovEffect);
-            document.getElementsByClassName(className)[0].classList.add(collectionStyle.showPrice);
+            document.getElementsByClassName(className)[0].classList.add(CollectionStyle.hovEffect);
+            document.getElementsByClassName(className)[0].classList.add(CollectionStyle.showPrice);
         } else {
-            document.getElementsByClassName(className)[0].classList.add(collectionStyle.hovEffect);
+            document.getElementsByClassName(className)[0].classList.add(CollectionStyle.hovEffect);
         }
     }
 
     useEffect(() => {
-        let arr = Array.from(document.getElementsByClassName(collectionStyle.overHide));
+        let arr = Array.from(document.getElementsByClassName(CollectionStyle.overHide));
 
         function addClassShowPrice() {
             if (window.innerWidth <= 1000) {
                 arr.forEach(itm => {
-                    if (!itm.classList.contains(collectionStyle.showPrice)) {
-                        itm.classList.add(collectionStyle.showPrice);
+                    if (!itm.classList.contains(CollectionStyle.showPrice)) {
+                        if (itm.classList.contains(CollectionStyle.hovEffect)) {
+                            itm.classList.add(CollectionStyle.showPrice);
+                        }
                     }
                 })
             } else {
                 arr.forEach(itm => {
-                    if (itm.classList.contains(collectionStyle.showPrice)) {
-                        itm.classList.remove(collectionStyle.showPrice);
+                    if (itm.classList.contains(CollectionStyle.showPrice)) {
+                        itm.classList.remove(CollectionStyle.showPrice);
                     }
                 })
             }
@@ -43,71 +45,61 @@ export default function OurCollection({ collectionChars, collectionProd }) {
     }, [])
 
     return (
-        <section id="OurCollection" className={collectionStyle.collectionSection}>
+        <section id="OurCollection" className={CollectionStyle.collectionSection}>
             <Heading heading="our collection" />
-            <div className={`container ${collectionStyle.container}`}>
-                <div className={collectionStyle.firstGrid}>
-                    <div className={collectionStyle.gallery1}>
+            <div className={`container ${CollectionStyle.container}`}>
+                <div className={CollectionStyle.firstGrid}>
+                    <div className={CollectionStyle.gallery1}>
                         {
                             gal1Prod.map((itm, index) => {
-                                return <div key={`collection${index}Gallery1`} className={collectionStyle[`g1col${index + 1}`] + ' ' + collectionStyle.overHide}>
+                                return <div key={`collection${index}Gallery1`} className={CollectionStyle[`g1col${index + 1}`] + ' ' + CollectionStyle.overHide}>
                                     <Image
                                         src={itm.image}
                                         alt={`sunglass image collection ${index}`}
                                         layout='fill'
-                                        placeholder='blur'
-                                        blurDataURL
-                                        onLoadingComplete={() => handleHov(collectionStyle[`g1col${index + 1}`])}
+                                        onLoadingComplete={() => handleHov(CollectionStyle[`g1col${index + 1}`])}
                                     />
-                                    <p className={collectionStyle.price}>{itm.price}</p>
+                                    <p className={CollectionStyle.price}>{itm.price}</p>
                                 </div>
                             })
                         }
                     </div>
-                    <div className={collectionStyle.g1car}>
+                    <div className={CollectionStyle.g1car}>
                         <Image
                             src={g1car}
                             alt="man with sunglass"
                             layout='fill'
-                            placeholder='blur'
-                            blurDataURL
                         />
                     </div>
                 </div>
-                <div className={collectionStyle.secondGrid}>
-                    <div className={collectionStyle.g2car1}>
+                <div className={CollectionStyle.secondGrid}>
+                    <div className={CollectionStyle.g2car1}>
                         <Image
                             src={g2car1}
                             alt="woman with sunglass 1"
                             layout='fill'
-                            placeholder='blur'
-                            blurDataURL
                         />
                     </div>
-                    <div className={collectionStyle.gallery2}>
+                    <div className={CollectionStyle.gallery2}>
                         {
                             gal2Prod.map((itm, index) => {
-                                return <div key={`collection${index+6}Gallery2`} className={collectionStyle[`g2col${index + 1}`] + ' ' + collectionStyle.overHide}>
+                                return <div key={`collection${index + 6}Gallery2`} className={CollectionStyle[`g2col${index + 1}`] + ' ' + CollectionStyle.overHide}>
                                     <Image
                                         src={itm.image}
                                         alt={`sunglass image collection ${index + 6}`}
                                         layout='fill'
-                                        placeholder='blur'
-                                        blurDataURL
-                                        onLoadingComplete={() => handleHov(collectionStyle[`g2col${index + 1}`])}
+                                        onLoadingComplete={() => handleHov(CollectionStyle[`g2col${index + 1}`])}
                                     />
-                                    <p className={collectionStyle.price}>{itm.price}</p>
+                                    <p className={CollectionStyle.price}>{itm.price}</p>
                                 </div>
                             })
                         }
                     </div>
-                    <div className={collectionStyle.g2car2}>
+                    <div className={CollectionStyle.g2car2}>
                         <Image
                             src={g2car2}
                             alt="woman with sunglass 2"
                             layout='fill'
-                            placeholder='blur'
-                            blurDataURL
                         />
                     </div>
                 </div>

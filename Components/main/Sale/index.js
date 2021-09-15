@@ -5,28 +5,13 @@ import Heading from '../../ui/Heading'
 import ButtonBlack from '../../ui/ButtonBlack'
 // style
 import SaleStyle from './Sale.module.css'
-// images
-import sal1 from '../../../public/Images/sale/sal1.jpg'
-import sal2 from '../../../public/Images/sale/sal2.jpg'
-import sal3 from '../../../public/Images/sale/sal3.jpg'
-import sal4 from '../../../public/Images/sale/sal4.jpg'
 
 
-export default function Sale({saleProd}) {
+export default function Sale({ saleProd }) {    
 
-    const saleImageArr = [sal1, sal2, sal3, sal4];
-    const [loading, setLoading] = useState(false);
-    let count = 0;
-
-    function checkLoaded() {
-        count++;
-        if (count === 3)
-            setLoading(true);
-    }
-
-    function handleClick(id){
-        if(loading)
-            alert(id)
+    function handleLoad(itemIndex) {
+        document.getElementsByClassName(SaleStyle.price)[itemIndex].style='display: block';
+        document.getElementsByClassName(SaleStyle.saleImage)[itemIndex].classList.add(SaleStyle.hovEffect);
     }
 
     return (
@@ -38,18 +23,16 @@ export default function Sale({saleProd}) {
                         saleProd.map((itm, index) => {
                             return <div
                                 key={`saleImage${index}`}
-                                className={SaleStyle.saleImage + ' ' + `${loading && SaleStyle.hovEffect}`}
-                                onClick={()=>{handleClick("1")}}
+                                className={SaleStyle.saleImage }
+                                onClick={() => { }}
                             >
                                 <Image
                                     src={itm.image}
                                     alt={`Sunglass ${index} on sale`}
                                     layout="fill"
-                                    placeholder={'blur'}
-                                    blurDataURL
-                                    onLoadingComplete={checkLoaded}
+                                    onLoadingComplete={()=>handleLoad(index)}
                                 />
-                                {loading && <div className={SaleStyle.price}>$49 <span className={SaleStyle.discountPrice}>{itm.price} <div className={SaleStyle.cutLine}/></span></div>}
+                                <div className={SaleStyle.price}>$49 <span className={SaleStyle.discountPrice}>{itm.price} <div className={SaleStyle.cutLine} /></span></div>
                             </div>
                         })
                     }

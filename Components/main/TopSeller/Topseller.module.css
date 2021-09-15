@@ -36,6 +36,7 @@
   transition: transform .5s;
 }
 .overHide {
+  background: rgb(236, 230, 230);
   overflow: hidden;
   transition: all 0.5s;
 }
@@ -58,6 +59,7 @@
   position: relative;
   width: 40rem;
   height: 60rem;
+  background: rgb(236, 230, 230);
 }
 .ts1 {
   position: relative;

@@ -36,6 +36,7 @@
 }
 
 .heroCharacter {
+  background-color: rgb(255 255 255 / 50%);
   width: 32rem;
   height: 30rem;
   box-shadow: -2.5rem -2.5rem 0px rgb(255 255 255 / 50%);

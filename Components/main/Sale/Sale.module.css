@@ -22,6 +22,7 @@
   width: 25rem;
   height: 15rem;
   position: relative;
+  background: #5f5c5c;
   overflow: hidden;
   transition: transform 0.3s;
 }
@@ -31,6 +32,7 @@
   cursor: pointer;
 }
 .price {
+  display: none;
   padding: 1rem;
   font-size: 1.5rem;
   border-bottom-left-radius: 30px;

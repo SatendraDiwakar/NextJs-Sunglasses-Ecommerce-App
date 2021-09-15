@@ -10,7 +10,7 @@
 }
 
 /* price */
-.price{
+.price {
   width: 5.5rem;
   padding: 1rem;
   font-size: 1.5rem;
@@ -22,9 +22,10 @@
   top: 0;
   right: 0;
   transform: translateX(102%);
-  transition: transform .5s;
+  transition: transform 0.5s;
 }
 .overHide {
+  background: rgb(236, 230, 230);
   overflow: hidden;
   transition: all 0.5s;
 }
@@ -32,13 +33,13 @@
   transform: translateX(0);
 }
 /* hover effect */
-.hovEffect{
+.hovEffect {
   cursor: pointer;
 }
 .hovEffect:hover {
   box-shadow: 3px 3px 6px #5f1f1f;
 }
-.hovEffect:hover >.price{
+.hovEffect:hover > .price {
   transform: translateX(0);
 }
 
@@ -62,6 +63,7 @@
 }
 
 .g1car {
+  background: rgb(236, 230, 230);
   position: relative;
   width: 35rem;
   height: 50rem;
@@ -116,11 +118,13 @@
 }
 
 .g2car1 {
+  background: rgb(236, 230, 230);
   position: relative;
   width: 30rem;
   height: 50rem;
 }
 .g2car2 {
+  background: rgb(236, 230, 230);
   position: relative;
   width: 30rem;
   height: 50rem;
@@ -147,130 +151,128 @@
 }
 
 @media screen and (max-width: 750px) {
-  
-  .gallery1{
+  .gallery1 {
     width: 80rem;
   }
-  .g1car{
+  .g1car {
     height: 48rem;
   }
-  .g1col5{
+  .g1col5 {
     min-height: 22rem;
   }
-  .g1col6{
+  .g1col6 {
     min-height: 22rem;
   }
-  .gallery2{
+  .gallery2 {
     width: 55rem;
   }
-  .g2car1{
+  .g2car1 {
     height: 48rem;
   }
-  .g2car2{
+  .g2car2 {
     height: 48rem;
   }
-  .g2col2{
+  .g2col2 {
     min-height: 22rem;
   }
-  .g2col4{
+  .g2col4 {
     min-height: 22rem;
   }
 }
 @media screen and (max-width: 700px) {
-  
-  .gallery1{
+  .gallery1 {
     width: 75rem;
   }
-  .g1car{
+  .g1car {
     height: 46rem;
   }
-  .g1col1{
+  .g1col1 {
     min-height: 20rem;
   }
-  .g1col6{
+  .g1col6 {
     min-height: 20rem;
   }
-  .gallery2{
+  .gallery2 {
     width: 50rem;
   }
-  .g2car1{
+  .g2car1 {
     height: 46rem;
   }
-  .g2car2{
+  .g2car2 {
     height: 46rem;
   }
-  .g2col2{
+  .g2col2 {
     min-height: 20rem;
   }
-  .g2col4{
+  .g2col4 {
     min-height: 20rem;
   }
 }
 @media screen and (max-width: 650px) {
-  .gallery1{
+  .gallery1 {
     width: 70rem;
   }
-  .g1car{
+  .g1car {
     height: 44rem;
   }
-  .g1col6{
+  .g1col6 {
     min-height: 18rem;
   }
-  .gallery2{
+  .gallery2 {
     width: 45rem;
   }
-  .g2car1{
+  .g2car1 {
     height: 44rem;
   }
-  .g2car2{
+  .g2car2 {
     height: 44rem;
   }
 }
 @media screen and (max-width: 600px) {
-  .firstGrid{
+  .firstGrid {
     justify-content: center;
   }
-  .gallery1{
+  .gallery1 {
     width: 70rem;
   }
-  .g1car{
+  .g1car {
     display: none;
   }
-  .g1col5{
+  .g1col5 {
     min-height: 20rem;
   }
-  .secondGrid{
+  .secondGrid {
     justify-content: center;
   }
-  .gallery2{
+  .gallery2 {
     width: 40rem;
   }
-  .g2car1{
-    display: none
+  .g2car1 {
+    display: none;
   }
-  .g2car2{
+  .g2car2 {
     width: 26rem;
   }
 }
 @media screen and (max-width: 450px) {
-  .secondGrid{
+  .secondGrid {
     gap: 0 2rem;
   }
-  .g2car2{
+  .g2car2 {
     height: 42rem;
   }
 }
 @media screen and (max-width: 350px) {
-  .secondGrid{
+  .secondGrid {
     gap: 0 2rem;
   }
-  .gallery2{
+  .gallery2 {
     width: 38rem;
   }
-  .g2car2{
+  .g2car2 {
     height: 40rem;
   }
-  .g2col4{
+  .g2col4 {
     min-height: 18rem;
   }
 }

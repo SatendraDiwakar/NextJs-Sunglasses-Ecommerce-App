@@ -26,8 +26,7 @@ export default function Hero({heroChar, heroBack}) {
                                 src={heroChar}
                                 alt="sunglass ecommerce heroImage2"
                                 layout="fill"
-                                placeholder='blur'
-                                blurDataURL
+                                priority={true}
                             />
                         </div>
                     </div>
