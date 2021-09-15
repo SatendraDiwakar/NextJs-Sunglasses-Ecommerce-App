@@ -9,6 +9,6 @@ const heropicSchema = new mongoose.Schema({
     collectionHero3: { type: String, required: true },
 });
 
-const HeroPic = mongoose.models.heroPic || mongoose.model('heroPic', heropicSchema);
+const HeroPicModel = mongoose.models.heroPic || mongoose.model('heroPic', heropicSchema);
 
-export default HeroPic;
+export default HeroPicModel;
