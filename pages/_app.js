@@ -1,13 +1,16 @@
 import '../styles/globals.css'
 // component
+import ShopProvider from '../Components/context'
 import Layout from '../Components/layout'
 
 
 function MyApp({ Component, pageProps }) {
   return <>
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
+    <ShopProvider>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </ShopProvider>
   </>
 }
 
