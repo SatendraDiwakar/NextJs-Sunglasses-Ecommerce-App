@@ -1,5 +1,7 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import Image from 'next/image'
+// context
+import { ShopContext } from '../../context'
 // component
 import Heading from '../../ui/Heading'
 import ButtonBlack from '../../ui/ButtonBlack'
@@ -7,7 +9,12 @@ import ButtonBlack from '../../ui/ButtonBlack'
 import SaleStyle from './Sale.module.css'
 
 
-export default function Sale({ saleProd }) {    
+export default function Sale({ saleProd }) {   
+    
+    const saleProducts = saleProd.map(itm=>{ return {...itm, discountPrice: 49}});
+
+    const context = useContext(ShopContext);
+    const { open } = context;
 
     function handleLoad(itemIndex) {
         document.getElementsByClassName(SaleStyle.price)[itemIndex].style='display: block';
@@ -20,11 +27,11 @@ export default function Sale({ saleProd }) {
             <div className={`container ${SaleStyle.container}`}>
                 <div className={SaleStyle.gallery}>
                     {
-                        saleProd.map((itm, index) => {
+                        saleProducts.map((itm, index) => {
                             return <div
                                 key={`saleImage${index}`}
                                 className={SaleStyle.saleImage }
-                                onClick={() => { }}
+                                onClick={() => { open(itm) }}
                             >
                                 <Image
                                     src={itm.image}
@@ -32,7 +39,7 @@ export default function Sale({ saleProd }) {
                                     layout="fill"
                                     onLoadingComplete={()=>handleLoad(index)}
                                 />
-                                <div className={SaleStyle.price}>$49 <span className={SaleStyle.discountPrice}>{itm.price} <div className={SaleStyle.cutLine} /></span></div>
+                                <div className={SaleStyle.price}>${itm.discountPrice} <span className={SaleStyle.discountPrice}>${itm.price} <div className={SaleStyle.cutLine} /></span></div>
                             </div>
                         })
                     }

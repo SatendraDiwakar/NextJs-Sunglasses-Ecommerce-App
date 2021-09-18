@@ -1,5 +1,7 @@
-import React, { useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 import Image from 'next/image'
+// context
+import { ShopContext } from '../../context'
 // component
 import Heading from '../../ui/Heading'
 import ButtonBlack from '../../ui/ButtonBlack'
@@ -11,6 +13,9 @@ export default function OurCollection({ collectionChars, collectionProd }) {
     const { g1car, g2car1, g2car2 } = collectionChars;
     const gal1Prod = collectionProd.slice(0, 6);
     const gal2Prod = collectionProd.slice(6);
+
+    const context = useContext(ShopContext);
+    const { open } = context;
 
     function handleHov(className) {
         if (window.innerWidth <= 1000) {
@@ -52,7 +57,11 @@ export default function OurCollection({ collectionChars, collectionProd }) {
                     <div className={CollectionStyle.gallery1}>
                         {
                             gal1Prod.map((itm, index) => {
-                                return <div key={`collection${index}Gallery1`} className={CollectionStyle[`g1col${index + 1}`] + ' ' + CollectionStyle.overHide}>
+                                return <div
+                                    key={`collection${index}Gallery1`}
+                                    className={CollectionStyle[`g1col${index + 1}`] + ' ' + CollectionStyle.overHide}
+                                    onClick={() => { open(itm) }}
+                                >
                                     <Image
                                         src={itm.image}
                                         alt={`sunglass image collection ${index}`}
@@ -83,7 +92,11 @@ export default function OurCollection({ collectionChars, collectionProd }) {
                     <div className={CollectionStyle.gallery2}>
                         {
                             gal2Prod.map((itm, index) => {
-                                return <div key={`collection${index + 6}Gallery2`} className={CollectionStyle[`g2col${index + 1}`] + ' ' + CollectionStyle.overHide}>
+                                return <div
+                                    key={`collection${index + 6}Gallery2`}
+                                    className={CollectionStyle[`g2col${index + 1}`] + ' ' + CollectionStyle.overHide}
+                                    onClick={() => { open(itm) }}
+                                >
                                     <Image
                                         src={itm.image}
                                         alt={`sunglass image collection ${index + 6}`}

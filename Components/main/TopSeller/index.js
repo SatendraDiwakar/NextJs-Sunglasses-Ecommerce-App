@@ -1,5 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect } from 'react'
 import Image from 'next/image'
+// context
+import { ShopContext } from '../../context';
 // components
 import Heading from '../../ui/Heading';
 import ButtonBlack from '../../ui/ButtonBlack';
@@ -7,6 +9,9 @@ import ButtonBlack from '../../ui/ButtonBlack';
 import TopsellerStyle from './Topseller.module.css';
 
 export default function TopSeller({ topSellerChar, topSellerProd }) {
+
+    const context = useContext(ShopContext);
+    const { open } = context;
 
     function handleImgLoad(className) {
         if (window.innerWidth <= 1000) {
@@ -24,7 +29,7 @@ export default function TopSeller({ topSellerChar, topSellerProd }) {
             if (window.innerWidth <= 1000) {
                 arr.forEach(itm => {
                     if (!itm.classList.contains(TopsellerStyle.showPrice)) {
-                        if(itm.classList.contains(TopsellerStyle.hovEffect)){
+                        if (itm.classList.contains(TopsellerStyle.hovEffect)) {
                             itm.classList.add(TopsellerStyle.showPrice);
                         }
                     }
@@ -48,7 +53,11 @@ export default function TopSeller({ topSellerChar, topSellerProd }) {
                     <div className={TopsellerStyle.gallery}>
                         {
                             topSellerProd.map((itm, index) => {
-                                return <div key={`${index}` + 'topSeller'} className={TopsellerStyle[`ts${index + 1}`] + ' ' + TopsellerStyle.overHide}>
+                                return <div
+                                    key={`${index}` + 'topSeller'}
+                                    className={TopsellerStyle[`ts${index + 1}`] + ' ' + TopsellerStyle.overHide}
+                                    onClick={() => { open(itm) }}
+                                >
                                     <Image
                                         src={itm.image}
                                         alt={itm.name}

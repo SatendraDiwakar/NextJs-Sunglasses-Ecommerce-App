@@ -44,6 +44,7 @@
   transition: all 0.3s;
 }
 .discountPrice {
+  font-size: 1.3rem;
   position: relative;
   opacity: 0.5;
 }
