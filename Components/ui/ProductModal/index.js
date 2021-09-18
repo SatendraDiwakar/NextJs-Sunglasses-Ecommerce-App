@@ -44,7 +44,7 @@ export default function ProductModal() {
                     <p className={ProductModalStyle.rating}>Rating : <span className={ProductModalStyle.rightDetailsValue}>{itmDetails.rating}</span></p>
                     <p className={ProductModalStyle.stock}>Stock : <span className={ProductModalStyle.rightDetailsValue}>{itmDetails.countInStock}</span></p>
                     <p className={ProductModalStyle.brand}>Brand : <span className={ProductModalStyle.rightDetailsValue}>{itmDetails.brand}</span></p>
-                    <p className={ProductModalStyle.desc}>Description: <p className={ProductModalStyle.rightDetailsValue + ' ' + ProductModalStyle.descValue}>{itmDetails.description}</p></p>
+                    <p className={ProductModalStyle.desc}>Description: <span className={ProductModalStyle.rightDetailsValue + ' ' + ProductModalStyle.descValue}>{itmDetails.description}</span></p>
                 </div>
             </div>
             <div className={ProductModalStyle.ctaContainer}>
