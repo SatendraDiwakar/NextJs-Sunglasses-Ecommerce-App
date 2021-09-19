@@ -1,16 +1,20 @@
 import '../styles/globals.css'
+// context
+import ModalProvider from '../Components/ModalCtx'
+import StoreProvider from '../utils/Store'
 // component
-import ShopProvider from '../Components/context'
 import Layout from '../Components/layout'
 
 
 function MyApp({ Component, pageProps }) {
   return <>
-    <ShopProvider>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
-    </ShopProvider>
+    <StoreProvider>
+      <ModalProvider>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </ModalProvider>
+    </StoreProvider>
   </>
 }
 

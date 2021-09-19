@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Link from 'next/link'
 // react-icons
 import { FaOpencart } from 'react-icons/fa';
@@ -20,7 +20,7 @@ export default function Navbar() {
         window.addEventListener('load', () => {
             if (window.innerWidth > 560) {
                 setSwitchUserIconPos(false);
-                document.getElementById('menuLinks').style = 'transform: translateX(-50%,-50%)';
+                document.getElementById('menuLinks').style = 'transform: translate(-50%,-50%)';
             } else {
                 document.getElementsByClassName(NavStyle.menuBar)[0].style = 'display: block';
                 document.getElementsByClassName(NavStyle.closeBtn)[0].style = 'display: none';
@@ -31,7 +31,7 @@ export default function Navbar() {
         window.addEventListener('resize', () => {
             if (window.innerWidth > 560) {
                 setSwitchUserIconPos(false);
-                document.getElementById('menuLinks').style = 'transform: translateX(-50%,-50%)';
+                document.getElementById('menuLinks').style = 'transform: translate(-50%,-50%)';
             } else {
                 document.getElementsByClassName(NavStyle.menuBar)[0].style = 'display: block';
                 document.getElementsByClassName(NavStyle.closeBtn)[0].style = 'display: none';

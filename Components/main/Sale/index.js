@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react'
 import Image from 'next/image'
 // context
-import { ShopContext } from '../../context'
+import { ModalCtx } from '../../ModalCtx'
 // component
 import Heading from '../../ui/Heading'
 import ButtonBlack from '../../ui/ButtonBlack'
@@ -12,8 +12,8 @@ import SaleStyle from './Sale.module.css'
 export default function Sale({ saleProd }) {   
     
     const saleProducts = saleProd.map(itm=>{ return {...itm, discountPrice: 49}});
-
-    const context = useContext(ShopContext);
+    // context
+    const context = useContext(ModalCtx);
     const { open } = context;
 
     function handleLoad(itemIndex) {

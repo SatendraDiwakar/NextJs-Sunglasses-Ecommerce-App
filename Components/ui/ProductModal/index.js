@@ -1,14 +1,28 @@
 import Image from 'next/image';
 import React, { useContext } from 'react'
 // context
-import { ShopContext } from '../../context'
+import { ModalCtx } from '../../ModalCtx'
+import { StoreCtx } from '../../../utils/Store';
+import { addToCart } from '../../../utils/Actions';
 // style
 import ProductModalStyle from './ProductModal.module.css'
 
 export default function ProductModal() {
 
-    const context = useContext(ShopContext);
+    // context
+    const context = useContext(ModalCtx);
     const { close, itmDetails } = context;
+    const contextStore = useContext(StoreCtx);
+    const { state, dispatch } = contextStore;
+
+    const cartItem = {
+        prodName: itmDetails.name,
+        prodImage: itmDetails.image,
+        prodPrice: itmDetails.sectionName === 'sale'?itmDetails.discountPrice :itmDetails.price,
+        prodQuantity: 1,
+        prodId: itmDetails._id
+    }
+    console.log(state);
 
     return (
         <div className={ProductModalStyle.container}>
@@ -38,7 +52,7 @@ export default function ProductModal() {
                                     </span>
                                 </>
                                 :
-                                <span className={ProductModalStyle.price} style={{fontSize: '2.5rem',opacity: '1'}}>  ${itmDetails.price}</span>
+                                <span className={ProductModalStyle.price} style={{ fontSize: '2.5rem', opacity: '1' }}>  ${itmDetails.price}</span>
                         }
                     </p>
                     <p className={ProductModalStyle.rating}>Rating : <span className={ProductModalStyle.rightDetailsValue}>{itmDetails.rating}</span></p>
@@ -48,7 +62,13 @@ export default function ProductModal() {
                 </div>
             </div>
             <div className={ProductModalStyle.ctaContainer}>
-                <button className={ProductModalStyle.btnAddToCart + ' ' + ProductModalStyle.btnCta}>Add To Cart</button>
+                <button
+                    className={ProductModalStyle.btnAddToCart + ' ' + ProductModalStyle.btnCta}
+                    onClick={() => dispatch({ 
+                        type: addToCart, 
+                        payload: cartItem
+                    })}
+                >Add To Cart</button>
                 <button className={ProductModalStyle.btnBuyNow + ' ' + ProductModalStyle.btnCta}>Buy Now</button>
             </div>
         </div>

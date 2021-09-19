@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react'
 import Image from 'next/image'
 // context
-import { ShopContext } from '../../context'
+import { ModalCtx } from '../../ModalCtx'
 // component
 import Heading from '../../ui/Heading'
 import ButtonBlack from '../../ui/ButtonBlack'
@@ -14,7 +14,7 @@ export default function OurCollection({ collectionChars, collectionProd }) {
     const gal1Prod = collectionProd.slice(0, 6);
     const gal2Prod = collectionProd.slice(6);
 
-    const context = useContext(ShopContext);
+    const context = useContext(ModalCtx);
     const { open } = context;
 
     function handleHov(className) {

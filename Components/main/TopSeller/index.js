@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react'
 import Image from 'next/image'
 // context
-import { ShopContext } from '../../context';
+import { ModalCtx } from '../../ModalCtx';
 // components
 import Heading from '../../ui/Heading';
 import ButtonBlack from '../../ui/ButtonBlack';
@@ -10,7 +10,8 @@ import TopsellerStyle from './Topseller.module.css';
 
 export default function TopSeller({ topSellerChar, topSellerProd }) {
 
-    const context = useContext(ShopContext);
+    // context
+    const context = useContext(ModalCtx);
     const { open } = context;
 
     function handleImgLoad(className) {
