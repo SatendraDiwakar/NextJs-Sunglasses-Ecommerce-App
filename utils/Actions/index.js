@@ -8,5 +8,15 @@ const removeFromCart = () =>{
         type: 'REMOVEFROMCART'
     }
 }
+const incQuantity = () =>{
+    return {
+        type: 'INCQUANTITY'
+    }
+}
+const decQuantity = () =>{
+    return {
+        type: 'DECQUANTITY'
+    }
+}
 
-export { addToCart, removeFromCart };
+export { addToCart, removeFromCart, incQuantity, decQuantity };

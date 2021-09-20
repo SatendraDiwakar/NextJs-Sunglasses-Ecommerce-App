@@ -13,7 +13,7 @@ export default function ProductModal() {
     const context = useContext(ModalCtx);
     const { close, itmDetails } = context;
     const contextStore = useContext(StoreCtx);
-    const { state, dispatch } = contextStore;
+    const { dispatch } = contextStore;
 
     const cartItem = {
         prodName: itmDetails.name,
@@ -22,7 +22,6 @@ export default function ProductModal() {
         prodQuantity: 1,
         prodId: itmDetails._id
     }
-    console.log(state);
 
     return (
         <div className={ProductModalStyle.container}>

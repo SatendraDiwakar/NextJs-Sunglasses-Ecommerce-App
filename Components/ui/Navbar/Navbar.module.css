@@ -63,6 +63,7 @@
   transition: color 0.4s;
 }
 .cartText {
+  width: 6rem;
   margin-left: 0.3rem;
   font-family: "Sulphur Point", sans-serif;
   font-size: 2rem;

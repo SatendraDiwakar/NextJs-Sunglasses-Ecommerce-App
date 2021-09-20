@@ -1,0 +1,106 @@
+.container{
+    padding: 2rem;
+    width: 100%;
+    background: rgb(236, 228, 228);
+}
+
+.itemContainer{
+    padding: 1rem 2rem;
+    width: 70%;
+    background: #fff;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.headingContainer{
+    width: 95%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: 'Roboto', sans-serif;
+    font-size: 3rem;
+}
+.prodPrice{
+    font-size: 2.5rem;
+    color: rgb(43, 42, 42);
+}
+.line{
+    margin: 1rem 0;
+    width: 95%;
+    height: 1px;
+    background: rgb(77, 73, 73);
+}
+.prodContainer{
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem 0;
+}
+.item{
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+.prodImage{
+    position: relative;
+    width: 15rem;
+    height: 10rem;
+    border-radius: 10px;
+    background: rgb(236, 230, 230);
+}
+.prodImage >div{
+    border-radius: 10px;
+    box-shadow: 0 0 1px 1px rgb(248, 146, 146);
+}
+.prodDetails{
+    width: 80%;
+    height: 8rem;
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.prodNamePrice{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.prodName{
+    font-size: 2.8rem;
+    letter-spacing: .5px;
+}
+.prodQunatity{
+    display: inline-block;
+    padding-right: 1rem;
+    font-size: 1.8rem;
+    border-right: 1px solid #000;
+}
+.btnQuant{
+    width: 2rem;
+    margin: 0 .8rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+    border: 1px solid;
+}
+.btnQuant:hover{
+    background: rgb(206, 200, 200);
+    border: 1px solid rgb(66, 66, 66);
+}
+
+.prodDelete{
+    margin-left: 1rem;
+}
+.prodDelete{
+    padding: .2rem .5rem;
+    letter-spacing: .5px;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 2px;
+    cursor: pointer;
+}
+.prodDelete:hover{
+    background: transparent;
+    border: 1px solid rgb(255, 0, 0);
+}

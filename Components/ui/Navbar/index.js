@@ -1,5 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import Link from 'next/link'
+// context
+import { StoreCtx } from '../../../utils/Store';
 // react-icons
 import { FaOpencart } from 'react-icons/fa';
 import { CgClose } from 'react-icons/cg';
@@ -14,6 +16,9 @@ import NavStyle from './Navbar.module.css';
 export default function Navbar() {
 
     const [switchUserIconPos, setSwitchUserIconPos] = useState(false);
+    // context
+    const context = useContext(StoreCtx);
+    const { state } = context;
 
     useEffect(() => {
 
@@ -65,10 +70,12 @@ export default function Navbar() {
                             :
                             <>
                                 <AiOutlineUser className={NavStyle.user} />
-                                <div className={NavStyle.cartContainer}>
-                                    <FaOpencart className={NavStyle.cartIcon} />
-                                    <p className={NavStyle.cartText}>cart<span className={NavStyle.itemsNum}>0</span></p>
-                                </div>
+                                <Link href="/cart">
+                                    <div className={NavStyle.cartContainer}>
+                                        <FaOpencart className={NavStyle.cartIcon} />
+                                        <p className={NavStyle.cartText}>cart<span className={NavStyle.itemsNum}>{state.cart.cartItems.length}</span></p>
+                                    </div>
+                                </Link>
                             </>
                     }
                     <div className={NavStyle.menuBtnContainer}>
