@@ -1,106 +1,205 @@
-.container{
-    padding: 2rem;
-    width: 100%;
-    background: rgb(236, 228, 228);
+.container {
+  padding: 2rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  background: rgb(236, 228, 228);
 }
 
-.itemContainer{
-    padding: 1rem 2rem;
-    width: 70%;
-    background: #fff;
-    border-radius: 15px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.itemContainer {
+  padding: 2rem;
+  width: 70%;
+  background: #fff;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-.headingContainer{
-    width: 95%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-family: 'Roboto', sans-serif;
-    font-size: 3rem;
+.headingContainer {
+  width: 95%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: "Roboto", sans-serif;
+  font-size: 3rem;
 }
-.prodPrice{
-    font-size: 2.5rem;
-    color: rgb(43, 42, 42);
+.prodPriceHeading {
+  font-size: 2.5rem;
+  color: rgb(43, 42, 42);
 }
-.line{
-    margin: 1rem 0;
-    width: 95%;
-    height: 1px;
-    background: rgb(77, 73, 73);
+.line {
+  margin: 1rem 0;
+  width: 95%;
+  height: 1px;
+  background: rgb(77, 73, 73);
 }
-.prodContainer{
-    width: 95%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2rem 0;
+.prodContainer {
+  width: 95%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem 0;
 }
-.item{
-    width: 100%;
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
+.item {
+  width: 100%;
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+  justify-content: space-between;
 }
-.prodImage{
-    position: relative;
-    width: 15rem;
-    height: 10rem;
-    border-radius: 10px;
-    background: rgb(236, 230, 230);
+.prodImage {
+  position: relative;
+  width: 18rem;
+  height: 12rem;
+  flex-shrink: 0;
+  border-radius: 10px;
+  background: rgb(236, 230, 230);
 }
-.prodImage >div{
-    border-radius: 10px;
-    box-shadow: 0 0 1px 1px rgb(248, 146, 146);
+.prodImage > div {
+  border-radius: 10px;
+  box-shadow: 0 0 1px 1px rgb(248, 146, 146);
 }
-.prodDetails{
-    width: 80%;
-    height: 8rem;
-    font-family: 'Roboto', sans-serif;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+.prodDetails {
+  width: 80%;
+  font-family: "Roboto", sans-serif;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem 0;
+  justify-content: space-between;
 }
-.prodNamePrice{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+.prodNamePrice {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
-.prodName{
-    font-size: 2.8rem;
-    letter-spacing: .5px;
+.prodName {
+  font-size: 2.8rem;
+  letter-spacing: 0.5px;
 }
-.prodQunatity{
-    display: inline-block;
-    padding-right: 1rem;
-    font-size: 1.8rem;
-    border-right: 1px solid #000;
+.prodPrice {
+  width: 15rem;
+  font-size: 2.5rem;
+  text-align: right;
 }
-.btnQuant{
-    width: 2rem;
-    margin: 0 .8rem;
-    font-size: 1.5rem;
-    cursor: pointer;
-    border: 1px solid;
+.prodActions {
+  vertical-align: middle;
 }
-.btnQuant:hover{
-    background: rgb(206, 200, 200);
-    border: 1px solid rgb(66, 66, 66);
+.prodQunatity {
+  height: 100%;
+  display: inline-block;
+  padding-right: 1rem;
+  font-size: 1.8rem;
+  border-right: 1px solid #000;
+}
+.prodQunatity > p {
+  height: 100%;
+}
+.btnQuant {
+  width: 2.2rem;  
+  padding: 0.2rem 0.5rem;
+  margin: 0 0.8rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+  border: 1px solid;
+}
+.btnQuant:hover {
+  background: rgb(206, 200, 200);
+  border: 1px solid rgb(66, 66, 66);
+}
+.prodDelete {
+  margin-left: 1rem;
+  padding: 0.2rem 0.5rem;
+  letter-spacing: 0.5px;
+  border: 1px solid rgb(0, 0, 0);
+  border-radius: 5px;
+  cursor: pointer;
+}
+.prodDelete:hover {
+  background: transparent;
+  border: 1px solid rgb(255, 0, 0);
 }
 
-.prodDelete{
-    margin-left: 1rem;
+.subTotalContainer {
+  width: 35rem;
+  height: 18rem;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  font-family: "Roboto", sans-serif;
+  font-size: 2.5rem;
+  letter-spacing: .5px;
 }
-.prodDelete{
-    padding: .2rem .5rem;
-    letter-spacing: .5px;
-    border: 1px solid rgb(0, 0, 0);
-    border-radius: 2px;
-    cursor: pointer;
+.subTotalHead {
+  font-size: 3rem;
 }
-.prodDelete:hover{
-    background: transparent;
-    border: 1px solid rgb(255, 0, 0);
+.btnCheckOut {
+  width: 20rem;
+  height: 4rem;
+  border-radius: 15px;
+  font-size: 1.8rem;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  color: #fff;
+  border: 2px solid rgb(197, 87, 87);
+  background: rgb(197, 87, 87);
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.btnCheckOut:hover {
+  color: #000;
+  border: 2px solid rgb(197, 87, 87);
+  background: #fff;
+}
+
+@media screen and (max-width: 1000px){
+    .prodName{
+        font-size: 2.5rem;
+    }
+}
+@media screen and (max-width: 775px){
+    .container{
+        flex-direction: column;
+        align-items: center;
+    }
+    .itemContainer{
+        width: 100%;
+    }
+    .subTotalContainer{
+        width: 40rem;
+    }
+}
+@media screen and (max-width: 550px){
+    .prodDelete{
+        font-size: 1.8rem;
+    }
+}
+@media screen and (max-width: 350px){
+    .prodImage{
+        width: 15rem;
+        height: 10rem;
+    }
+    .prodName{
+        font-size: 2rem;
+    }
+    .prodPrice{
+        width: 10rem;
+        font-size: 2rem;
+    }
+    .prodActions{
+        display: flex;
+    }
+    .prodDeleteIcon{
+        margin: 0 1rem;
+        font-size: 2.2rem;
+        display: flex;
+        align-items: center;
+    }
+    .prodDeleteIcon:hover{
+        color: red;
+    }
 }

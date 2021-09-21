@@ -1,21 +1,43 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
+import dynamic from 'next/dynamic'
 import Image from 'next/image'
+// icons
+import { RiDeleteBin6Line } from 'react-icons/ri'
+// context
 import { StoreCtx } from '../../../utils/Store'
 import { removeFromCart, incQuantity, decQuantity } from '../../../utils/Actions'
 // style
 import ShoppingCartStyle from './ShoppingCart.module.css'
 
-export default function Cart() {
+function ShoppingCart() {
 
+    // state
+    const [windowSize,setWindowSize] = useState(window.innerWidth);
+    // context
     const context = useContext(StoreCtx);
-    const { state, dispatch } = context;
+    const { state, dispatch, checkStock } = context;
+
+    async function handleCartItemInc(reqType, id) {
+        let checkStk = await checkStock(id);
+        if (checkStk < 0) {
+            window.alert('Sorry. Product is out of stock');
+            return;
+        }
+        dispatch({ type: reqType, payload: { id } })
+    }
+
+    useEffect(()=>{
+        window.addEventListener('resize',()=>{
+            setWindowSize(window.innerWidth);
+        })
+    },[])
 
     return (<>
-        <div className={ShoppingCartStyle.container}>
+        <div className={ShoppingCartStyle.container} id='shoppingCartSection'>
             <div className={ShoppingCartStyle.itemContainer}>
                 <div className={ShoppingCartStyle.headingContainer}>
                     <p className={ShoppingCartStyle.heading}>Shopping Cart</p>
-                    <p className={ShoppingCartStyle.prodPrice}>price</p>
+                    <p className={ShoppingCartStyle.prodPriceHeading}>price</p>
                 </div>
                 <div className={ShoppingCartStyle.line}></div>
                 <div className={ShoppingCartStyle.prodContainer}>
@@ -48,21 +70,30 @@ export default function Cart() {
                                                 {itm.prodQuantity}
                                                 <button
                                                     className={ShoppingCartStyle.btnQuant}
-                                                    onClick={() => dispatch({
-                                                        type: incQuantity,
-                                                        payload: { id: itm.prodId }
-                                                    })}
+                                                    onClick={() => handleCartItemInc(incQuantity, itm.prodId)}
                                                 >+</button>
                                             </p>
 
                                         </div>
-                                        <button
-                                            className={ShoppingCartStyle.prodDelete}
-                                            onClick={() => dispatch({
-                                                type: removeFromCart,
-                                                payload: { id: itm.prodId }
-                                            })}
-                                        >Delete</button>
+
+                                        {
+                                            windowSize > 350 ?
+                                                <button
+                                                    className={ShoppingCartStyle.prodDelete}
+                                                    onClick={() => dispatch({
+                                                        type: removeFromCart,
+                                                        payload: { id: itm.prodId }
+                                                    })}
+                                                >Delete</button>
+                                                :
+                                                <RiDeleteBin6Line
+                                                    className={ShoppingCartStyle.prodDeleteIcon}
+                                                    onClick={() => dispatch({
+                                                        type: removeFromCart,
+                                                        payload: { id: itm.prodId }
+                                                    })}
+                                                />
+                                        }
                                     </div>
                                 </div>
                             </div>
@@ -70,7 +101,15 @@ export default function Cart() {
                     }
                 </div>
             </div>
+            <div className={ShoppingCartStyle.subTotalContainer}>
+                <p className={ShoppingCartStyle.subTotalHead}>Subtotal ( {state.cart.cartItems.reduce((total, itm) => total + itm.prodQuantity, 0)} items)</p>
+                <p className={ShoppingCartStyle.subTotal}>$ {state.cart.cartItems.reduce((total, itm) => total + itm.prodQuantity * itm.prodPrice, 0)}</p>
+                <button className={ShoppingCartStyle.btnCheckOut}>Check Out</button>
+            </div>
         </div>
     </>
     )
 }
+
+
+export default dynamic(() => Promise.resolve(ShoppingCart), { ssr: false });
