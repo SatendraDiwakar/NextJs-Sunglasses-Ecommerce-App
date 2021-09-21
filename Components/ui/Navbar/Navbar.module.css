@@ -56,7 +56,7 @@
   cursor: pointer;
 }
 .cartContainer:hover > .cartIcon {
-  color: #da5252;
+  color: #da5252 !important;
 }
 .cartIcon {
   font-size: 3.5rem;
@@ -92,11 +92,30 @@
   color: red;
 }
 
-@media screen and (max-width: 560px) {
-  .nav {
+@media screen and (max-width: 700px) {
+  .nav{
+    height: 10rem;
     padding: 0 2rem;
   }
-  .menuBtnContainer {
+  .iconName{
+    font-size: 4.5rem;
+  }
+  .sungIcon{
+    top: -.6rem;
+  }
+  .user{
+    font-size: 3.5rem;
+  }
+  .cartIcon{
+    font-size: 4rem;
+  }
+  .cartText{
+    font-size: 2.2rem;
+  }
+}
+@media screen and (max-width: 560px) {
+  .menuBtnContainer{
+    font-size: 3.2rem;
     display: block;
   }
 }

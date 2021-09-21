@@ -27,6 +27,8 @@ export default function Navlinks() {
                 prevVal.current = 'aboutLink';
             } else if (router.pathname === '/contact') {
                 prevVal.current = 'contactLink';
+            } else if (router.pathname === '/cart') {
+                prevVal.current = 'cartIcon';
             }
             document.getElementById(prevVal.current).style = 'color: #c55757';
         }

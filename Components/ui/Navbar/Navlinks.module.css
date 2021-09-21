@@ -1,5 +1,6 @@
 .links {
   position: relative;
+  width: 100%;
 }
 .container {
   font-family: "Roboto", sans-serif;
@@ -23,7 +24,7 @@
   transition: color 0.4s;
 }
 .listItem:hover {
-  color: #c55757;
+  color: #c55757 !important;
 }
 .brandsLink{
   display: flex;
