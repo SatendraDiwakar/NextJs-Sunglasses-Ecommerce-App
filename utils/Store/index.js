@@ -7,7 +7,8 @@ export const StoreCtx = React.createContext();
 
 // function which returns available stock of item
 async function checkStock(id){
-  const {data} = await fetch(`/api/products/${id}`);
+  const response = await fetch(`/api/products/${id}`);
+  const data = await response.json();
   return data.countInStock;
 }
 
@@ -52,7 +53,8 @@ function reducer(state, action) {
           return { ...itm, prodQuantity: state.cart.cartItems[index].prodQuantity + 1 }
         }
         return itm;
-      })
+      })      
+      Cookies.set('cartItems', JSON.stringify(cartItems));
       return { ...state, cart: { ...state.cart, cartItems } };
     case decQuantity:
       let itmIndex = state.cart.cartItems.findIndex(itm => itm.prodId === action.payload.id);
