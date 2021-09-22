@@ -1,0 +1,142 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    gap: 5rem 0;
+    font-family: 'Roboto', sans-serif;
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    /* background: rgb(236, 228, 228); */
+}
+.header{
+    font-size: 4rem;
+    letter-spacing: .8px;
+}
+.loginForm{
+    width: 80rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem 0;
+}
+.fieldContainer{
+    width: 95%;
+    position: relative;
+}
+.headerInput{
+    padding: 0 .2rem;
+    font-size: 1.5rem;
+    letter-spacing: .8px;
+    position: absolute;
+    background: #fff;
+    color: rgb(49, 49, 49);
+    top: 50%;
+    left: 3%;
+    transform: translateY(-50%);
+    transition: all .3s;
+}
+/* .hactive{
+} */
+.inputField:focus ~ .headerInput,
+.inputField:valid ~ .headerInput{
+    top: -3%;
+    left: 2%;
+    font-size: 1.2rem;
+    background: rgb(248, 248, 248);
+}
+.inputField{
+    width: 100%;
+    height: 5rem;
+    padding: .5rem 1.2rem;
+    font-size: 1.8rem;
+    letter-spacing: .5px;
+    border: 1px solid #000;
+    border-radius: 10px;
+    outline: none;
+}
+.inputField:focus{
+    border: 1px solid rgb(11, 114, 133);
+    background: rgb(244, 254, 255);
+}
+
+.loginBtn{
+    width: 95%;
+    height: 5rem;
+    font-size: 2.5rem;
+    letter-spacing: .5px;
+    color: #fff;
+    background: rgb(255, 110, 110);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.loginBtn:hover{
+    color: rgb(255, 83, 83);
+    background: #eeeeee;
+    border: 2px solid rgb(255, 110, 110);
+}
+
+.registerContainer{
+    width: 95%;
+    display: flex;
+    gap: 0 1rem;
+    margin-left: 2rem;
+}
+.registerText{
+    font-size: 1.5rem;
+    letter-spacing: .8px;
+}
+.registerBtn{
+    font-size: 1.8rem;
+    background: transparent;
+    border: none;
+    letter-spacing: 1px;
+    color: rgb(255, 102, 0);
+    cursor: pointer;
+}
+
+@media screen and (max-width: 730px) {
+    .loginForm{
+        width: 75rem;
+    }
+}
+
+@media screen and (max-width: 620px) {
+    .loginForm{
+        width: 68rem;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .container{
+        gap: 3rem 0;
+    }
+    .loginForm{
+        width: 62rem;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .loginForm{
+        width: 55rem;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .loginForm{
+        width: 50rem;
+    }
+}
+
+@media screen and (max-width: 330px) {
+    .loginForm{
+        width: 45rem;
+    }
+}
+
+@media screen and (max-width: 300px) {
+    .loginForm{
+        width: 38rem;
+    }
+}
