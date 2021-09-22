@@ -8,6 +8,7 @@ import { StoreCtx } from '../../../utils/Store'
 import { removeFromCart, incQuantity, decQuantity } from '../../../utils/Actions'
 // style
 import ShoppingCartStyle from './ShoppingCart.module.css'
+import { useRouter } from 'next/router'
 
 function ShoppingCart() {
 
@@ -16,6 +17,8 @@ function ShoppingCart() {
     // context
     const context = useContext(StoreCtx);
     const { state, dispatch, checkStock } = context;
+
+    const router = useRouter();
 
     async function handleCartItemInc(reqType, id) {
         let checkStk = await checkStock(id);
@@ -104,7 +107,12 @@ function ShoppingCart() {
             <div className={ShoppingCartStyle.subTotalContainer}>
                 <p className={ShoppingCartStyle.subTotalHead}>Subtotal ( {state.cart.cartItems.reduce((total, itm) => total + itm.prodQuantity, 0)} items)</p>
                 <p className={ShoppingCartStyle.subTotal}>$ {state.cart.cartItems.reduce((total, itm) => total + itm.prodQuantity * itm.prodPrice, 0)}</p>
-                <button className={ShoppingCartStyle.btnCheckOut}>Check Out</button>
+                <button 
+                className={ShoppingCartStyle.btnCheckOut}
+                onClick={()=>{
+                    router.push('/shipping')
+                }}
+                >Check Out</button>
             </div>
         </div>
     </>

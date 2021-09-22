@@ -17,8 +17,10 @@ export default function Sale({ saleProd }) {
     const { open } = context;
 
     function handleLoad(itemIndex) {
-        document.getElementsByClassName(SaleStyle.price)[itemIndex].style='display: block';
-        document.getElementsByClassName(SaleStyle.saleImage)[itemIndex].classList.add(SaleStyle.hovEffect);
+        if(document.getElementsByClassName(SaleStyle.price)[itemIndex]){
+            document.getElementsByClassName(SaleStyle.price)[itemIndex].style='display: block';
+            document.getElementsByClassName(SaleStyle.saleImage)[itemIndex].classList.add(SaleStyle.hovEffect);
+        }
     }
 
     return (
