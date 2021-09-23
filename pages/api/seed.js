@@ -2,6 +2,7 @@ import nc from 'next-connect'
 import db from '../../utils/db';
 import HeroPicModel from '../../models/HeropicsModel'
 import ProductModel from '../../models/ProductModel'
+import UserModel from '../../models/UserModel';
 import data from '../../utils/data';
 
 const handler = nc();
@@ -14,6 +15,8 @@ handler.get(async (req,res)=>{
         ...data.products.home.sale,
         ...data.products.home.collection,
     ]);
+    await UserModel.deleteMany();
+    await UserModel.insertMany(data.users);
     await HeroPicModel.deleteMany();
     await HeroPicModel.create(data.products.home.character);
     await db.disconnect();
