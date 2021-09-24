@@ -64,7 +64,7 @@ export default function ProductModal() {
                 <button
                     className={ProductModalStyle.btnAddToCart + ' ' + ProductModalStyle.btnCta}
                     onClick={() => dispatch({ 
-                        type: addToCart, 
+                        type: addToCart(), 
                         payload: cartItem
                     })}
                 >Add To Cart</button>

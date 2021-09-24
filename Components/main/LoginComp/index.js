@@ -1,26 +1,46 @@
-import React, { useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Link from 'next/link'
+import { useRouter } from 'next/router';
+// context
+import { StoreCtx } from '../../../utils/Store'
+import { userLogin } from '../../../utils/Actions'
 // style
 import LoginStyle from './LoginComp.module.css'
 
 export default function LoginComp() {
 
+    // states
     const [inputDetails, setInputDetails] = useState({
         email: '',
         password: ''
     });
+    // router
+    const router = useRouter();
+    const { redirect } = router.query; // login?redirect=/shipping
 
-    // sends ajax req to server
+    // context
+    const context = useContext(StoreCtx);
+    const { dispatch, state } = context;
+    const { userInfo } = state;
+
+    // checking if user is logged in or not
+    useEffect(() => {
+        if (userInfo) {
+            router.push('/')
+        }
+    }, [])
+
+    // sends ajax req to server to login
     const submitHandler = async (e) => {
+
         e.preventDefault();
-        // const { email, password } = e.target;
-        // console.log(email.value, password.value);
-        const data = {
+
+        const postData = {
             email: inputDetails.email,
             password: inputDetails.password
         };
 
-        const result = await fetch('/api/users/login', {
+        const response = await fetch('/api/users/login', {
             method: 'POST', // *GET, POST, PUT, DELETE, etc.
             mode: 'cors', // no-cors, *cors, same-origin
             cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
@@ -31,14 +51,20 @@ export default function LoginComp() {
             },
             redirect: 'follow', // manual, *follow, error
             referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-            body: JSON.stringify(data) // body data type must match "Content-Type" header
-        }).then(response => {
-            // console.log(response.status);
-            return response.json()
-        }).catch(error => {
-            alert(error)
-        })
-        console.log(result);
+            body: JSON.stringify(postData) // body data type must match "Content-Type" header
+        });
+
+        try {
+            const resData = await response.json();
+            if (response.status === 401) {
+                throw new Error(resData.message);
+            } else {
+                dispatch({ type: userLogin(), payload: resData });
+                router.push(redirect || '/')
+            }
+        } catch (error) {
+            alert(error);
+        }
     }
 
     // handles form's input field changes
@@ -52,6 +78,17 @@ export default function LoginComp() {
             }
         });
     }
+
+    // for adding class hactive to email label to get animation
+    useEffect(() => {
+        if (router.pathname === '/login') {
+            if (inputDetails.email !== '') {
+                document.getElementsByClassName(LoginStyle.headerInput)[0].classList.add(LoginStyle.hactive)
+            } else {
+                document.getElementsByClassName(LoginStyle.headerInput)[0].classList.remove(LoginStyle.hactive)
+            }
+        }
+    }, [inputDetails.email, router.pathname]);
 
     return (<>
         <div className={LoginStyle.container}>

@@ -26,7 +26,7 @@ function ShoppingCart() {
             window.alert('Sorry. Product is out of stock');
             return;
         }
-        dispatch({ type: reqType, payload: { id } })
+        dispatch({ type: reqType(), payload: { id } })
     }
 
     useEffect(()=>{
@@ -66,7 +66,7 @@ function ShoppingCart() {
                                                 <button
                                                     className={ShoppingCartStyle.btnQuant}
                                                     onClick={() => dispatch({
-                                                        type: decQuantity,
+                                                        type: decQuantity(),
                                                         payload: { id: itm.prodId }
                                                     })}
                                                 >-</button>
@@ -84,7 +84,7 @@ function ShoppingCart() {
                                                 <button
                                                     className={ShoppingCartStyle.prodDelete}
                                                     onClick={() => dispatch({
-                                                        type: removeFromCart,
+                                                        type: removeFromCart(),
                                                         payload: { id: itm.prodId }
                                                     })}
                                                 >Delete</button>
@@ -92,7 +92,7 @@ function ShoppingCart() {
                                                 <RiDeleteBin6Line
                                                     className={ShoppingCartStyle.prodDeleteIcon}
                                                     onClick={() => dispatch({
-                                                        type: removeFromCart,
+                                                        type: removeFromCart(),
                                                         payload: { id: itm.prodId }
                                                     })}
                                                 />

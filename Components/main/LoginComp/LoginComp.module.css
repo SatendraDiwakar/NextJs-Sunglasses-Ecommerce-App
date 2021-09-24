@@ -7,7 +7,6 @@
   top: 20%;
   left: 50%;
   transform: translateX(-50%);
-  /* background: rgb(236, 228, 228); */
 }
 .header {
   font-size: 4rem;
@@ -22,7 +21,10 @@
 }
 .fieldContainer {
   width: 95%;
-  position: relative;
+  position: relative;  
+  border-radius: 10px;
+  background: white;
+  z-index: 500;
 }
 .headerInput {
   padding: 0 0.2rem;
@@ -35,6 +37,16 @@
   left: 3%;
   transform: translateY(-50%);
   transition: all 0.3s;
+  cursor: text;
+  /* z-index to push label right underneath input while still being able click into it */
+  z-index: 750;
+}
+
+.hactive{  
+  top: -3%;
+  left: 2%;
+  font-size: 1.2rem;
+  background: rgb(248, 248, 248);
 }
 
 .inputField:focus ~ .headerInput,
@@ -64,10 +76,18 @@
   border: 1px solid #000;
   border-radius: 10px;
   outline: none;
+  background: transparent;
+  position: relative;
+  z-index: 1000;
 }
 .inputField:focus {
   border: 1px solid rgb(11, 114, 133);
   background: rgb(244, 254, 255);
+}
+.inputField:focus ~ .headerInput,
+.inputField:focus,
+.inputField:valid{
+   z-index: unset;
 }
 
 .loginBtn {
