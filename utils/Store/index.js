@@ -1,12 +1,18 @@
 import React, { useReducer } from 'react'
 import Cookies from 'js-cookie';
 // Actions
-import { addToCart, removeFromCart, incQuantity, decQuantity } from '../Actions';
+import {
+  addToCart,
+  removeFromCart,
+  incQuantity,
+  decQuantity,
+  userLogin
+} from '../Actions';
 
 export const StoreCtx = React.createContext();
 
 // function which returns available stock of item
-async function checkStock(id){
+async function checkStock(id) {
   const response = await fetch(`/api/products/${id}`);
   const data = await response.json();
   return data.countInStock;
@@ -17,13 +23,16 @@ const initialState = {
     cartItems: Cookies.get('cartItems')
       ? JSON.parse(Cookies.get('cartItems'))
       : [],
-  }
+  },
+  userInfo: Cookies.get('userInfo')
+    ? JSON.parse(Cookies.get('userInfo'))
+    : null,
 }
 
 function reducer(state, action) {
   let cartItems;
   switch (action.type) {
-    case addToCart:
+    case addToCart():
       let existItemIndex = state.cart.cartItems.findIndex(itm => itm.prodId === action.payload.prodId);
       if (existItemIndex !== -1) {
         const updatedCart = {
@@ -41,22 +50,22 @@ function reducer(state, action) {
       }
       Cookies.set('cartItems', JSON.stringify(cartItems));
       return { ...state, cart: { ...state.cart, cartItems } };
-    case removeFromCart:
+    case removeFromCart():
       let filteredItems = state.cart.cartItems.filter((itm) => {
         return itm.prodId !== action.payload.id;
       });
       Cookies.set('cartItems', JSON.stringify(filteredItems));
       return { ...state, cart: { ...state.cart, cartItems: filteredItems } };
-    case incQuantity:
+    case incQuantity():
       cartItems = state.cart.cartItems.map((itm, index) => {
         if (itm.prodId === action.payload.id) {
           return { ...itm, prodQuantity: state.cart.cartItems[index].prodQuantity + 1 }
         }
         return itm;
-      })      
+      })
       Cookies.set('cartItems', JSON.stringify(cartItems));
       return { ...state, cart: { ...state.cart, cartItems } };
-    case decQuantity:
+    case decQuantity():
       let itmIndex = state.cart.cartItems.findIndex(itm => itm.prodId === action.payload.id);
       if (state.cart.cartItems[itmIndex].prodQuantity > 1) {
         cartItems = state.cart.cartItems.map((itm, index) => {
@@ -72,6 +81,9 @@ function reducer(state, action) {
       }
       Cookies.set('cartItems', JSON.stringify(cartItems));
       return { ...state, cart: { ...state.cart, cartItems } };
+    case userLogin():
+      Cookies.set('userInfo', JSON.stringify(action.payload));
+      return { ...state, userInfo: action.payload };
     default:
       return state;
   }

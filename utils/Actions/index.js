@@ -1,22 +1,18 @@
 const addToCart = () =>{
-    return {
-        type: 'ADDTOCART'
-    }
+    return 'ADDTOCART'
 }
 const removeFromCart = () =>{
-    return {
-        type: 'REMOVEFROMCART'
-    }
+    return 'REMOVEFROMCART'
 }
 const incQuantity = () =>{
-    return {
-        type: 'INCQUANTITY'
-    }
+    return 'INCQUANTITY'
 }
 const decQuantity = () =>{
-    return {
-        type: 'DECQUANTITY'
-    }
+    return 'DECQUANTITY'
+}
+const userLogin = () =>{
+    return 'USER_LOGIN'
 }
 
-export { addToCart, removeFromCart, incQuantity, decQuantity };
+
+export { addToCart, removeFromCart, incQuantity, decQuantity, userLogin };
