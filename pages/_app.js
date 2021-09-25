@@ -12,12 +12,12 @@ function MyApp({ Component, pageProps }) {
 
   const router = useRouter();
 
-  useEffect(()=>{
+  useEffect(() => {
     if (router.pathname === '/cart')
       document.getElementsByTagName('html')[0].style = 'background: rgb(236, 228, 228)'
     else
       document.getElementsByTagName('html')[0].style = 'background: rgba(241, 241, 241, 0.35)'
-  },[router.pathname])
+  }, [router.pathname])
 
   return <>
     <StoreProvider>

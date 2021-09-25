@@ -6,7 +6,8 @@ import {
   removeFromCart,
   incQuantity,
   decQuantity,
-  userLogin
+  userLogin,
+  userLogout
 } from '../Actions';
 
 export const StoreCtx = React.createContext();
@@ -84,6 +85,9 @@ function reducer(state, action) {
     case userLogin():
       Cookies.set('userInfo', JSON.stringify(action.payload));
       return { ...state, userInfo: action.payload };
+    case userLogout():
+      Cookies.remove('userInfo');
+      return { ...state, userInfo: null };
     default:
       return state;
   }
