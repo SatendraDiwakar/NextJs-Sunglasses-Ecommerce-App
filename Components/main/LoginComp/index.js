@@ -4,6 +4,8 @@ import { useRouter } from 'next/router';
 // context
 import { StoreCtx } from '../../../utils/Store'
 import { userLogin } from '../../../utils/Actions'
+// component
+import Notification from '../../ui/Notification'
 // style
 import LoginStyle from './LoginComp.module.css'
 
@@ -14,6 +16,8 @@ export default function LoginComp() {
         email: '',
         password: ''
     });
+    const [errorNotification, setErrorNotification] = useState(false);
+    const [msg, setMsg] = useState('The error');
     // router
     const router = useRouter();
     const { redirect } = router.query; // login?redirect=/shipping
@@ -28,7 +32,18 @@ export default function LoginComp() {
         if (userInfo) {
             router.push('/')
         }
-    }, [])
+    }, []);
+
+    // for adding class hactive to email label to get animation
+    useEffect(() => {
+        if (router.pathname === '/login') {
+            if (inputDetails.email !== '') {
+                document.getElementsByClassName(LoginStyle.headerInput)[0].classList.add(LoginStyle.hactive)
+            } else {
+                document.getElementsByClassName(LoginStyle.headerInput)[0].classList.remove(LoginStyle.hactive)
+            }
+        }
+    }, [inputDetails.email, router.pathname]);
 
     // sends ajax req to server to login
     const submitHandler = async (e) => {
@@ -63,7 +78,9 @@ export default function LoginComp() {
                 router.push(redirect || '/')
             }
         } catch (error) {
-            alert(error);
+            // alert(error);
+            setMsg(error);
+            handleError();
         }
     }
 
@@ -79,18 +96,18 @@ export default function LoginComp() {
         });
     }
 
-    // for adding class hactive to email label to get animation
-    useEffect(() => {
-        if (router.pathname === '/login') {
-            if (inputDetails.email !== '') {
-                document.getElementsByClassName(LoginStyle.headerInput)[0].classList.add(LoginStyle.hactive)
-            } else {
-                document.getElementsByClassName(LoginStyle.headerInput)[0].classList.remove(LoginStyle.hactive)
-            }
-        }
-    }, [inputDetails.email, router.pathname]);
+    const handleError = () => {
+        setErrorNotification(true);
+    }
+    const handleErrorClose = () => {
+        setErrorNotification(false);
+    }
 
     return (<>
+        {
+            errorNotification &&
+            <Notification message={msg} type='error' closeNotification={handleErrorClose} />
+        }
         <div className={LoginStyle.container}>
             <p className={LoginStyle.header}>Login</p>
             <form onSubmit={submitHandler} className={LoginStyle.loginForm}>
@@ -121,7 +138,7 @@ export default function LoginComp() {
                 <button type="submit" className={LoginStyle.loginBtn}>Login</button>
                 <div className={LoginStyle.registerContainer}>
                     <p className={LoginStyle.registerText}>Don't have an account?</p>
-                    <Link href="/register">
+                    <Link href={`/register?redirect=${redirect}`}>
                         <div className={LoginStyle.registerBtn}>Register</div>
                     </Link>
                 </div>

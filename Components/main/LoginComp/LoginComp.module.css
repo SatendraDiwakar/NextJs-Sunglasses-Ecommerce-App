@@ -47,6 +47,7 @@
   left: 2%;
   font-size: 1.2rem;
   background: rgb(248, 248, 248);
+  z-index: 1250;
 }
 
 .inputField:focus ~ .headerInput,
@@ -89,6 +90,7 @@
 .inputField:valid{
    z-index: unset;
 }
+
 
 .loginBtn {
   width: 95%;
