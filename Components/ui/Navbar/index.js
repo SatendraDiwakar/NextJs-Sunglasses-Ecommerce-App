@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import Link from 'next/link'
 // context
 import { StoreCtx } from '../../../utils/Store';
+import { userLogout } from '../../../utils/Actions';
 // react-icons
 import { FiMenu } from 'react-icons/fi';
 import { CgClose } from 'react-icons/cg';
@@ -12,6 +13,7 @@ import { AiOutlineUser } from 'react-icons/ai';
 import Navlinks from './Navlinks';
 // style
 import NavStyle from './Navbar.module.css';
+import { useRouter } from 'next/router';
 
 export default function Navbar() {
 
@@ -19,7 +21,10 @@ export default function Navbar() {
     const [cartCount, setCartCount] = useState(0);
     // context
     const context = useContext(StoreCtx);
-    const { state } = context;
+    const { state, dispatch } = context;
+    const { userInfo } = state;
+    // router
+    const router = useRouter();
 
     useEffect(() => {
 
@@ -60,13 +65,28 @@ export default function Navbar() {
                 </Link>
                 <Navlinks />
                 <div className={NavStyle.navRight}>
-                    <AiOutlineUser className={NavStyle.user} />
                     <Link href="/cart">
                         <div className={NavStyle.cartContainer}>
                             <FaOpencart className={NavStyle.cartIcon} id='cartIcon' />
                             <p className={NavStyle.cartText}>cart<span className={NavStyle.itemsNum}>{cartCount}</span></p>
                         </div>
                     </Link>
+                    {
+                        !userInfo ?
+                            <div className={NavStyle.userIconContainer} onClick={()=>{router.push('/login')}}>
+                                <AiOutlineUser className={NavStyle.userIcon} />
+                                <p className={NavStyle.loginMsg}>Login</p>
+                            </div>
+                            :
+                            <>
+                                <button className={NavStyle.userNameBtn}
+                                    onClick={()=>{
+                                        dispatch({type: userLogout()})
+                                    }}
+                                >{userInfo.name}</button>
+                            </>
+                        // on logout redirect user to home 3.45.10
+                    }
                     <div className={NavStyle.menuBtnContainer}>
                         <FiMenu className={NavStyle.menuBar} id='menuBar' onClick={() => {
                             document.getElementsByClassName(NavStyle.menuBar)[0].style = 'display: none';
