@@ -1,18 +1,29 @@
-const addToCart = () =>{
+// Cart Actions
+const addToCart = () => {
     return 'ADDTOCART'
 }
-const removeFromCart = () =>{
+const removeFromCart = () => {
     return 'REMOVEFROMCART'
 }
-const incQuantity = () =>{
+const incQuantity = () => {
     return 'INCQUANTITY'
 }
-const decQuantity = () =>{
+const decQuantity = () => {
     return 'DECQUANTITY'
 }
-const userLogin = () =>{
+// User Actions
+const userLogin = () => {
     return 'USER_LOGIN'
 }
+const userLogout = () => {
+    return 'USER_LOGOUT'
+}
 
-
-export { addToCart, removeFromCart, incQuantity, decQuantity, userLogin };
+export {
+    addToCart,
+    removeFromCart,
+    incQuantity,
+    decQuantity,
+    userLogin,
+    userLogout
+};
