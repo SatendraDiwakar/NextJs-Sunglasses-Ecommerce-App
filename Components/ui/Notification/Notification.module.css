@@ -4,37 +4,36 @@
   font-size: 2rem;
   letter-spacing: 0.8px;
   border-radius: 10px;
-  position: absolute;
+  position: fixed;
   left: 50%;
   top: 10rem;
   display: flex;
   align-items: center;
   gap: 0 2rem;
-  color: #fff;
   opacity: 0;
-  animation: topReveal .8s ease-in-out 0.2s forwards;
+  animation: topReveal 0.6s ease-in-out forwards;
+  z-index: 6000;
 }
 .closeBtn {
-  background: none;
+  padding: 0.3rem 0;
+  width: 2.5rem;
+  height: 2.5rem;
+  background: #fff;
+  border-radius: 100%;
   border: none;
   cursor: pointer;
 }
 
 @keyframes topReveal {
-    0%{
-        opacity: 0;
-        transform: translate(-50%, -100%);
-    }
-    50%{
-        opacity: .5;
-        transform: translate(-50%, -50%);
-    }
-    85%{
-        opacity: 1;
-        transform: translate(-50%, 5%);
-    }
-    100%{
-        opacity: 1;
-        transform: translate(-50%, 0);
-    }
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%);
+  }
+  60% {
+    transform: translate(-50%, 20%);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
 }
