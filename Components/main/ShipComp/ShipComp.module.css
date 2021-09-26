@@ -1,0 +1,174 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem 0;
+  font-family: "Roboto", sans-serif;
+  position: absolute;
+  top: 28%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.header {
+  font-size: 4rem;
+  letter-spacing: 0.8px;
+}
+.shippingForm {
+  width: 80rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem 0;
+}
+.fieldContainer {
+  width: 95%;
+  position: relative;
+  border-radius: 10px;
+  background: white;
+  z-index: 500;
+}
+.headerInput {
+  padding: 0 0.2rem;
+  font-size: 1.5rem;
+  letter-spacing: 0.8px;
+  position: absolute;
+  background: #fff;
+  color: rgb(49, 49, 49);
+  top: 50%;
+  left: 3%;
+  transform: translateY(-50%);
+  transition: all 0.3s;
+  cursor: text;
+  /* z-index to push label right underneath input while still being able click into it */
+  z-index: 750;
+}
+
+.hactive {
+  top: -3%;
+  left: 2%;
+  font-size: 1.2rem;
+  background: rgb(248, 248, 248);
+  z-index: 1250;
+}
+
+.inputField:focus ~ .headerInput,
+.inputField:valid ~ .headerInput {
+  top: -3%;
+  left: 2%;
+  font-size: 1.2rem;
+  background: rgb(248, 248, 248);
+}
+
+.inputField::placeholder {
+  transform-origin: bottom left;
+  transform: scale(0);
+  transition: transform 0.5s;
+}
+.inputField:focus::placeholder {
+  transform: scale(1);
+}
+
+.inputField {
+  width: 100%;
+  height: 5rem;
+  padding: 0.5rem 1.2rem;
+  -webkit-appearance: none;
+  font-size: 1.8rem;
+  letter-spacing: 0.5px;
+  border: 1px solid #000;
+  border-radius: 10px;
+  outline: none;
+  background: transparent;
+  position: relative;
+  z-index: 1000;
+}
+.inputField:focus {
+  border: 1px solid rgb(11, 114, 133);
+  background: rgb(244, 254, 255);
+}
+.inputField:focus ~ .headerInput,
+.inputField:focus,
+.inputField:valid {
+  z-index: unset;
+}
+
+.continueBtn {
+  width: 95%;
+  height: 5rem;
+  font-size: 2.5rem;
+  letter-spacing: 0.5px;
+  color: #fff;
+  background: rgb(255, 110, 110);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.continueBtn:hover {
+  color: rgb(255, 83, 83);
+  background: #eeeeee;
+  border: 2px solid rgb(255, 110, 110);
+}
+
+@media screen and (max-width: 730px) {
+  .shippingForm {
+    width: 75rem;
+  }
+}
+
+@media screen and (max-width: 620px) {
+  .shippingForm {
+    width: 68rem;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .container {
+    gap: 3rem 0;
+  }
+  .shippingForm {
+    width: 62rem;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .shippingForm {
+    width: 55rem;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .shippingForm {
+    width: 50rem;
+  }
+  .fieldContainer {
+    border-radius: 8px;
+  }
+  .inputField {
+    border-radius: 8px;
+  }
+  .continueBtn {
+    border-radius: 8px;
+  }
+
+  .headerInput {
+    left: 4%;
+  }
+  .hactive {
+    left: 3%;
+  }
+  .inputField:focus ~ .headerInput,
+  .inputField:valid ~ .headerInput {
+    left: 3%;
+  }
+}
+
+@media screen and (max-width: 330px) {
+  .shippingForm {
+    width: 45rem;
+  }
+}
+
+@media screen and (max-width: 300px) {
+  .shippingForm {
+    width: 38rem;
+  }
+}
