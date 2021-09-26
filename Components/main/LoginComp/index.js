@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router';
 // context
 import { StoreCtx } from '../../../utils/Store'
+import { NotifyCtx } from '../../../utils/NotifyCtx'
 import { userLogin } from '../../../utils/Actions'
 // component
 import Notification from '../../ui/Notification'
@@ -16,15 +17,16 @@ export default function LoginComp() {
         email: '',
         password: ''
     });
-    const [errorNotification, setErrorNotification] = useState(false);
-    const [msg, setMsg] = useState('The error');
+    
     // router
     const router = useRouter();
     const { redirect } = router.query; // login?redirect=/shipping
 
     // context
-    const context = useContext(StoreCtx);
-    const { dispatch, state } = context;
+    const contextNotify = useContext(NotifyCtx);
+    const { showNotification, message, show, hide } = contextNotify;
+    const contextStore = useContext(StoreCtx);
+    const { dispatch, state } = contextStore;
     const { userInfo } = state;
 
     // checking if user is logged in or not
@@ -36,6 +38,7 @@ export default function LoginComp() {
 
     // for adding class hactive to email label to get animation
     useEffect(() => {
+        hide();
         if (router.pathname === '/login') {
             if (inputDetails.email !== '') {
                 document.getElementsByClassName(LoginStyle.headerInput)[0].classList.add(LoginStyle.hactive)
@@ -74,20 +77,20 @@ export default function LoginComp() {
             if (response.status === 401) {
                 throw new Error(resData.message);
             } else {
+                console.log(resData);
                 dispatch({ type: userLogin(), payload: resData });
                 router.push(redirect || '/')
             }
         } catch (error) {
-            // alert(error);
-            setMsg(error);
-            handleError();
+            showNotification && hide();
+            show(error.message);
         }
     }
 
     // handles form's input field changes
     const handleChange = (e) => {
         const { name, value } = e.target;
-
+        hide();
         setInputDetails(prevValue => {
             return {
                 ...prevValue,
@@ -96,17 +99,10 @@ export default function LoginComp() {
         });
     }
 
-    const handleError = () => {
-        setErrorNotification(true);
-    }
-    const handleErrorClose = () => {
-        setErrorNotification(false);
-    }
-
     return (<>
         {
-            errorNotification &&
-            <Notification message={msg} type='error' closeNotification={handleErrorClose} />
+            showNotification &&
+            <Notification message={message} type='error' />
         }
         <div className={LoginStyle.container}>
             <p className={LoginStyle.header}>Login</p>
@@ -138,7 +134,7 @@ export default function LoginComp() {
                 <button type="submit" className={LoginStyle.loginBtn}>Login</button>
                 <div className={LoginStyle.registerContainer}>
                     <p className={LoginStyle.registerText}>Don't have an account?</p>
-                    <Link href={`/register?redirect=${redirect}`}>
+                    <Link href={`/register?redirect=${redirect || '/'}`}>
                         <div className={LoginStyle.registerBtn}>Register</div>
                     </Link>
                 </div>
