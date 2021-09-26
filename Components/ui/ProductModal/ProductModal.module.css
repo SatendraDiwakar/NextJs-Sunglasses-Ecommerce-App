@@ -121,7 +121,8 @@
   transition: all 0.3s;
 }
 .btnCta:hover {
-  color: #000;
+  color: rgb(197, 87, 87);
+  /* color: #000; */
   border: 2px solid rgb(197, 87, 87);
   background: #fff;
 }
@@ -149,7 +150,10 @@
         gap: .5rem 3rem;
     }    
 }
-@media screen and (max-width: 450px) {
+@media screen and (max-width: 600px) {
+    .ctaContainer{
+      gap: 0 6rem;
+    }
     .btnCta{
         width: 20rem;
     }
