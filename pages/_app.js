@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import '../styles/globals.css'
 // context
 import ModalProvider from '../Components/ModalCtx'
+import NotifyProvider from '../utils/NotifyCtx'
 import StoreProvider from '../utils/Store'
 // component
 import Layout from '../Components/layout'
@@ -20,13 +21,15 @@ function MyApp({ Component, pageProps }) {
   }, [router.pathname])
 
   return <>
-    <StoreProvider>
-      <ModalProvider>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
-      </ModalProvider>
-    </StoreProvider>
+    <NotifyProvider>
+      <StoreProvider>
+        <ModalProvider>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </ModalProvider>
+      </StoreProvider>
+    </NotifyProvider>
   </>
 }
 
