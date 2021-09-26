@@ -7,7 +7,8 @@ import {
   incQuantity,
   decQuantity,
   userLogin,
-  userLogout
+  userLogout,
+  saveShippingAddress,
 } from '../Actions';
 
 export const StoreCtx = React.createContext();
@@ -24,6 +25,9 @@ const initialState = {
     cartItems: Cookies.get('cartItems')
       ? JSON.parse(Cookies.get('cartItems'))
       : [],
+    shippingAddress: Cookies.get('shippingAddress')
+      ? JSON.parse(Cookies.get('shippingAddress'))
+      : {},
   },
   userInfo: Cookies.get('userInfo')
     ? JSON.parse(Cookies.get('userInfo'))
@@ -88,6 +92,18 @@ function reducer(state, action) {
     case userLogout():
       Cookies.remove('userInfo');
       return { ...state, userInfo: null };
+    case saveShippingAddress():
+      Cookies.set('shippingAddress', JSON.stringify(action.payload));
+      return {
+        ...state,
+        cart: {
+          ...state.cart,
+          shippingAddress: {
+            ...state.cart.shippingAddress,
+            ...action.payload
+          }
+        }
+      };
     default:
       return state;
   }

@@ -18,6 +18,9 @@ const userLogin = () => {
 const userLogout = () => {
     return 'USER_LOGOUT'
 }
+const saveShippingAddress = () => {
+    return 'SAVE_SHIPPING_ADDRESS'
+}
 
 export {
     addToCart,
@@ -25,5 +28,6 @@ export {
     incQuantity,
     decQuantity,
     userLogin,
-    userLogout
+    userLogout,
+    saveShippingAddress
 };
