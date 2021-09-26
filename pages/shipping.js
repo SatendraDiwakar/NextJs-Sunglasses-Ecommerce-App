@@ -1,28 +1,11 @@
-import React, { useContext, useEffect } from 'react'
-import { useRouter } from 'next/router'
-// context
-import { StoreCtx } from '../utils/Store';
+import React from 'react'
+// component
+import ShipComp from '../Components/main/ShipComp';
+import CheckoutWiz from '../Components/main/CheckOutWiz';
 
 export default function Shipping() {
-    
-    // context
-    const context = useContext(StoreCtx);
-    const { state } = context;
-    const { userInfo } = state;
-
-    // router
-    const router = useRouter();
-    
-    // checking if user is logged in or not
-    useEffect(()=>{
-        if(!userInfo){
-            router.push('/login?redirect=/shipping')
-        }
-    },[])
-
-    return (
-        <div>
-            shipping
-        </div>
-    )
+    return (<>
+        <CheckoutWiz />
+        <ShipComp />
+    </>)
 }
