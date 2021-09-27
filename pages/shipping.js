@@ -5,7 +5,7 @@ import CheckoutWiz from '../Components/main/CheckOutWiz';
 
 export default function Shipping() {
     return (<>
-        <CheckoutWiz />
+        <CheckoutWiz activeStep={1} />
         <ShipComp />
     </>)
 }

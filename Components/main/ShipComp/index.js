@@ -2,11 +2,8 @@ import React, { useContext, useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router';
 // context
-import { NotifyCtx } from '../../../utils/NotifyCtx';
 import { StoreCtx } from '../../../utils/Store'
 import { saveShippingAddress } from '../../../utils/Actions'
-// component
-import Notification from '../../ui/Notification';
 // style
 import ShipStyle from './ShipComp.module.css'
 
@@ -16,7 +13,6 @@ export default function ShipComp() {
     const router = useRouter();
 
     // context
-    const { showNotification, show, hide, message } = useContext(NotifyCtx);
     const { dispatch, state } = useContext(StoreCtx);
     const { userInfo, cart: { shippingAddress } } = state;
 
@@ -61,9 +57,8 @@ export default function ShipComp() {
             postalCode: inputDetails.postalCode,
             country: inputDetails.country,
         };
-        console.log(shippingData);
         dispatch({ type: saveShippingAddress(), payload: shippingData });
-        // router.push('/payment');
+        router.push('/payment');
     }
 
     // handles form's input field changes
@@ -78,80 +73,75 @@ export default function ShipComp() {
         });
     }
 
-    return (<>
-        {
-            showNotification && <Notification message={message} type='error' />
-        }
-        <div className={ShipStyle.container}>
-            <p className={ShipStyle.header}>Shipping</p>
-            <form onSubmit={submitHandler} className={ShipStyle.shippingForm}>
-                <div className={ShipStyle.fieldContainer}>
-                    <input
-                        type="text"
-                        name='fullName'
-                        value={inputDetails.fullName}
-                        placeholder='Enter full name'
-                        minLength={1}
-                        onChange={handleChange}
-                        className={ShipStyle.inputField}
-                        required
-                    />
-                    <label className={ShipStyle.headerInput}>Full Name</label>
-                </div>
-                <div className={ShipStyle.fieldContainer}>
-                    <input
-                        type="text"
-                        name='address'
-                        value={inputDetails.address}
-                        minLength={1}
-                        placeholder='Enter address'
-                        onChange={handleChange}
-                        className={ShipStyle.inputField}
-                        required
-                    />
-                    <label className={ShipStyle.headerInput}>Address</label>
-                </div>
-                <div className={ShipStyle.fieldContainer}>
-                    <input
-                        type="text"
-                        name='city'
-                        value={inputDetails.city}
-                        placeholder='Enter city'
-                        minLength={1}
-                        onChange={handleChange}
-                        className={ShipStyle.inputField}
-                        required
-                    />
-                    <label className={ShipStyle.headerInput}>City</label>
-                </div>
-                <div className={ShipStyle.fieldContainer}>
-                    <input
-                        type="text"
-                        name='postalCode'
-                        value={inputDetails.postalCode}
-                        minLength={6}
-                        placeholder='Enter postal code'
-                        onChange={handleChange}
-                        className={ShipStyle.inputField}
-                        required
-                    />
-                    <label id='postalCode' className={ShipStyle.headerInput}>Postal Code</label>
-                </div>
-                <div className={ShipStyle.fieldContainer}>
-                    <input
-                        type="text"
-                        name='country'
-                        value={inputDetails.country}
-                        placeholder='Enter country'
-                        minLength={1}
-                        onChange={handleChange}
-                        className={ShipStyle.inputField}
-                        required
-                    />
-                    <label className={ShipStyle.headerInput}>Country</label>
-                </div>
-                <button type="submit" className={ShipStyle.continueBtn}>Continue</button>
-            </form>
-        </div>
-    </>)
+    return (<div className={ShipStyle.container}>
+        <p className={ShipStyle.header}>Shipping</p>
+        <form onSubmit={submitHandler} className={ShipStyle.shippingForm}>
+            <div className={ShipStyle.fieldContainer}>
+                <input
+                    type="text"
+                    name='fullName'
+                    value={inputDetails.fullName}
+                    placeholder='Enter full name'
+                    minLength={1}
+                    onChange={handleChange}
+                    className={ShipStyle.inputField}
+                    required
+                />
+                <label className={ShipStyle.headerInput}>Full Name</label>
+            </div>
+            <div className={ShipStyle.fieldContainer}>
+                <input
+                    type="text"
+                    name='address'
+                    value={inputDetails.address}
+                    minLength={1}
+                    placeholder='Enter address'
+                    onChange={handleChange}
+                    className={ShipStyle.inputField}
+                    required
+                />
+                <label className={ShipStyle.headerInput}>Address</label>
+            </div>
+            <div className={ShipStyle.fieldContainer}>
+                <input
+                    type="text"
+                    name='city'
+                    value={inputDetails.city}
+                    placeholder='Enter city'
+                    minLength={1}
+                    onChange={handleChange}
+                    className={ShipStyle.inputField}
+                    required
+                />
+                <label className={ShipStyle.headerInput}>City</label>
+            </div>
+            <div className={ShipStyle.fieldContainer}>
+                <input
+                    type="text"
+                    name='postalCode'
+                    value={inputDetails.postalCode}
+                    minLength={6}
+                    placeholder='Enter postal code'
+                    onChange={handleChange}
+                    className={ShipStyle.inputField}
+                    required
+                />
+                <label id='postalCode' className={ShipStyle.headerInput}>Postal Code</label>
+            </div>
+            <div className={ShipStyle.fieldContainer}>
+                <input
+                    type="text"
+                    name='country'
+                    value={inputDetails.country}
+                    placeholder='Enter country'
+                    minLength={1}
+                    onChange={handleChange}
+                    className={ShipStyle.inputField}
+                    required
+                />
+                <label className={ShipStyle.headerInput}>Country</label>
+            </div>
+            <button type="submit" className={ShipStyle.continueBtn}>Continue</button>
+        </form>
+    </div>)
 }
