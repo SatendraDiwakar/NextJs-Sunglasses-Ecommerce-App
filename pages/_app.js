@@ -13,6 +13,13 @@ function MyApp({ Component, pageProps }) {
 
   const router = useRouter();
 
+  useEffect(()=>{
+    const jssStyles = document.querySelector('#jss-server-side');
+    if (jssStyles) {
+      jssStyles.parentElement.removeChild(jssStyles);
+    }
+  },[])
+
   useEffect(() => {
     if (router.pathname === '/cart')
       document.getElementsByTagName('html')[0].style = 'background: rgb(236, 228, 228)'
