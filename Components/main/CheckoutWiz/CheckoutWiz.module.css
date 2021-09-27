@@ -6,14 +6,8 @@
   left: 50%;
   border-radius: 10px;
   transform: translateX(-50%);
-  background: rgb(255, 255, 255);
 }
-.co{
-    background: #da5252;
-}
-.trans{
-    background: transparent;
-}
+
 @media screen and (max-width: 730px) {
   .container {
     width: 75rem;
