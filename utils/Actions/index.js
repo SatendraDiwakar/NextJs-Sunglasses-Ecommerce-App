@@ -21,6 +21,9 @@ const userLogout = () => {
 const saveShippingAddress = () => {
     return 'SAVE_SHIPPING_ADDRESS'
 }
+const savePaymentMethod = () => {
+    return 'SAVE_PAYMENT_METHOD'
+}
 
 export {
     addToCart,
@@ -29,5 +32,6 @@ export {
     decQuantity,
     userLogin,
     userLogout,
-    saveShippingAddress
+    saveShippingAddress,
+    savePaymentMethod
 };

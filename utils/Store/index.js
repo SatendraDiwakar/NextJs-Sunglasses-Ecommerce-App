@@ -9,6 +9,7 @@ import {
   userLogin,
   userLogout,
   saveShippingAddress,
+  savePaymentMethod,
 } from '../Actions';
 
 export const StoreCtx = React.createContext();
@@ -28,6 +29,9 @@ const initialState = {
     shippingAddress: Cookies.get('shippingAddress')
       ? JSON.parse(Cookies.get('shippingAddress'))
       : {},
+    payMethod: Cookies.get('paymentMethod')
+      ? JSON.parse(Cookies.get('paymentMethod'))
+      : '',
   },
   userInfo: Cookies.get('userInfo')
     ? JSON.parse(Cookies.get('userInfo'))
@@ -102,6 +106,15 @@ function reducer(state, action) {
             ...state.cart.shippingAddress,
             ...action.payload
           }
+        }
+      };
+    case savePaymentMethod():
+      Cookies.set('paymentMethod', JSON.stringify(action.payload));
+      return {
+        ...state,
+        cart: {
+          ...state.cart,
+          payMethod: action.payload
         }
       };
     default:
