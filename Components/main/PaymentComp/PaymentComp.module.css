@@ -1,0 +1,85 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem 0;
+  font-family: "Roboto", sans-serif;
+  position: absolute;
+  top: 32%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.header {
+  font-size: 4rem;
+  letter-spacing: 0.8px;
+}
+.paymentForm {
+  padding: 0 5rem;
+  width: 55rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2rem 0;
+}
+
+.fieldContainer {
+  display: flex;
+  align-items: center;
+  gap: 0 1rem;
+}
+.inputField {
+  transform: scale(1.5);
+  cursor: pointer;
+}
+.inputField:checked + .headerInput {
+  color: rgb(255, 110, 110);
+}
+.inputField:not(:checked):hover + .headerInput {
+  color: #0087ff;
+}
+.headerInput {
+  padding: 0 0.2rem;
+  font-size: 2.2rem;
+  letter-spacing: 0.8px;
+  cursor: pointer;
+}
+.btnContainer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0 2rem;
+}
+.btn {
+  width: 50%;
+  height: 3.5rem;
+  font-size: 2.3rem;
+  letter-spacing: 0.5px;
+  color: #fff;
+  background: rgb(255, 110, 110);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.btn:hover {
+  color: rgb(255, 83, 83);
+  background: #eeeeee;
+  border: 2px solid rgb(255, 110, 110);
+}
+
+@media screen and (max-width: 400px) {
+  .paymentForm {
+    width: 50rem;
+  }
+}
+
+@media screen and (max-width: 330px) {
+  .paymentForm {
+    width: 45rem;
+  }
+}
+
+@media screen and (max-width: 300px) {
+  .paymentForm {
+    width: 38rem;
+  }
+}
