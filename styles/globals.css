@@ -15,8 +15,6 @@ html {
 }
 
 section {
-  /*TOP      left*/
-  /*bottom   right*/
   padding: 4rem 0;
 }
 
@@ -25,12 +23,22 @@ header {
   background: #c4c4c4;
 }
 
+main{
+  min-height: calc(100vh - 13rem);
+}
+
 img {
   width: 100%;
   max-width: 100%;
 }
 a {
   text-decoration: none;
+}
+th{
+  padding: 0 1rem;
+}
+td{
+  padding: 1rem;
 }
 
 .container {
@@ -69,6 +77,11 @@ a {
 @media screen and (max-width: 750px) {
   html{
     font-size: 7.5px;
+  }
+}
+@media screen and (max-width: 700px) {
+  main{
+    min-height: calc(100vh - 15rem);
   }
 }
 @media screen and (max-width: 600px) {
