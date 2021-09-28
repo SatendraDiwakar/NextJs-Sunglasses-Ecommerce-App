@@ -19,15 +19,14 @@ export default function Navbar() {
 
     // state
     const [cartCount, setCartCount] = useState(0);
+    const [isUserLoggedIn, setIsUserLoggedIn] = useState(0);
     // context
-    const context = useContext(StoreCtx);
-    const { state, dispatch } = context;
-    const { userInfo } = state;
+    const { state: { userInfo, cart }, dispatch } = useContext(StoreCtx);
+
     // router
     const router = useRouter();
 
     useEffect(() => {
-
         window.addEventListener('load', () => {
             if (window.innerWidth > 560) {
                 document.getElementById('menuLinks').style = 'transform: translate(-50%,-50%)';
@@ -46,11 +45,19 @@ export default function Navbar() {
                 document.getElementById('menuLinks').style = 'transform: translate(-100%,-50%)';
             }
         });
-    }, [])
+    }, []);
 
     useEffect(() => {
-        setCartCount(state.cart.cartItems.length);
-    }, [state.cart.cartItems.length])
+        setCartCount(cart.cartItems.length);
+    }, [cart.cartItems.length]);
+
+    useEffect(() => {
+        if (userInfo) {
+            setIsUserLoggedIn(1)
+        } else {
+            setIsUserLoggedIn(0)
+        }
+    }, [userInfo]);
 
     return <header>
         <div className="container">
@@ -72,19 +79,19 @@ export default function Navbar() {
                         </div>
                     </Link>
                     {
-                        !userInfo ?
-                            <div className={NavStyle.userIconContainer} onClick={()=>{router.push('/login')}}>
-                                <AiOutlineUser className={NavStyle.userIcon} />
-                                <p className={NavStyle.loginMsg}>Login</p>
-                            </div>
-                            :
+                        isUserLoggedIn ?
                             <>
                                 <button className={NavStyle.userNameBtn}
-                                    onClick={()=>{
-                                        dispatch({type: userLogout()})
+                                    onClick={() => {
+                                        dispatch({ type: userLogout() })
                                     }}
                                 >{userInfo.name}</button>
                             </>
+                            :
+                            <div className={NavStyle.userIconContainer} onClick={() => { router.push('/login') }}>
+                                <AiOutlineUser className={NavStyle.userIcon} />
+                                <p className={NavStyle.loginMsg}>Login</p>
+                            </div>
                         // on logout redirect user to home 3.45.10
                     }
                     <div className={NavStyle.menuBtnContainer}>
