@@ -1,12 +1,13 @@
 .container {
+  margin-top: 5rem;
   display: flex;
   flex-direction: column;
-  gap: 3rem 0;
+  gap: 2rem 0;
   font-family: "Roboto", sans-serif;
   position: absolute;
-  top: 28%;
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translate(-50%, -50%);
 }
 .header {
   font-size: 4rem;
