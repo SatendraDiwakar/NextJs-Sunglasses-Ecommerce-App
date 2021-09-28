@@ -30,7 +30,7 @@ const initialState = {
       ? JSON.parse(Cookies.get('shippingAddress'))
       : {},
     payMethod: Cookies.get('paymentMethod')
-      ? JSON.parse(Cookies.get('paymentMethod'))
+      ? Cookies.get('paymentMethod')
       : '',
   },
   userInfo: Cookies.get('userInfo')
@@ -109,7 +109,7 @@ function reducer(state, action) {
         }
       };
     case savePaymentMethod():
-      Cookies.set('paymentMethod', JSON.stringify(action.payload));
+      Cookies.set('paymentMethod', action.payload);
       return {
         ...state,
         cart: {
