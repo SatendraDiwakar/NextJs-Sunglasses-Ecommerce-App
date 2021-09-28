@@ -4,9 +4,9 @@
   gap: 3rem 0;
   font-family: "Roboto", sans-serif;
   position: absolute;
-  top: 32%;
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translate(-50%, -50%);
 }
 .header {
   font-size: 4rem;
@@ -35,6 +35,17 @@
 }
 .inputField:not(:checked):hover + .headerInput {
   color: #0087ff;
+}
+.inputField:disabled {
+  cursor: not-allowed;
+}
+.inputField:disabled + .headerInput {
+  opacity: 0.3;
+  color: initial;
+  cursor: not-allowed;
+}
+.inputField:not(:enabled):hover + .headerInput {
+  color: initial;
 }
 .headerInput {
   padding: 0 0.2rem;

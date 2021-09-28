@@ -24,13 +24,20 @@ export default function PaymentComp() {
 
     // checking if user is logged in or not
     useEffect(() => {
+        if (showNotification) {
+            hide();
+        }
         if (!shippingAddress.address) {
             router.push('/shipping')
         } else {
             setPaymentMethod(payMethod || '');
         }
         if (paymentMethod !== '') {
-            document.getElementById(paymentMethod).checked = true;
+            if (paymentMethod === 'Pay Cash') {
+                document.getElementById('paycash').checked = true;
+            } else {
+                document.getElementById(paymentMethod).checked = true;
+            }
         }
     }, [])
 
@@ -46,6 +53,7 @@ export default function PaymentComp() {
             });
         } else {
             dispatch({ type: savePaymentMethod(), payload: paymentMethod })
+            router.push('/placeorder');
         }
     }
 
@@ -55,7 +63,12 @@ export default function PaymentComp() {
             hide();
         }
         const { id } = e.target;
-        setPaymentMethod(id);
+        setPaymentMethod(() => {
+            if (id === 'paycash')
+                return 'Pay Cash'
+            else
+                return id
+        });
     }
 
     return (<>
@@ -66,11 +79,11 @@ export default function PaymentComp() {
             <p className={PaymentStyle.header}>Payment</p>
             <form onSubmit={submitHandler} className={PaymentStyle.paymentForm}>
                 <div className={PaymentStyle.fieldContainer}>
-                    <input type='radio' name="paymentMethod" id='paypal' className={PaymentStyle.inputField} onChange={handleChange} />
+                    <input type='radio' name="paymentMethod" id='PayPal' className={PaymentStyle.inputField} onChange={handleChange} />
                     <label htmlFor='paypal' className={PaymentStyle.headerInput}>PayPal</label>
                 </div>
                 <div className={PaymentStyle.fieldContainer}>
-                    <input type='radio' name="paymentMethod" id='stripe' className={PaymentStyle.inputField} onChange={handleChange} />
+                    <input type='radio' name="paymentMethod" id='Stripe' className={PaymentStyle.inputField} onChange={handleChange} disabled />
                     <label htmlFor='stripe' className={PaymentStyle.headerInput}>Stripe</label>
                 </div>
                 <div className={PaymentStyle.fieldContainer}>
