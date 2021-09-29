@@ -24,6 +24,9 @@ const saveShippingAddress = () => {
 const savePaymentMethod = () => {
     return 'SAVE_PAYMENT_METHOD'
 }
+const clearCart = () => {
+    return 'CLEAR_CART'
+}
 
 export {
     addToCart,
@@ -33,5 +36,6 @@ export {
     userLogin,
     userLogout,
     saveShippingAddress,
-    savePaymentMethod
+    savePaymentMethod,
+    clearCart,
 };

@@ -10,6 +10,7 @@ import {
   userLogout,
   saveShippingAddress,
   savePaymentMethod,
+  clearCart,
 } from '../Actions';
 
 export const StoreCtx = React.createContext();
@@ -95,7 +96,13 @@ function reducer(state, action) {
       return { ...state, userInfo: action.payload };
     case userLogout():
       Cookies.remove('userInfo');
-      return { ...state, userInfo: null };
+      return {
+        ...state, userInfo: null, cart: {
+          cartItems: [],
+          shippingAddress: {},
+          payMethod: ''
+        }
+      };
     case saveShippingAddress():
       Cookies.set('shippingAddress', JSON.stringify(action.payload));
       return {
@@ -117,6 +124,9 @@ function reducer(state, action) {
           payMethod: action.payload
         }
       };
+    case clearCart():
+      Cookies.remove('cartItems')
+      return { ...state, cart: { ...state.cart, cartItems: [] } };
     default:
       return state;
   }
@@ -127,7 +137,7 @@ export default function StoreProvider(props) {
 
   const [state, dispatch] = useReducer(reducer, initialState);
   const value = { state, dispatch, checkStock }
-  // console.log(state.cart.cartItems);
+
   return (
     <StoreCtx.Provider value={value}>
       {props.children}
