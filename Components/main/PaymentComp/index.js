@@ -80,7 +80,7 @@ export default function PaymentComp() {
             <form onSubmit={submitHandler} className={PaymentStyle.paymentForm}>
                 <div className={PaymentStyle.fieldContainer}>
                     <input type='radio' name="paymentMethod" id='PayPal' className={PaymentStyle.inputField} onChange={handleChange} />
-                    <label htmlFor='paypal' className={PaymentStyle.headerInput}>PayPal</label>
+                    <label htmlFor='PayPal' className={PaymentStyle.headerInput}>PayPal</label>
                 </div>
                 <div className={PaymentStyle.fieldContainer}>
                     <input type='radio' name="paymentMethod" id='Stripe' className={PaymentStyle.inputField} onChange={handleChange} disabled />
