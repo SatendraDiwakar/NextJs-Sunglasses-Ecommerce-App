@@ -10,8 +10,9 @@
 .itemContainer {
   padding: 2rem;
   width: 70%;
-  background: #fff;
+  background: rgba(255, 255, 255, 0.6);
   border-radius: 15px;
+  box-shadow: 0 0 6px #674e4e;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -22,10 +23,10 @@
   align-items: center;
   justify-content: space-between;
   font-family: "Roboto", sans-serif;
-  font-size: 3rem;
+  font-size: 2.5rem;
 }
 .prodPriceHeading {
-  font-size: 2.5rem;
+  font-size: 2.2rem;
   color: rgb(43, 42, 42);
 }
 .line {
@@ -74,12 +75,12 @@
   justify-content: space-between;
 }
 .prodName {
-  font-size: 2.8rem;
+  font-size: 2rem;
   letter-spacing: 0.5px;
 }
 .prodPrice {
   width: 15rem;
-  font-size: 2.5rem;
+  font-size: 2rem;
   text-align: right;
 }
 .prodActions {
@@ -124,8 +125,9 @@
   width: 35rem;
   height: 18rem;
   padding: 2rem;
-  background: #fff;
+  background: rgba(255, 255, 255, 0.6);
   border-radius: 15px;
+  box-shadow: 0 0 6px #674e4e;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -135,7 +137,7 @@
   letter-spacing: .5px;
 }
 .subTotalHead {
-  font-size: 3rem;
+  font-size: 2.5rem;
 }
 .btnCheckOut {
   width: 20rem;
@@ -151,9 +153,9 @@
   transition: all 0.3s;
 }
 .btnCheckOut:hover {
-  color: #000;
+  color: rgb(197, 87, 87);
   border: 2px solid rgb(197, 87, 87);
-  background: #fff;
+  background: rgb(230, 230, 230);
 }
 
 @media screen and (max-width: 1000px){
