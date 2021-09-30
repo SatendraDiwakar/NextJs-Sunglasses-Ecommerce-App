@@ -1,3 +1,9 @@
+.title{
+  padding: 1rem 2rem;
+  font-family: "Roboto", sans-serif;
+  font-size: 3rem;
+  letter-spacing: .5px;
+}
 .container {
   padding: 2rem;
   width: 100%;

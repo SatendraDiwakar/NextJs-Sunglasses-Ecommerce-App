@@ -65,17 +65,18 @@ function PlaceOrderComp() {
                 body: JSON.stringify(postData) // body data type must match "Content-Type" header
             });
             const resData = await response.json();
-            console.log(resData);
+            // console.log(resData);
             dispatch({ type: clearCart() });
             setIsLoading(false);
-            router.push(`/order/${resData.user}`)
+            router.push(`/order/${resData._id}`)
         } catch (error) {
             setIsLoading(false)
             console.log(error);
         }
     }
 
-    return (
+    return (<>
+        <p className={PlaceOrderStyle.title}>Place Order</p>
         <div className={PlaceOrderStyle.container}>
             <div className={PlaceOrderStyle.left}>
                 <Card title='Shipping Address'>
@@ -153,6 +154,6 @@ function PlaceOrderComp() {
                 </Card>
             </div>
         </div>
-    )
+    </>)
 }
 export default dynamic(() => Promise.resolve(PlaceOrderComp), { ssr: false });
