@@ -4,10 +4,9 @@ import { NotifyCtx } from '../../../utils/NotifyCtx'
 // style
 import NotificationStyle from './Notification.module.css'
 
-export default function Notification({ message, type }) {
+export default function Notification({ message }) {
 
-    const context = useContext(NotifyCtx);
-    const { showNotification, hide } = context;
+    const { type, hide } = useContext(NotifyCtx);
 
     return (
         <div className={NotificationStyle.container} style={type === 'error' ? { background: 'red', color: '#fff' } : { background: '#00ff82' }}>

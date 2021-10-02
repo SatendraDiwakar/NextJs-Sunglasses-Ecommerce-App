@@ -14,12 +14,9 @@ import { useRouter } from 'next/router';
 export default function ProductModal() {
 
     // context
-    const contextModal = useContext(ModalCtx);
-    const { close, itmDetails } = contextModal;
-    const contextNotify = useContext(NotifyCtx);
-    const { showNotification, message, show, hide } = contextNotify;
-    const contextStore = useContext(StoreCtx);
-    const { dispatch } = contextStore;
+    const { close, itmDetails } = useContext(ModalCtx);
+    const { showNotification, message, show, hide } = useContext(NotifyCtx);
+    const { dispatch } = useContext(StoreCtx);
 
     // router 
     const router = useRouter();
@@ -40,7 +37,7 @@ export default function ProductModal() {
             payload: cartItem
         });
         setTimeout(() => {
-            show('Added to Cart');
+            show('Added to Cart','success');
         })
     };
 

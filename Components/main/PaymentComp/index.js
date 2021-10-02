@@ -49,7 +49,7 @@ export default function PaymentComp() {
         }
         if (!paymentMethod) {
             setTimeout(() => {
-                show('Payment method is required')
+                show('Payment method is required', 'error')
             });
         } else {
             dispatch({ type: savePaymentMethod(), payload: paymentMethod })

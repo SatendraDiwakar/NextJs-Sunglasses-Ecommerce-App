@@ -25,7 +25,7 @@ export default function RegisterComp() {
 
     // context
     const contextNotify = useContext(NotifyCtx);
-    const { showNotification, show, hide, message} = contextNotify;
+    const { showNotification, show, hide, message } = contextNotify;
     const contextStore = useContext(StoreCtx);
     const { dispatch, state } = contextStore;
     const { userInfo } = state;
@@ -58,12 +58,12 @@ export default function RegisterComp() {
             email: inputDetails.email,
             password: inputDetails.password,
         };
-        if(showNotification){
+        if (showNotification) {
             hide();
         }
         if (inputDetails.password !== inputDetails.cPassword) {
             setTimeout(() => {
-                show('Passwords do not match');
+                show('Passwords do not match', 'error');
             });
             return false;
         }
@@ -88,7 +88,7 @@ export default function RegisterComp() {
             router.push(redirect || '/');
         } catch (error) {
             showNotification && hide();
-            show(error.message);
+            show(error.message, 'error');
         }
     }
 
@@ -105,9 +105,9 @@ export default function RegisterComp() {
     }
 
     return (<>
-    {
-        showNotification && <Notification message={message} type='error'/>
-    }
+        {
+            showNotification && <Notification message={message} type='error' />
+        }
         <div className={RegisterStyle.container}>
             <p className={RegisterStyle.header}>Register</p>
             <form onSubmit={submitHandler} className={RegisterStyle.registerForm}>

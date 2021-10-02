@@ -17,7 +17,7 @@ export default function LoginComp() {
         email: '',
         password: ''
     });
-    
+
     // router
     const router = useRouter();
     const { redirect } = router.query; // login?redirect=/shipping
@@ -77,13 +77,12 @@ export default function LoginComp() {
             if (response.status === 401) {
                 throw new Error(resData.message);
             } else {
-                console.log(resData);
                 dispatch({ type: userLogin(), payload: resData });
                 router.push(redirect || '/')
             }
         } catch (error) {
             showNotification && hide();
-            show(error.message);
+            show(error.message, 'error');
         }
     }
 
