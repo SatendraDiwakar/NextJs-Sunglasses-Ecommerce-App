@@ -8,9 +8,9 @@ handler.use(isAuth);
 
 handler.get(async (req, res) => {
     await db.connect();
-    const orders = await OrderModel.findById(req.query.id);
+    const order = await OrderModel.findById(req.query.id);
     await db.disconnect();
-    res.send(orders);
+    res.send(order);
 })
 
 export default handler;
