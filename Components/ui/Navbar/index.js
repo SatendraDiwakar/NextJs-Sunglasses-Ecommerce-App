@@ -54,10 +54,25 @@ export default function Navbar() {
     useEffect(() => {
         if (userInfo) {
             setIsUserLoggedIn(1)
+            window.addEventListener('click', function (e) {
+                if (document.getElementById('userActionsContainer').contains(e.target) ||
+                    document.getElementById('userNameBtn').contains(e.target)) {
+                    // Clicked in box
+                } else {
+                    // Clicked outside the box
+                    if (document.getElementById('userActionsContainer').classList.contains(NavStyle.userNameBtnClk))
+                        document.getElementById('userActionsContainer').classList.remove(NavStyle.userNameBtnClk);
+                }
+            });
         } else {
             setIsUserLoggedIn(0)
         }
     }, [userInfo]);
+
+    function handleUserActionClk() {
+        if (document.getElementById('userActionsContainer').classList.contains(NavStyle.userNameBtnClk))
+            document.getElementById('userActionsContainer').classList.remove(NavStyle.userNameBtnClk);
+    }
 
     return <header>
         <div className="container">
@@ -81,11 +96,26 @@ export default function Navbar() {
                     {
                         isUserLoggedIn ?
                             <>
-                                <button className={NavStyle.userNameBtn}
-                                    onClick={() => {
-                                        dispatch({ type: userLogout() })
-                                    }}
-                                >{userInfo.name}</button>
+                                <div className={NavStyle.userLoggedIn}>
+                                    <button id='userNameBtn' className={NavStyle.userNameBtn}
+                                        onClick={() => {
+                                            document.getElementById('userActionsContainer').classList.toggle(NavStyle.userNameBtnClk)
+                                        }}
+                                    >{userInfo.name.slice(0, 5)}..</button>
+                                    <div id='userActionsContainer' className={NavStyle.userActionsContainer}>
+                                        <button className={NavStyle.userAction}
+                                            onClick={
+                                                handleUserActionClk
+                                            }
+                                        >Profile</button>
+                                        <button className={NavStyle.userAction}
+                                            onClick={() => {
+                                                handleUserActionClk()
+                                                dispatch({ type: userLogout() })
+                                            }}
+                                        >Logout</button>
+                                    </div>
+                                </div>
                             </>
                             :
                             <div className={NavStyle.userIconContainer} onClick={() => { router.push('/login') }}>
