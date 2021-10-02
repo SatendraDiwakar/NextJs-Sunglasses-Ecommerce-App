@@ -7,13 +7,14 @@ export default class NotifyProvider extends Component {
     state = {
         showNotification: false,
         message: '',
+        type: ''
     }
 
-    showNotify = (msg) => {
-        this.setState({ showNotification: true, message: msg })
+    showNotify = (msg,msgType) => {
+        this.setState({ showNotification: true, message: msg, type: msgType, })
     }
     hideNotify = () => {
-        this.setState({ ...this.state, showNotification: false })
+        this.setState({ showNotification: false, message: '', type: '' })
     }
     render() {
         return (
