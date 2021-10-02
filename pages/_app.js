@@ -5,6 +5,7 @@ import '../styles/globals.css'
 import ModalProvider from '../Components/ModalCtx'
 import NotifyProvider from '../utils/NotifyCtx'
 import StoreProvider from '../utils/Store'
+import { PayPalScriptProvider } from '@paypal/react-paypal-js'
 // component
 import Layout from '../Components/layout'
 
@@ -13,12 +14,12 @@ function MyApp({ Component, pageProps }) {
 
   const router = useRouter();
 
-  useEffect(()=>{
+  useEffect(() => {
     const jssStyles = document.querySelector('#jss-server-side');
     if (jssStyles) {
       jssStyles.parentElement.removeChild(jssStyles);
     }
-  },[])
+  }, [])
 
   useEffect(() => {
     if (router.pathname === '/cart')
@@ -32,7 +33,9 @@ function MyApp({ Component, pageProps }) {
       <StoreProvider>
         <ModalProvider>
           <Layout>
-            <Component {...pageProps} />
+            <PayPalScriptProvider deferLoading={true}>
+              <Component {...pageProps} />
+            </PayPalScriptProvider>
           </Layout>
         </ModalProvider>
       </StoreProvider>
