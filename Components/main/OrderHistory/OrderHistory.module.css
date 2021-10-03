@@ -1,0 +1,30 @@
+.container {
+  padding: 2rem;
+  width: 100%;
+  font-family: "Roboto", sans-serif;
+  letter-spacing: 0.5px;
+  display: flex;
+  gap: 0 3rem;
+  justify-content: center;
+}
+
+.right {
+  width: 90%;
+}
+.tableAcCol {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.tableAcCol > a {
+  padding: 0.5rem 1rem;
+  font-size: 1.8rem;
+  border: 1px solid rgb(206, 206, 206);
+  border-radius: 5px;
+  color: black;
+  background: rgb(206, 206, 206);
+}
+.tableAcCol > a:hover {
+  background: transparent;
+  border: 1px solid #000;
+}
