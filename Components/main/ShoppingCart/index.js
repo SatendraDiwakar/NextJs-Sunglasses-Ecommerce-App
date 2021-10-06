@@ -15,9 +15,8 @@ function ShoppingCart() {
     // state
     const [windowSize,setWindowSize] = useState(window.innerWidth);
     // context
-    const context = useContext(StoreCtx);
-    const { state, dispatch, checkStock } = context;
-
+    const { state, dispatch, checkStock } = useContext(StoreCtx);
+    // router
     const router = useRouter();
 
     async function handleCartItemInc(reqType, id) {

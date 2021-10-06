@@ -1,10 +1,11 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { useRouter } from 'next/router'
 import '../styles/globals.css'
 // context
 import ModalProvider from '../Components/ModalCtx'
 import NotifyProvider from '../utils/NotifyCtx'
 import StoreProvider from '../utils/Store'
+import LoaderProvider from '../Components/ui/LoaderCtx'
 import { PayPalScriptProvider } from '@paypal/react-paypal-js'
 // component
 import Layout from '../Components/layout'
@@ -29,17 +30,19 @@ function MyApp({ Component, pageProps }) {
   }, [router.pathname])
 
   return <>
-    <NotifyProvider>
-      <StoreProvider>
-        <ModalProvider>
-          <Layout>
-            <PayPalScriptProvider deferLoading={true}>
-              <Component {...pageProps} />
-            </PayPalScriptProvider>
-          </Layout>
-        </ModalProvider>
-      </StoreProvider>
-    </NotifyProvider>
+    <LoaderProvider>
+      <NotifyProvider>
+        <StoreProvider>
+          <ModalProvider>
+            <Layout>
+              <PayPalScriptProvider deferLoading={true}>
+                <Component {...pageProps} />
+              </PayPalScriptProvider>
+            </Layout>
+          </ModalProvider>
+        </StoreProvider>
+      </NotifyProvider>
+    </LoaderProvider>
   </>
 }
 

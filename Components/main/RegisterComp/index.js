@@ -4,9 +4,11 @@ import { useRouter } from 'next/router';
 // context
 import { NotifyCtx } from '../../../utils/NotifyCtx';
 import { StoreCtx } from '../../../utils/Store'
+import { LoaderCtx } from '../../ui/LoaderCtx';
 import { userLogin } from '../../../utils/Actions'
 // component
 import Notification from '../../ui/Notification';
+import Loader2 from '../../ui/Loader2';
 // style
 import RegisterStyle from './RegisterComp.module.css'
 
@@ -24,11 +26,9 @@ export default function RegisterComp() {
     const { redirect } = router.query;
 
     // context
-    const contextNotify = useContext(NotifyCtx);
-    const { showNotification, show, hide, message } = contextNotify;
-    const contextStore = useContext(StoreCtx);
-    const { dispatch, state } = contextStore;
-    const { userInfo } = state;
+    const { showNotification, show, hide, message } = useContext(NotifyCtx);
+    const { dispatch, state: { userInfo } } = useContext(StoreCtx);
+    const { isLoading2, loaded2, loading2 } = useContext(LoaderCtx);
 
     // checking if user is logged in or not
     useEffect(() => {
@@ -52,6 +52,7 @@ export default function RegisterComp() {
     const submitHandler = async (e) => {
 
         e.preventDefault();
+        loading2();
 
         const postData = {
             userName: inputDetails.userName,
@@ -65,6 +66,7 @@ export default function RegisterComp() {
             setTimeout(() => {
                 show('Passwords do not match', 'error');
             });
+            loaded2();
             return false;
         }
 
@@ -85,8 +87,10 @@ export default function RegisterComp() {
         try {
             const resData = await response.json();
             dispatch({ type: userLogin(), payload: resData });
+            loaded2();
             router.push(redirect || '/');
         } catch (error) {
+            loaded2();
             showNotification && hide();
             show(error.message, 'error');
         }
@@ -159,12 +163,20 @@ export default function RegisterComp() {
                     />
                     <label className={RegisterStyle.headerInput}>Confirm Password</label>
                 </div>
-                <button type="submit" className={RegisterStyle.registerBtn}>Register</button>
-                <div className={RegisterStyle.loginContainer}>
-                    <p className={RegisterStyle.loginText}>Already have an account?</p>
-                    <Link href={`/login?redirect=${redirect || '/'}`}>
-                        <div className={RegisterStyle.loginBtn}>Login</div>
-                    </Link>
+                <div style={{ width: '95%', position: 'relative' }}>
+                    {
+                        isLoading2 ?
+                            <Loader2 />
+                            : <>
+                                <button type="submit" className={RegisterStyle.registerBtn}>Register</button>
+                                <div className={RegisterStyle.loginContainer}>
+                                    <p className={RegisterStyle.loginText}>Already have an account?</p>
+                                    <Link href={`/login?redirect=${redirect || '/'}`}>
+                                        <div className={RegisterStyle.loginBtn}>Login</div>
+                                    </Link>
+                                </div>
+                            </>
+                    }
                 </div>
             </form>
         </div>

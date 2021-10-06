@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 // context
 import { StoreCtx } from '../../../utils/Store'
 import { NotifyCtx } from '../../../utils/NotifyCtx'
+import { LoaderCtx } from '../../ui/LoaderCtx';
 import { savePaymentMethod } from '../../../utils/Actions'
 // component
 import Notification from '../../ui/Notification';
@@ -15,6 +16,7 @@ export default function PaymentComp() {
     const router = useRouter();
 
     // context
+    const { isLoading, loading, loaded } = useContext(LoaderCtx);
     const { dispatch, state } = useContext(StoreCtx);
     const { cart: { payMethod, shippingAddress } } = state;
     const { showNotification, message, show, hide } = useContext(NotifyCtx);
@@ -52,6 +54,7 @@ export default function PaymentComp() {
                 show('Payment method is required', 'error')
             });
         } else {
+            loading()
             dispatch({ type: savePaymentMethod(), payload: paymentMethod })
             router.push('/placeorder');
         }

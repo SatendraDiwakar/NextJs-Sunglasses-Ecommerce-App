@@ -1,6 +1,18 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
+// context
+import { LoaderCtx } from '../Components/ui/LoaderCtx'
 
 export default function About() {
+
+    // context
+    const { loaded } = useContext(LoaderCtx);
+
+    useEffect(() => {
+        setTimeout(() => {
+            loaded();
+        }, 500);
+    }, []);
+
     return (
         <div>
             about us

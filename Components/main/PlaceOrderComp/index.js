@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 // context
 import { StoreCtx } from '../../../utils/Store'
 import { clearCart } from '../../../utils/Actions';
+import { LoaderCtx } from '../../ui/LoaderCtx';
 // component
 import Card from '../../ui/Card';
 // style
@@ -12,13 +13,11 @@ import PlaceOrderStyle from './PlaceOrderComp.module.css'
 
 function PlaceOrderComp() {
 
-    // states
-    const [isLoading, setIsLoading] = useState(false);
-
     // router
     const router = useRouter();
 
     // context
+    const { loading, loaded } = useContext(LoaderCtx);
     const { dispatch, state } = useContext(StoreCtx);
     const { userInfo, cart: { payMethod, shippingAddress, cartItems } } = state;
     // identifiers
@@ -33,9 +32,10 @@ function PlaceOrderComp() {
     useEffect(() => {
         if (!payMethod) {
             router.push('/payment')
-        }
-        if (cartItems.length === 0) {
+        } else if (cartItems.length === 0) {
             router.push('/cart')
+        } else {
+            loaded();
         }
     }, []);
 
@@ -47,9 +47,9 @@ function PlaceOrderComp() {
             itemsPrice, taxPrice, shippingPrice,
             totalPrice,
         }
-        // implement notification
+
         try {
-            setIsLoading(true)
+            loading();
             const response = await fetch('/api/orders', {
                 method: 'POST', // *GET, POST, PUT, DELETE, etc.
                 mode: 'cors', // no-cors, *cors, same-origin
@@ -65,13 +65,11 @@ function PlaceOrderComp() {
                 body: JSON.stringify(postData) // body data type must match "Content-Type" header
             });
             const resData = await response.json();
-            // console.log(resData);
             dispatch({ type: clearCart() });
-            setIsLoading(false);
             router.push(`/order/${resData._id}`)
         } catch (error) {
-            setIsLoading(false)
-            console.log(error);
+            loaded();
+            alert(error)
         }
     }
 

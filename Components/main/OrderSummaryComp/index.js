@@ -7,12 +7,13 @@ import { PayPalButtons, usePayPalScriptReducer } from '@paypal/react-paypal-js'
 // context
 import { StoreCtx } from '../../../utils/Store'
 import { NotifyCtx } from '../../../utils/NotifyCtx'
-// component
-import Card from '../../ui/Card';
+import { LoaderCtx } from '../../ui/LoaderCtx'
 // style
 import OrderSummaryStyle from './OrderSummaryComp.module.css'
 // components
+import Card from '../../ui/Card';
 import Notification from '../../ui/Notification'
+import Loader2 from '../../ui/Loader2'
 
 // reducer function
 function reducer(state, action) {
@@ -31,19 +32,6 @@ function reducer(state, action) {
             return { ...state, loadingPay: false, errorPay: action.payload };
         case 'PAY_RESET':
             return { ...state, loadingPay: false, successPay: false, errorPay: '' };
-        case 'DELIVER_REQUEST':
-            return { ...state, loadingDeliver: true };
-        case 'DELIVER_SUCCESS':
-            return { ...state, loadingDeliver: false, successDeliver: true };
-        case 'DELIVER_FAIL':
-            return { ...state, loadingDeliver: false, errorDeliver: action.payload };
-        case 'DELIVER_RESET':
-            return {
-                ...state,
-                loadingDeliver: false,
-                successDeliver: false,
-                errorDeliver: '',
-            };
         default:
             state;
     }
@@ -53,7 +41,7 @@ function OrderSummaryComp({ orderId }) {
 
     // reducer
     const [
-        { loading, error, order, successPay, loadingDeliver, successDeliver },
+        { loading, error, order, successPay },
         dispatch,
     ] = useReducer(reducer, {
         loading: true,
@@ -78,11 +66,13 @@ function OrderSummaryComp({ orderId }) {
     const router = useRouter();
     // context
     const { state: { userInfo } } = useContext(StoreCtx);
-    const { showNotification, message, show, hide } = useContext(NotifyCtx);
-    // identifiers
-    // useEffect(()=>{
-    //     hide()
-    // },[])
+    const { showNotification, message, show } = useContext(NotifyCtx);
+    const { loaded } = useContext(LoaderCtx);
+
+    useEffect(() => {
+        if (!loading)
+            loaded();
+    }, [loading])
 
     // checking if user is logged in or not
     useEffect(() => {
@@ -98,8 +88,7 @@ function OrderSummaryComp({ orderId }) {
                     const resData = await response.json();
                     dispatch({ type: 'FETCH_SUCCESS', payload: resData });
                 } catch (err) {
-                    dispatch({ type: 'FETCH_FAIL', payload: err });
-                    alert(err);
+                    dispatch({ type: 'FETCH_FAIL', payload: 'Order not found' });
                 }
             };
             if (
@@ -109,9 +98,6 @@ function OrderSummaryComp({ orderId }) {
                 fetchOrder();
                 if (successPay) {
                     dispatch({ type: 'PAY_RESET' });
-                }
-                if (successDeliver) {
-                    dispatch({ type: 'DELIVER_RESET' });
                 }
             } else {
                 const loadPaypalScript = async () => {
@@ -172,7 +158,7 @@ function OrderSummaryComp({ orderId }) {
                 dispatch({ type: 'PAY_SUCCESS', payload: resData });
                 show('Order is Paid', 'success')
             } catch (err) {
-                dispatch({ type: 'PAY_FAIL', payload: err });
+                dispatch({ type: 'PAY_FAIL', payload: 'Payment Failed' });
                 show('Payment Failed', 'error');
             }
         });
@@ -182,26 +168,19 @@ function OrderSummaryComp({ orderId }) {
         show(err.response.data.message, 'error')
     }
 
-    async function deliverOrderHandler() {
-        try {
-            dispatch({ type: 'DELIVER_REQUEST' });
-            const response = await fetch(
-                `/api/orders/${order._id}/deliver`,
-                {
-                    headers: { authorization: `Bearer ${userInfo.token}` },
-                }
-            );
-            dispatch({ type: 'DELIVER_SUCCESS', payload: data });
-            //   enqueueSnackbar('Order is delivered', { variant: 'success' });
-        } catch (err) {
-            dispatch({ type: 'DELIVER_FAIL', payload: getError(err) });
-            //   enqueueSnackbar(getError(err), { variant: 'error' });
-        }
-    }
-
     return (<>
         {
-            loading ? <p>load</p>
+            loading || error !== '' ?
+                <div
+                    style={{
+                        fontFamily: 'Roboto, sans-serif',
+                        fontSize: '2.5rem',
+                        letterSpacing: '.5px',
+                        position: 'absolute',
+                        left: '50%',
+                        top: '50%',
+                        transform: 'translate(-50%,-50%)'
+                    }}>{error}</div>
                 :
                 <>
                     {
@@ -292,19 +271,23 @@ function OrderSummaryComp({ orderId }) {
                                         <h3>Total</h3>
                                         <h3>${totalPrice}</h3>
                                     </div>
-                                    {
-                                        !isPaid && (
-                                            isPending ? <p>load</p> :
-                                                <div style={{ width: '100%' }}>
-                                                    <PayPalButtons
-                                                        createOrder={createOrder}
-                                                        onApprove={onApprove}
-                                                        onError={onError}
-                                                    />
-                                                </div>
-                                        )
-
-                                    }
+                                    <div
+                                        className={OrderSummaryStyle.paypalBtn}
+                                        style={{ padding: isPending && '1.5rem 0' }}
+                                    >
+                                        {
+                                            !isPaid && (
+                                                isPending ? <Loader2 /> :
+                                                    <div style={{ width: '100%' }}>
+                                                        <PayPalButtons
+                                                            createOrder={createOrder}
+                                                            onApprove={onApprove}
+                                                            onError={onError}
+                                                        />
+                                                    </div>
+                                            )
+                                        }
+                                    </div>
                                 </div>
                             </Card>
                         </div>

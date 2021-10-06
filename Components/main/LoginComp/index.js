@@ -3,12 +3,14 @@ import Link from 'next/link'
 import { useRouter } from 'next/router';
 // context
 import { StoreCtx } from '../../../utils/Store'
-import { NotifyCtx } from '../../../utils/NotifyCtx'
 import { userLogin } from '../../../utils/Actions'
+import { NotifyCtx } from '../../../utils/NotifyCtx'
 // component
 import Notification from '../../ui/Notification'
 // style
 import LoginStyle from './LoginComp.module.css'
+import { LoaderCtx } from '../../ui/LoaderCtx';
+import Loader2 from '../../ui/Loader2';
 
 export default function LoginComp() {
 
@@ -23,11 +25,9 @@ export default function LoginComp() {
     const { redirect } = router.query; // login?redirect=/shipping
 
     // context
-    const contextNotify = useContext(NotifyCtx);
-    const { showNotification, message, show, hide } = contextNotify;
-    const contextStore = useContext(StoreCtx);
-    const { dispatch, state } = contextStore;
-    const { userInfo } = state;
+    const { showNotification, message, show, hide } = useContext(NotifyCtx);
+    const { dispatch, state: { userInfo } } = useContext(StoreCtx);
+    const { isLoading2, loaded2, loading2 } = useContext(LoaderCtx);
 
     // checking if user is logged in or not
     useEffect(() => {
@@ -52,6 +52,7 @@ export default function LoginComp() {
     const submitHandler = async (e) => {
 
         e.preventDefault();
+        loading2();
 
         const postData = {
             email: inputDetails.email,
@@ -78,9 +79,11 @@ export default function LoginComp() {
                 throw new Error(resData.message);
             } else {
                 dispatch({ type: userLogin(), payload: resData });
+                loaded2();
                 router.push(redirect || '/')
             }
         } catch (error) {
+            loaded2();
             showNotification && hide();
             show(error.message, 'error');
         }
@@ -130,12 +133,20 @@ export default function LoginComp() {
                     />
                     <label className={LoginStyle.headerInput}>Password</label>
                 </div>
-                <button type="submit" className={LoginStyle.loginBtn}>Login</button>
-                <div className={LoginStyle.registerContainer}>
-                    <p className={LoginStyle.registerText}>Don't have an account?</p>
-                    <Link href={`/register?redirect=${redirect || '/'}`}>
-                        <div className={LoginStyle.registerBtn}>Register</div>
-                    </Link>
+                <div style={{ width: '95%', position: 'relative' }}>
+                    {
+                        isLoading2 ?
+                            <Loader2 />
+                            : <>
+                                <button type="submit" className={LoginStyle.loginBtn}>Login</button>
+                                <div className={LoginStyle.registerContainer}>
+                                    <p className={LoginStyle.registerText}>Don't have an account?</p>
+                                    <Link href={`/register?redirect=${redirect || '/'}`}>
+                                        <div className={LoginStyle.registerBtn}>Register</div>
+                                    </Link>
+                                </div>
+                            </>
+                    }
                 </div>
             </form>
         </div>
