@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 // context
 import { StoreCtx } from '../../../utils/Store';
@@ -22,27 +22,28 @@ export default function Navbar() {
     const [isUserLoggedIn, setIsUserLoggedIn] = useState(0);
     // context
     const { state: { userInfo, cart }, dispatch } = useContext(StoreCtx);
-
     // router
     const router = useRouter();
 
     useEffect(() => {
         window.addEventListener('load', () => {
-            if (window.innerWidth > 560) {
-                document.getElementById('menuLinks').style = 'transform: translate(-50%,-50%)';
+            document.getElementsByTagName('main')[0].style = 'filter: unset';
+            if (window.innerWidth > 600) {
+                document.getElementById('navLinks').style = '';
             } else {
                 document.getElementsByClassName(NavStyle.menuBar)[0].style = 'display: block';
                 document.getElementsByClassName(NavStyle.closeBtn)[0].style = 'display: none';
-                document.getElementById('menuLinks').style = 'transform: translate(-100%,-50%)';
+                document.getElementById('navLinks').style = 'transform: translateX(-100%)';
             }
         });
         window.addEventListener('resize', () => {
-            if (window.innerWidth > 560) {
-                document.getElementById('menuLinks').style = 'transform: translate(-50%,-50%)';
+            document.getElementsByTagName('main')[0].style = 'filter: unset';
+            if (window.innerWidth > 600) {
+                document.getElementById('navLinks').style = '';
             } else {
                 document.getElementsByClassName(NavStyle.menuBar)[0].style = 'display: block';
                 document.getElementsByClassName(NavStyle.closeBtn)[0].style = 'display: none';
-                document.getElementById('menuLinks').style = 'transform: translate(-100%,-50%)';
+                document.getElementById('navLinks').style = 'transform: translateX(-100%)';
             }
         });
     }, []);
@@ -70,8 +71,10 @@ export default function Navbar() {
     }, [userInfo]);
 
     function handleUserActionClk() {
-        if (document.getElementById('userActionsContainer').classList.contains(NavStyle.userNameBtnClk))
+        if (document.getElementById('userActionsContainer').classList.contains(NavStyle.userNameBtnClk)) {
             document.getElementById('userActionsContainer').classList.remove(NavStyle.userNameBtnClk);
+        }
+        router.push('/order-history');
     }
 
     return <header>
@@ -107,7 +110,7 @@ export default function Navbar() {
                                             onClick={
                                                 handleUserActionClk
                                             }
-                                        >Profile</button>
+                                        >Orders</button>
                                         <button className={NavStyle.userAction}
                                             onClick={() => {
                                                 handleUserActionClk()
@@ -128,13 +131,13 @@ export default function Navbar() {
                         <FiMenu className={NavStyle.menuBar} id='menuBar' onClick={() => {
                             document.getElementsByClassName(NavStyle.menuBar)[0].style = 'display: none';
                             document.getElementsByClassName(NavStyle.closeBtn)[0].style = 'display: block';
-                            document.getElementById('menuLinks').style = 'transform: translate(0,-50%)';
+                            document.getElementById('navLinks').style = 'transform: translateX(0)';
                             document.getElementsByTagName('main')[0].style = 'transition: all .5s; filter: blur(5px);';
                         }} />
                         <CgClose className={NavStyle.closeBtn} id='closeBtn' onClick={() => {
                             document.getElementsByClassName(NavStyle.menuBar)[0].style = 'display: block';
                             document.getElementsByClassName(NavStyle.closeBtn)[0].style = 'display: none';
-                            document.getElementById('menuLinks').style = 'transform: translate(-100%,-50%)';
+                            document.getElementById('navLinks').style = 'transform: translateX(-100%)';
                             document.getElementsByTagName('main')[0].style = 'filter: unset';
                             if (document.getElementById('brandsLinkList').offsetHeight !== 0)
                                 document.getElementById('brandsLink').click();

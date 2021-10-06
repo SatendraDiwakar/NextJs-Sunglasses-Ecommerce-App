@@ -11,14 +11,14 @@ export default function Navlinks() {
     const brandLinkArr = ['RayBan', 'Burberry', 'Maui-Jim', 'Gucci']
 
     const router = useRouter();
-    // idea useref
+    // ref
     const prevVal = useRef('homeLink');
 
     useEffect(() => {
         if (!router.pathname.includes('brands')) {
-            if(prevVal.current.includes('brand')){
+            if (prevVal.current.includes('brand')) {
                 document.getElementById(prevVal.current).style = 'color: white';
-            }else{
+            } else if (prevVal.current !== '') {
                 document.getElementById(prevVal.current).style = 'color: inherit';
             }
             if (router.pathname === '/') {
@@ -29,8 +29,12 @@ export default function Navlinks() {
                 prevVal.current = 'contactLink';
             } else if (router.pathname === '/cart') {
                 prevVal.current = 'cartIcon';
+            } else {
+                prevVal.current = '';
             }
-            document.getElementById(prevVal.current).style = 'color: #c55757';
+            if (prevVal.current !== '') {
+                document.getElementById(prevVal.current).style = 'color: #c55757';
+            }
         }
     }, [router.pathname]);
 
@@ -39,16 +43,15 @@ export default function Navlinks() {
             document.getElementById('brandsLink').style = 'color: inherit';
             document.getElementsByClassName(NavLinkStyle.brandsList)[0].classList.toggle(NavLinkStyle.anima)
         } else if (linkNm !== 'brands') {
-            if (window.innerWidth <= 560) {
+            if (window.innerWidth <= 600) {
                 document.getElementById('menuBar').style = 'display: block';
                 document.getElementById('closeBtn').style = 'display: none';
-                document.getElementById('menuLinks').style = 'transform: translate(-100%,-50%)';
             }
-            if(document.getElementsByClassName(NavLinkStyle.brandsList)[0].classList.contains(NavLinkStyle.anima)){
+            if (document.getElementsByClassName(NavLinkStyle.brandsList)[0].classList.contains(NavLinkStyle.anima)) {
                 document.getElementsByClassName(NavLinkStyle.brandsList)[0].classList.remove(NavLinkStyle.anima)
             }
         }
-        if(document.getElementsByClassName(NavLinkStyle.brandsList)[0].classList.contains(NavLinkStyle.anima)){
+        if (document.getElementsByClassName(NavLinkStyle.brandsList)[0].classList.contains(NavLinkStyle.anima)) {
             document.getElementsByClassName(NavLinkStyle.brandAngleIcon)[0].style = 'transform: rotate(-180deg)';
         } else {
             document.getElementsByClassName(NavLinkStyle.brandAngleIcon)[0].style = 'transform: initial';
@@ -58,27 +61,26 @@ export default function Navlinks() {
     function handleBrandClick(item) {
         // brands active link color change logic
         if (prevVal.current.includes('brand')) {
-            document.getElementById(prevVal.current).style = 'color: white';
+            document.getElementById(prevVal.current).style = '';
         } else {
             document.getElementById(prevVal.current).style = 'color: inherit';
         }
         prevVal.current = `brand${item}`
         document.getElementById(prevVal.current).style = 'color: #c55757';
         document.getElementsByClassName(NavLinkStyle.brandsList)[0].classList.toggle(NavLinkStyle.anima);
-        if(document.getElementsByClassName(NavLinkStyle.brandsList)[0].classList.contains(NavLinkStyle.anima)){
+        if (document.getElementsByClassName(NavLinkStyle.brandsList)[0].classList.contains(NavLinkStyle.anima)) {
             document.getElementsByClassName(NavLinkStyle.brandAngleIcon)[0].style = 'transform: rotate(-180deg)';
         } else {
             document.getElementsByClassName(NavLinkStyle.brandAngleIcon)[0].style = 'transform: initial';
         }
-        if (window.innerWidth <= 560) {
+        if (window.innerWidth <= 600) {
             handleLinkClick();
         }
     }
 
     return (
-        <div className={NavLinkStyle.links}>
-
-            <div className={NavLinkStyle.container} id="menuLinks">
+        <div className={NavLinkStyle.links} id="navLinks">
+            <div className={NavLinkStyle.container}>
                 <ul className={NavLinkStyle.list}>
                     <Link href='/' >
                         <li
@@ -89,7 +91,7 @@ export default function Navlinks() {
                     </Link>
                     <li
                         id='brandsLink'
-                        className={NavLinkStyle.listItem+' '+NavLinkStyle.brandsLink}
+                        className={NavLinkStyle.listItem + ' ' + NavLinkStyle.brandsLink}
                         onClick={() => handleLinkClick('brands')}
                     >brands <FaAngleDown className={NavLinkStyle.brandAngleIcon} /></li>
                     <Link href='/about' >

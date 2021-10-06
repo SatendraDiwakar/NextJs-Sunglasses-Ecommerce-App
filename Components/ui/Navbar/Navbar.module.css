@@ -190,7 +190,7 @@
     font-size: 2.2rem;
   }
 }
-@media screen and (max-width: 560px) {
+@media screen and (max-width: 600px) {
   .menuBtnContainer {
     font-size: 3.2rem;
     display: block;
