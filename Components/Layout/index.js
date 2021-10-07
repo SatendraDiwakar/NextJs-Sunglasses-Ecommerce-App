@@ -18,7 +18,8 @@ export default function Layout({ children }) {
     const prevPath = useRef(router.pathname)
 
     useEffect(() => {
-
+        let heit = window.innerHeight;
+        document.getElementsByTagName('main')[0].style = `min-height: calc(${heit}px - 15rem)`;
         // checking route change
         const handleRouteChange = (url, { shallow }) => {
             if (prevPath.current !== url)
