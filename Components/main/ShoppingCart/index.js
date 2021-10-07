@@ -13,7 +13,7 @@ import { useRouter } from 'next/router'
 function ShoppingCart() {
 
     // state
-    const [windowSize,setWindowSize] = useState(window.innerWidth);
+    const [windowSize, setWindowSize] = useState(window.innerWidth);
     // context
     const { state, dispatch, checkStock } = useContext(StoreCtx);
     // router
@@ -28,11 +28,19 @@ function ShoppingCart() {
         dispatch({ type: reqType(), payload: { id } })
     }
 
-    useEffect(()=>{
-        window.addEventListener('resize',()=>{
-            setWindowSize(window.innerWidth);
-        })
-    },[])
+    useEffect(() => {
+        function updateWindowSize() {
+            if (router.pathname === '/cart')
+                setWindowSize(window.innerWidth);
+        }
+
+        window.addEventListener('resize', updateWindowSize)
+
+        // cleanup
+        return () => {
+            window.removeEventListener('resize', updateWindowSize);
+        }
+    }, [router.pathname])
 
     return (<>
         <div className={ShoppingCartStyle.container} id='shoppingCartSection'>
@@ -106,17 +114,15 @@ function ShoppingCart() {
             <div className={ShoppingCartStyle.subTotalContainer}>
                 <p className={ShoppingCartStyle.subTotalHead}>Subtotal ( {state.cart.cartItems.reduce((total, itm) => total + itm.prodQuantity, 0)} items)</p>
                 <p className={ShoppingCartStyle.subTotal}>$ {state.cart.cartItems.reduce((total, itm) => total + itm.prodQuantity * itm.prodPrice, 0)}</p>
-                <button 
-                className={ShoppingCartStyle.btnCheckOut}
-                onClick={()=>{
-                    router.push('/shipping')
-                }}
+                <button
+                    className={ShoppingCartStyle.btnCheckOut}
+                    onClick={() => {
+                        router.push('/shipping')
+                    }}
                 >Check Out</button>
             </div>
         </div>
     </>
     )
 }
-
-
 export default dynamic(() => Promise.resolve(ShoppingCart), { ssr: false });
