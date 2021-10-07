@@ -37,8 +37,19 @@ export default function ProductModal() {
             payload: cartItem
         });
         setTimeout(() => {
-            show('Added to Cart','success');
+            show('Added to Cart', 'success');
         })
+    };
+
+    // Buy_Now button click functionality
+    const handleBuyNow = () => {
+        hide();
+        dispatch({
+            type: addToCart(),
+            payload: cartItem
+        });
+        close();
+        router.push('/cart');
     };
 
     useEffect(() => {
@@ -91,7 +102,10 @@ export default function ProductModal() {
                         className={ProductModalStyle.btnAddToCart + ' ' + ProductModalStyle.btnCta}
                         onClick={handleAddCart}
                     >Add To Cart</button>
-                    <button className={ProductModalStyle.btnBuyNow + ' ' + ProductModalStyle.btnCta}>Buy Now</button>
+                    <button
+                        className={ProductModalStyle.btnBuyNow + ' ' + ProductModalStyle.btnCta}
+                        onClick={handleBuyNow}
+                    >Buy Now</button>
                 </div>
             </div>
         </>

@@ -35,7 +35,7 @@
   width: 100%;
   padding: 1rem 2rem;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 0 2rem;
   justify-content: space-between;
 }
@@ -49,8 +49,8 @@
 }
 .prodImg {
   position: relative;
-  width: 45rem;
-  height: 30rem;
+  width: 40rem;
+  height: 25rem;
   background: rgb(236, 230, 230);
 }
 .prodImg > div {
@@ -67,10 +67,9 @@
 }
 
 .right {
-  margin-top: 2rem;
   width: 50%;
   font-family: "Roboto", sans-serif;
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-weight: bolder;
   letter-spacing: 0.5px;
   display: flex;
@@ -84,18 +83,18 @@
 .price {
   position: relative;
   font-weight: normal;
-  font-size: 2rem;
+  font-size: 1.5rem;
   margin-left: 0.5rem;
   opacity: 0.8;
 }
 .cutLine {
-  width: 3rem;
+  width: 55%;
   height: 0.2rem;
   position: absolute;
-  left: 2rem;
-  top: 1rem;
+  left: 50%;
+  bottom: 0;
   background-color: black;
-  transform: rotate(45deg);
+  transform: rotate(45deg) translateX(-50%);
 }
 .desc {
   display: flex;
@@ -105,7 +104,7 @@
 .ctaContainer {
   display: flex;
   align-items: center;
-  gap: 0 2rem;
+  gap: 0 4rem;
 }
 .btnCta {
   width: 25rem;
@@ -122,56 +121,56 @@
 }
 .btnCta:hover {
   color: rgb(197, 87, 87);
-  /* color: #000; */
   border: 2px solid rgb(197, 87, 87);
   background: #fff;
 }
 
 @media screen and (max-width: 1200px) {
-    .prodImg{
-        width: 40rem;
-    }
+  .prodImg {
+    width: 40rem;
+  }
 }
 @media screen and (max-width: 1000px) {
-    .prodImg{
-        width: 40rem;
-        height: 28rem;
-    }
-    .details{
-        flex-direction: column;
-    }
-    .left{
-        width: 100%;
-    }
-    .right{
-        width: 100%;
-        flex-direction: row;
-        flex-wrap: wrap;
-        gap: .5rem 3rem;
-    }    
+  .prodImg {
+    width: 40rem;
+    height: 28rem;
+  }
+  .details {
+    flex-direction: column;
+    gap: 5rem 0;
+  }
+  .left {
+    width: 100%;
+  }
+  .right {
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1rem 3rem;
+  }
 }
 @media screen and (max-width: 600px) {
-    .ctaContainer{
-      gap: 0 6rem;
-    }
-    .btnCta{
-        width: 20rem;
-    }
+  .ctaContainer {
+    justify-content: space-around;
+  }
+  .btnCta {
+    width: 20rem;
+  }
 }
 @media screen and (max-width: 350px) {
-    .prodImg{
-        width: 35rem;
-        height: 25rem;
-    }
-    .btnCta{
-        width: 18rem;
-    }
+  .prodImg {
+    width: 35rem;
+    height: 25rem;
+  }
+  .btnCta {
+    width: 18rem;
+  }
 }
 @media screen and (max-width: 300px) {
-    .btnCta{
-        width: 15rem;
-    }
-    .right{
-        justify-content: center;
-    }
+  .btnCta {
+    width: 15rem;
+  }
+  .right {
+    justify-content: center;
+  }
 }
