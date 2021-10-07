@@ -1,3 +1,4 @@
+import dynamic from 'next/dynamic';
 import React, { useContext, useEffect } from 'react'
 // context
 import { StoreCtx } from '../utils/Store';
@@ -6,7 +7,7 @@ import { LoaderCtx } from '../Components/ui/LoaderCtx';
 import ShoppingCart from '../Components/main/ShoppingCart'
 import ButtonBlack from '../Components/ui/ButtonBlack'
 
-export default function Cart() {
+function Cart() {
 
     // context
     const { state: { cart: { cartItems } } } = useContext(StoreCtx);
@@ -40,3 +41,4 @@ export default function Cart() {
         </>
     )
 }
+export default dynamic(() => Promise.resolve(Cart), { ssr: false });
