@@ -1,3 +1,4 @@
+import dynamic from 'next/dynamic'
 import React from 'react'
 // material ui
 import { Stepper, Step, StepLabel, StepConnector } from '@material-ui/core'
@@ -5,7 +6,7 @@ import { makeStyles } from '@material-ui/core'
 // style
 import CheckoutWizStyle from './CheckoutWiz.module.css'
 
-export default function CheckoutWiz({ activeStep = 0 }) {
+function CheckoutWiz({ activeStep = 0 }) {
 
     const steps = ['Login', 'Shipping Address', 'Payment Method', 'Place Order']
 
@@ -71,3 +72,4 @@ export default function CheckoutWiz({ activeStep = 0 }) {
         </div>
     </>)
 }
+export default dynamic(() => Promise.resolve(CheckoutWiz), { ssr: false });
