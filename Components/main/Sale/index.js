@@ -13,8 +13,7 @@ export default function Sale({ saleProd }) {
     
     const saleProducts = saleProd.map(itm=>{ return {...itm, discountPrice: 49}});
     // context
-    const context = useContext(ModalCtx);
-    const { open } = context;
+    const { open } = useContext(ModalCtx);
 
     function handleLoad(itemIndex) {
         if(document.getElementsByClassName(SaleStyle.price)[itemIndex]){
@@ -46,7 +45,7 @@ export default function Sale({ saleProd }) {
                         })
                     }
                 </div>
-                <ButtonBlack name="view all" />
+                <ButtonBlack name="view all" clk={'/shop/sale'} />
             </div>
         </section>
     )
