@@ -24,7 +24,10 @@ function Cart() {
             style={{
                 fontFamily: 'Roboto, sans-serif',
                 fontSize: '2.5rem',
-                letterSpacing: '.5px',
+                letterSpacing: '.5px',                
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
                 position: 'absolute',
                 left: '50%',
                 top: '50%',
