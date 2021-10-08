@@ -73,7 +73,7 @@ export default function Navlinks() {
         } else {
             document.getElementsByClassName(NavLinkStyle.brandAngleIcon)[0].style = 'transform: initial';
         }
-        if (window.innerWidth <= 600) {
+        if (window.innerWidth <= 620) {
             handleLinkClick();
         }
     }

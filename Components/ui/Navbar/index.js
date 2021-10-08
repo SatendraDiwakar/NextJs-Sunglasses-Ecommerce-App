@@ -19,7 +19,6 @@ export default function Navbar() {
 
     // state
     const [cartCount, setCartCount] = useState(0);
-    const [isUserLoggedIn, setIsUserLoggedIn] = useState(0);
     // context
     const { state: { userInfo, cart }, dispatch } = useContext(StoreCtx);
     // router
@@ -27,8 +26,10 @@ export default function Navbar() {
 
     useEffect(() => {
         window.addEventListener('load', () => {
-            document.getElementsByTagName('main')[0].style = 'filter: unset';
-            if (window.innerWidth > 600) {
+            if(document.getElementsByTagName('html')[0].classList.contains('navOpen')){
+                document.getElementsByTagName('html')[0].classList.remove('navOpen');
+            }
+            if (window.innerWidth > 620) {
                 document.getElementById('navLinks').style = '';
             } else {
                 document.getElementsByClassName(NavStyle.menuBar)[0].style = 'display: block';
@@ -37,8 +38,10 @@ export default function Navbar() {
             }
         });
         window.addEventListener('resize', () => {
-            document.getElementsByTagName('main')[0].style = 'filter: unset';
-            if (window.innerWidth > 600) {
+            if(document.getElementsByTagName('html')[0].classList.contains('navOpen')){
+                document.getElementsByTagName('html')[0].classList.remove('navOpen');
+            }
+            if (window.innerWidth > 620) {
                 document.getElementById('navLinks').style = '';
             } else {
                 document.getElementsByClassName(NavStyle.menuBar)[0].style = 'display: block';
@@ -53,9 +56,8 @@ export default function Navbar() {
     }, [cart.cartItems.length]);
 
     useEffect(() => {
-        if (userInfo) {
-            setIsUserLoggedIn(1)
-            window.addEventListener('click', function (e) {
+        function userActionBox(e) {
+            if (document.getElementById('userActionsContainer')) {
                 if (document.getElementById('userActionsContainer').contains(e.target) ||
                     document.getElementById('userNameBtn').contains(e.target)) {
                     // Clicked in box
@@ -64,9 +66,13 @@ export default function Navbar() {
                     if (document.getElementById('userActionsContainer').classList.contains(NavStyle.userNameBtnClk))
                         document.getElementById('userActionsContainer').classList.remove(NavStyle.userNameBtnClk);
                 }
-            });
-        } else {
-            setIsUserLoggedIn(0)
+            }
+        }
+        window.addEventListener('click', userActionBox);
+
+        // cleanup
+        return () => {
+            window.removeEventListener('click', userActionBox);
         }
     }, [userInfo]);
 
@@ -74,7 +80,6 @@ export default function Navbar() {
         if (document.getElementById('userActionsContainer').classList.contains(NavStyle.userNameBtnClk)) {
             document.getElementById('userActionsContainer').classList.remove(NavStyle.userNameBtnClk);
         }
-        router.push('/order-history');
     }
 
     return <header>
@@ -97,7 +102,7 @@ export default function Navbar() {
                         </div>
                     </Link>
                     {
-                        isUserLoggedIn ?
+                        userInfo ?
                             <>
                                 <div className={NavStyle.userLoggedIn}>
                                     <button id='userNameBtn' className={NavStyle.userNameBtn}
@@ -107,14 +112,16 @@ export default function Navbar() {
                                     >{userInfo.name.slice(0, 5)}..</button>
                                     <div id='userActionsContainer' className={NavStyle.userActionsContainer}>
                                         <button className={NavStyle.userAction}
-                                            onClick={
-                                                handleUserActionClk
-                                            }
-                                        >Orders</button>
+                                            onClick={() => {
+                                                handleUserActionClk()
+                                                router.push('/order-history');
+                                            }}
+                                            >Orders</button>
                                         <button className={NavStyle.userAction}
                                             onClick={() => {
                                                 handleUserActionClk()
                                                 dispatch({ type: userLogout() })
+                                                router.push('/');
                                             }}
                                         >Logout</button>
                                     </div>
@@ -132,19 +139,19 @@ export default function Navbar() {
                             document.getElementsByClassName(NavStyle.menuBar)[0].style = 'display: none';
                             document.getElementsByClassName(NavStyle.closeBtn)[0].style = 'display: block';
                             document.getElementById('navLinks').style = 'transform: translateX(0)';
-                            document.getElementsByTagName('main')[0].style = 'transition: all .5s; filter: blur(5px);';
+                            document.getElementsByTagName('html')[0].classList.add('navOpen');
                         }} />
                         <CgClose className={NavStyle.closeBtn} id='closeBtn' onClick={() => {
                             document.getElementsByClassName(NavStyle.menuBar)[0].style = 'display: block';
                             document.getElementsByClassName(NavStyle.closeBtn)[0].style = 'display: none';
                             document.getElementById('navLinks').style = 'transform: translateX(-100%)';
-                            document.getElementsByTagName('main')[0].style = 'filter: unset';
+                            document.getElementsByTagName('html')[0].classList.remove('navOpen');
                             if (document.getElementById('brandsLinkList').offsetHeight !== 0)
                                 document.getElementById('brandsLink').click();
                         }} />
                     </div>
                 </div>
             </nav>
-        </div>
-    </header>
+        </div >
+    </header >
 }

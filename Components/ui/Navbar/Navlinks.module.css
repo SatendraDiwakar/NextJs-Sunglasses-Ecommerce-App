@@ -1,6 +1,6 @@
 .links {
   position: absolute;
-  width: 100vw;
+  width: 100%;
   left: 0;
   z-index: 1;
 }
@@ -28,12 +28,12 @@
 .listItem:hover {
   color: #c55757 !important;
 }
-.brandsLink{
+.brandsLink {
   display: flex;
   align-items: center;
 }
-.brandAngleIcon{
-  transition: transform .6s;
+.brandAngleIcon {
+  transition: transform 0.6s;
 }
 .brandsList {
   padding: 0 1rem;
@@ -68,11 +68,13 @@
   max-height: 18rem;
 }
 
-@media screen and (max-width: 600px) {
-  .links{
+@media screen and (max-width: 620px) {
+  .links {
     height: 100vh;
     top: 0;
-    transition: transform 0.4s;
+    backdrop-filter: blur(5px);
+    transform: translateX(-100%);
+    transition: transform 0.5s ease-in-out;
   }
   .container {
     width: 100%;
@@ -89,7 +91,7 @@
     justify-content: space-around;
     color: #fff;
   }
-  .brandsList{
+  .brandsList {
     width: 15rem;
     height: 20rem;
     display: flex;
