@@ -33,7 +33,7 @@ export default function Hero({heroChar, heroBack}) {
                     <div className={HeroStyle.tagLineContainer}>
                         <p className={HeroStyle.headline}>Premium Sun Glasses</p>
                         <p className={HeroStyle.tagline}>Beat the heat this summer</p>
-                        <ButtonBlack name="shop now" />
+                        <ButtonBlack name="shop now" clk={'/shop/sunglasses'} />
                     </div>
                 </div>
             </div>

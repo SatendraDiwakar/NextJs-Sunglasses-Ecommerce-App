@@ -116,7 +116,7 @@ export default function OurCollection({ collectionChars, collectionProd }) {
                         />
                     </div>
                 </div>
-                <ButtonBlack name="see all" />
+                <ButtonBlack name="see all" clk={'/shop/sunglasses'} />
             </div>
         </section>
     )

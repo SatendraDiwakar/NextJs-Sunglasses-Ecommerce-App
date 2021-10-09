@@ -34,7 +34,7 @@ function Cart() {
                 transform: 'translate(-50%,-50%)'
             }}>
             <p>Cart is empty.</p>
-            <ButtonBlack name="Shop Now" />
+            <ButtonBlack name="Shop Now" clk={'/shop/sunglasses'} />
         </div>
     }
 

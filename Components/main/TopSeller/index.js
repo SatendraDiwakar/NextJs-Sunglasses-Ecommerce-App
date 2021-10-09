@@ -70,7 +70,7 @@ export default function TopSeller({ topSellerChar, topSellerProd }) {
                             })
                         }
                     </div>
-                    <ButtonBlack name="view all" />
+                    <ButtonBlack name="view all" clk={'/shop/sunglasses'} />
                 </div>
                 <div className={TopsellerStyle.tsm}>
                     <Image
