@@ -26,6 +26,7 @@
     opacity: .7;
     cursor: pointer;
     transition: opacity .3s;
+    color: #fff;
 }
 .footerText:hover{
     opacity: 1;
