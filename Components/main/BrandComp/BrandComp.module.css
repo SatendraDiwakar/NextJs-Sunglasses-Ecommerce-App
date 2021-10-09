@@ -1,0 +1,79 @@
+.container {
+  padding: 0 1rem;
+  margin-top: 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.gallery {
+  margin-bottom: 2rem;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3rem;
+  align-items: center;
+  justify-content: space-around;
+}
+.prodImage {
+  width: 25rem;
+  height: 15rem;
+  position: relative;
+  background: #5f5c5c;
+  box-shadow: 0 0 6px #838383;
+  overflow: hidden;
+  transition: transform 0.3s;
+}
+.hovEffect:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 6px #cf2222;
+  cursor: pointer;
+}
+.price {
+  display: none;
+  padding: 1rem;
+  font-size: 1.5rem;
+  letter-spacing: .5px;
+  border-bottom-left-radius: 20px;
+  color: #fff;
+  background: rgb(0 0 0 / 75%);
+  position: absolute;
+  top: 0;
+  right: 0;
+  transition: all 0.3s;
+}
+.discountPrice {
+  font-size: 1.3rem;
+  position: relative;
+  opacity: 0.5;
+}
+.cutLine {
+  width: 90%;
+  height: 1px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+  background-color: white;
+  opacity: 1;
+}
+
+@media screen and (max-width: 400px) {
+  .price {
+    padding-left: 1.5rem;
+    font-size: 1.3rem;
+  }
+}
+@media screen and (max-width: 360px) {
+  .gallery {
+    gap: 1.5rem;
+  }
+  .prodImage {
+    width: 22rem;
+    height: 14rem;
+  }
+}
+@media screen and (max-width: 315px) {
+  .prodImage {
+    width: 20rem;
+  }
+}
