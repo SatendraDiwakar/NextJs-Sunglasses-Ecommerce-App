@@ -15,13 +15,24 @@ export default function Layout({ children }) {
     // context
     const { isLoading, loading } = useContext(LoaderCtx);
     // ref
-    const prevPath = useRef(router.pathname)
+    const prevPath = useRef(router.pathname);
 
     useEffect(() => {
         let heit = window.innerHeight;
-        document.getElementsByTagName('main')[0].style = `min-height: calc(${heit}px - 13rem)`;
+        document.getElementsByTagName('main')[0].style = `min-height: calc(${heit}px - 15rem)`;
+
         // checking route change
         const handleRouteChange = (url, { shallow }) => {
+            window.scrollTo(0, 0);
+            if (window.innerWidth > 620) {
+                document.getElementById('navLinks').style = '';
+            } else {
+                if (document.getElementById('navLinks').style.transform === 'translateX(0px)') {
+                    document.getElementById('menuBar').style = 'display: block';
+                    document.getElementById('closeBtn').style = 'display: none';
+                    document.getElementById('navLinks').style = 'transform: translateX(-100%)';
+                }
+            }
             if (prevPath.current !== url)
                 loading();
             prevPath.current = url;
@@ -34,6 +45,13 @@ export default function Layout({ children }) {
             router.events.off('routeChangeStart', handleRouteChange)
         }
     }, []);
+
+    useEffect(() => {
+        if (isLoading)
+            document.getElementsByTagName('html')[0].classList.add('hideScrollBar')
+        else
+            document.getElementsByTagName('html')[0].classList.remove('hideScrollBar')
+    }, [router.pathname, isLoading])
 
     return <>
         <Head>

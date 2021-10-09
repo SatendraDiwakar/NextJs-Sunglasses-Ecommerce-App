@@ -19,11 +19,11 @@ section {
 }
 
 header {
-  width: 100%;  
+  width: 100%;
   background: #c4c4c4;
 }
 
-main{
+main {
   position: relative;
 }
 
@@ -34,10 +34,10 @@ img {
 a {
   text-decoration: none;
 }
-th{
+th {
   padding: 0 1rem;
 }
-td{
+td {
   padding: 1rem;
 }
 
@@ -54,47 +54,47 @@ td{
   justify-content: center;
 }
 
-.navOpen{
+.hideScrollBar {
   overflow-y: hidden;
 }
 
 @media screen and (max-width: 1200px) {
-  html{
+  html {
     font-size: 9.5px;
   }
 }
 @media screen and (max-width: 950px) {
-  html{
+  html {
     font-size: 9px;
   }
 }
 @media screen and (max-width: 900px) {
-  html{
+  html {
     font-size: 8.5px;
   }
 }
 @media screen and (max-width: 850px) {
-  html{
+  html {
     font-size: 8px;
   }
 }
 @media screen and (max-width: 750px) {
-  html{
+  html {
     font-size: 7.5px;
   }
 }
 @media screen and (max-width: 600px) {
-  html{
+  html {
     font-size: 7px;
   }
 }
 @media screen and (max-width: 500px) {
-  html{
+  html {
     font-size: 6.5px;
   }
 }
 @media screen and (max-width: 400px) {
-  html{
+  html {
     font-size: 6px;
   }
 }

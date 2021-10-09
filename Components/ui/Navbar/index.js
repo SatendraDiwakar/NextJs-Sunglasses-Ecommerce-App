@@ -25,21 +25,9 @@ export default function Navbar() {
     const router = useRouter();
 
     useEffect(() => {
-        window.addEventListener('load', () => {
-            if(document.getElementsByTagName('html')[0].classList.contains('navOpen')){
-                document.getElementsByTagName('html')[0].classList.remove('navOpen');
-            }
-            if (window.innerWidth > 620) {
-                document.getElementById('navLinks').style = '';
-            } else {
-                document.getElementsByClassName(NavStyle.menuBar)[0].style = 'display: block';
-                document.getElementsByClassName(NavStyle.closeBtn)[0].style = 'display: none';
-                document.getElementById('navLinks').style = 'transform: translateX(-100%)';
-            }
-        });
         window.addEventListener('resize', () => {
-            if(document.getElementsByTagName('html')[0].classList.contains('navOpen')){
-                document.getElementsByTagName('html')[0].classList.remove('navOpen');
+            if (document.getElementsByTagName('html')[0].classList.contains('hideScrollBar')) {
+                document.getElementsByTagName('html')[0].classList.remove('hideScrollBar');
             }
             if (window.innerWidth > 620) {
                 document.getElementById('navLinks').style = '';
@@ -116,7 +104,7 @@ export default function Navbar() {
                                                 handleUserActionClk()
                                                 router.push('/order-history');
                                             }}
-                                            >Orders</button>
+                                        >Orders</button>
                                         <button className={NavStyle.userAction}
                                             onClick={() => {
                                                 handleUserActionClk()
@@ -139,13 +127,13 @@ export default function Navbar() {
                             document.getElementsByClassName(NavStyle.menuBar)[0].style = 'display: none';
                             document.getElementsByClassName(NavStyle.closeBtn)[0].style = 'display: block';
                             document.getElementById('navLinks').style = 'transform: translateX(0)';
-                            document.getElementsByTagName('html')[0].classList.add('navOpen');
+                            document.getElementsByTagName('html')[0].classList.add('hideScrollBar');
                         }} />
                         <CgClose className={NavStyle.closeBtn} id='closeBtn' onClick={() => {
                             document.getElementsByClassName(NavStyle.menuBar)[0].style = 'display: block';
                             document.getElementsByClassName(NavStyle.closeBtn)[0].style = 'display: none';
                             document.getElementById('navLinks').style = 'transform: translateX(-100%)';
-                            document.getElementsByTagName('html')[0].classList.remove('navOpen');
+                            document.getElementsByTagName('html')[0].classList.remove('hideScrollBar');
                             if (document.getElementById('brandsLinkList').offsetHeight !== 0)
                                 document.getElementById('brandsLink').click();
                         }} />
