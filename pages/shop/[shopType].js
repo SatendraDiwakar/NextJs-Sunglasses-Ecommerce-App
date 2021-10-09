@@ -42,7 +42,7 @@ export default function Shop(props) {
                 transform: 'translate(-50%,-50%)'
             }}>
             <p>Page not found.</p>
-            <ButtonBlack name="Goto Shop" clk={'/shop/sale'} />
+            <ButtonBlack name="Goto Shop" clk={'/shop/sunglasses'} />
         </div>
     }
 
@@ -67,7 +67,7 @@ export default function Shop(props) {
 export async function getServerSideProps(ctx) {
     const { params: { shopType } } = ctx;
     let myQuery;
-    const shopTypes = ['sale', 'topSeller', 'ourCollection', 'sunglass']
+    const shopTypes = ['sale', 'topSeller', 'ourCollection', 'sunglasses']
     if (shopType === 'sale') {
         myQuery = { sectionName: 'sale' }
     } else {
