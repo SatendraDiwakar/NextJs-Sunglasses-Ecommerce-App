@@ -15,7 +15,6 @@ const handler = nc({
 handler.use(isAuth);
 
 handler.put(async (req, res) => {
-    console.log(req.body);
     await db.connect();
     const order = await OrderModel.findById(req.query.id);
     if (order) {
