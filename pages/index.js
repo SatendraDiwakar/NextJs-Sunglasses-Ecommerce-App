@@ -15,10 +15,10 @@ import ProductModal from '../Components/ui/ProductModal'
 import db from '../utils/db'
 import HeroPicModel from '../models/HeropicsModel'
 import ProductModel from '../models/ProductModel'
-import { useRouter } from 'next/router'
 
 export default function Home(props) {
 
+  // identifiers
   const characters = props.characters[0];
   const { products } = props;
   const topSellerProd = products.filter(itm => itm.sectionName === 'topSeller');
@@ -28,8 +28,7 @@ export default function Home(props) {
   const { isOpen } = useContext(ModalCtx);
   const { loaded } = useContext(LoaderCtx);
 
-  const router = useRouter();
-
+  // hides preloader after component mounts
   useEffect(() => {
     setTimeout(() => {
       loaded();
