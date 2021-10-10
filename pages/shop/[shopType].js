@@ -18,15 +18,18 @@ export default function Shop(props) {
     const { isOpen } = useContext(ModalCtx);
     const { loaded } = useContext(LoaderCtx);
 
+    // router
     const router = useRouter();
     const { shopType } = router.query;
 
+    // hides preloader on Brand change
     useEffect(() => {
         setTimeout(() => {
             loaded();
         }, 500);
     }, []);
 
+    // if error occured then return message
     if (props.err) {
         return <div
             style={{

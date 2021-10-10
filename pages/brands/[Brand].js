@@ -22,12 +22,14 @@ export default function Brand(props) {
     const router = useRouter();
     const { Brand } = router.query;
 
+    // hides preloader on Brand change
     useEffect(() => {
         setTimeout(() => {
             loaded();
         }, 500);
     }, [Brand]);
 
+    // if error occured then return message
     if (props.err.status) {
         return <div
             style={{
