@@ -1,7 +1,8 @@
 import React, { useContext, useEffect } from 'react'
 // context
 import { LoaderCtx } from '../Components/ui/LoaderCtx'
-
+// component
+import AboutComp from '../Components/main/AboutComp';
 export default function About() {
 
     // context
@@ -14,8 +15,8 @@ export default function About() {
     }, []);
 
     return (
-        <div>
-            about us
-        </div>
+        <>
+            <AboutComp /> 
+        </>
     )
 }
