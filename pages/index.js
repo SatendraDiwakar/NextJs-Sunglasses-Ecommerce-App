@@ -1,32 +1,52 @@
-import Image from 'next/image'
-// component
+import { useContext, useEffect } from 'react'
+// context
+import { ModalCtx } from '../Components/ModalCtx'
+import { LoaderCtx } from '../Components/ui/LoaderCtx'
+// components
 import Hero from '../Components/main/Hero'
 import TopSeller from '../Components/main/TopSeller'
 import Sale from '../Components/main/Sale'
 import OurCollection from '../Components/main/OurCollection'
 import TopBrands from '../Components/main/TopBrands'
 import Footer from '../Components/main/Footer'
+import Portal from '../Components/HOC/Portal'
+import ProductModal from '../Components/ui/ProductModal'
 // backend
 import db from '../utils/db'
-import Heropics from '../models/Heropics'
-import Product from '../models/Product'
-
+import HeroPicModel from '../models/HeropicsModel'
+import ProductModel from '../models/ProductModel'
+import { useRouter } from 'next/router'
 
 export default function Home(props) {
+
   const characters = props.characters[0];
   const { products } = props;
   const topSellerProd = products.filter(itm => itm.sectionName === 'topSeller');
   const saleProd = products.filter(itm => itm.sectionName === 'sale');
   const collectionProd = products.filter(itm => itm.sectionName === 'ourCollection');
+  // context
+  const { isOpen } = useContext(ModalCtx);
+  const { loaded } = useContext(LoaderCtx);
+
+  const router = useRouter();
+
+  useEffect(() => {
+    setTimeout(() => {
+      loaded();
+    }, 500);
+  }, []);
 
   return <>
+    <Portal open={isOpen} >
+      <ProductModal />
+    </Portal>
     <Hero
       heroBack={characters.heroBack}
       heroChar={characters.heroCar}
     />
     <TopSeller
       topSellerChar={characters.topSellerHero}
-      topsellerProd={topSellerProd}
+      topSellerProd={topSellerProd}
     />
     <Sale saleProd={saleProd} />
     <OurCollection
@@ -44,8 +64,8 @@ export default function Home(props) {
 
 export async function getServerSideProps() {
   db.connect();
-  const characters = await Heropics.find({}).lean();
-  const products = await Product.find({}).lean();
+  const characters = await HeroPicModel.find({}).lean();
+  const products = await ProductModel.find({}).lean();
   db.disconnect();
   return {
     props: {
