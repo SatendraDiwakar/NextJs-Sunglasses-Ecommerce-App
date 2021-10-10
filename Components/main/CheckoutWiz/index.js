@@ -10,6 +10,7 @@ function CheckoutWiz({ activeStep = 0 }) {
 
     const steps = ['Login', 'Shipping Address', 'Payment Method', 'Place Order']
 
+    // checkout wizard styles
     const useStyle = makeStyles({
         stepperBackground: {
             background: 'transparent'

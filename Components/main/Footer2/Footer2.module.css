@@ -9,3 +9,9 @@
     letter-spacing: .8px;
     color: rgb(0, 0, 0);
 }
+.disclaimer{
+    margin-top: 1rem;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+    letter-spacing: .5px;
+}

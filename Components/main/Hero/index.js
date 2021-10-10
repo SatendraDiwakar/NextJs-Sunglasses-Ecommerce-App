@@ -1,14 +1,11 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import Image from 'next/image';
 // component
 import ButtonBlack from '../../ui/ButtonBlack';
 // style
 import HeroStyle from './Hero.module.css';
-// image
-import hero from '../../../public/Images/hero.jpg'
-import heroCharacter from '../../../public/Images/heroCharacter.jpg'
 
-export default function Hero({heroChar, heroBack}) {
+export default function Hero({ heroChar, heroBack }) {
     return (
         <div className={HeroStyle.hero}>
             <div className={HeroStyle.heroImage}>
@@ -16,6 +13,7 @@ export default function Hero({heroChar, heroBack}) {
                     src={heroBack}
                     alt="sunglass ecommerce heroImage1"
                     layout="fill"
+                    priority={true}
                 />
             </div>
             <div className="container" style={{ height: '100%' }}>

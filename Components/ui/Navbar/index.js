@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Link from 'next/link'
 // context
 import { StoreCtx } from '../../../utils/Store';
@@ -23,7 +23,8 @@ export default function Navbar() {
     const { state: { userInfo, cart }, dispatch } = useContext(StoreCtx);
     // router
     const router = useRouter();
-
+    
+    // reset navbar position to initial if resize event occur
     useEffect(() => {
         window.addEventListener('resize', () => {
             if (document.getElementsByTagName('html')[0].classList.contains('hideScrollBar')) {
@@ -39,35 +40,57 @@ export default function Navbar() {
         });
     }, []);
 
+    // set cart count in navbar
     useEffect(() => {
         setCartCount(cart.cartItems.length);
     }, [cart.cartItems.length]);
 
+    // if user clicks outside user action box on open
+    // then hide user action box
     useEffect(() => {
         function userActionBox(e) {
             if (document.getElementById('userActionsContainer')) {
                 if (document.getElementById('userActionsContainer').contains(e.target) ||
-                    document.getElementById('userNameBtn').contains(e.target)) {
+                document.getElementById('userNameBtn').contains(e.target)) {
                     // Clicked in box
                 } else {
                     // Clicked outside the box
                     if (document.getElementById('userActionsContainer').classList.contains(NavStyle.userNameBtnClk))
                         document.getElementById('userActionsContainer').classList.remove(NavStyle.userNameBtnClk);
+                    }
                 }
             }
-        }
-        window.addEventListener('click', userActionBox);
-
+            window.addEventListener('click', userActionBox);
+            
         // cleanup
         return () => {
             window.removeEventListener('click', userActionBox);
         }
     }, [userInfo]);
-
+    
+    // user's action click fuctionality
     function handleUserActionClk() {
         if (document.getElementById('userActionsContainer').classList.contains(NavStyle.userNameBtnClk)) {
             document.getElementById('userActionsContainer').classList.remove(NavStyle.userNameBtnClk);
         }
+    }
+
+    // hamburger menu icon click functionality
+    function handleMenuOpen() {
+        document.getElementsByClassName(NavStyle.menuBar)[0].style = 'display: none';
+        document.getElementsByClassName(NavStyle.closeBtn)[0].style = 'display: block';
+        document.getElementById('navLinks').style = 'transform: translateX(0)';
+        document.getElementsByTagName('html')[0].classList.add('hideScrollBar');
+    }
+    
+    // close button icon click functionality
+    function handleMenuClose() {
+        document.getElementsByClassName(NavStyle.menuBar)[0].style = 'display: block';
+        document.getElementsByClassName(NavStyle.closeBtn)[0].style = 'display: none';
+        document.getElementById('navLinks').style = 'transform: translateX(-100%)';
+        document.getElementsByTagName('html')[0].classList.remove('hideScrollBar');
+        if (document.getElementById('brandsLinkList').offsetHeight !== 0)
+            document.getElementById('brandsLink').click();
     }
 
     return <header>
@@ -123,20 +146,8 @@ export default function Navbar() {
                         // on logout redirect user to home 3.45.10
                     }
                     <div className={NavStyle.menuBtnContainer}>
-                        <FiMenu className={NavStyle.menuBar} id='menuBar' onClick={() => {
-                            document.getElementsByClassName(NavStyle.menuBar)[0].style = 'display: none';
-                            document.getElementsByClassName(NavStyle.closeBtn)[0].style = 'display: block';
-                            document.getElementById('navLinks').style = 'transform: translateX(0)';
-                            document.getElementsByTagName('html')[0].classList.add('hideScrollBar');
-                        }} />
-                        <CgClose className={NavStyle.closeBtn} id='closeBtn' onClick={() => {
-                            document.getElementsByClassName(NavStyle.menuBar)[0].style = 'display: block';
-                            document.getElementsByClassName(NavStyle.closeBtn)[0].style = 'display: none';
-                            document.getElementById('navLinks').style = 'transform: translateX(-100%)';
-                            document.getElementsByTagName('html')[0].classList.remove('hideScrollBar');
-                            if (document.getElementById('brandsLinkList').offsetHeight !== 0)
-                                document.getElementById('brandsLink').click();
-                        }} />
+                        <FiMenu className={NavStyle.menuBar} id='menuBar' onClick={handleMenuOpen} />
+                        <CgClose className={NavStyle.closeBtn} id='closeBtn' onClick={handleMenuClose} />
                     </div>
                 </div>
             </nav>

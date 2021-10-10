@@ -9,6 +9,7 @@ import ShopStyle from './ShopComp.module.css'
 
 export default function index({ shopItem, shopType }) {
 
+    // adds discount price if sale products ar visited
     const products = shopItem.map(itm => {
 
         return { ...itm, discountPrice: 49 }
@@ -18,6 +19,7 @@ export default function index({ shopItem, shopType }) {
     // identifiers
     let sectnHead;
 
+    // Function to show price after image loaded
     function handleLoad(itemIndex) {
         if (document.getElementsByClassName(ShopStyle.price)[itemIndex]) {
             document.getElementsByClassName(ShopStyle.price)[itemIndex].style = 'display: block';
@@ -28,7 +30,7 @@ export default function index({ shopItem, shopType }) {
     if (shopType === 'ourCollection') {
         sectnHead = 'Our Collection'
     } else if (shopType === 'topSeller') {
-        sectnHead = 'Top seller'
+        sectnHead = 'Top sellers'
     } else if (shopType === 'sunglasses') {
         sectnHead = 'Shop'
     } else {

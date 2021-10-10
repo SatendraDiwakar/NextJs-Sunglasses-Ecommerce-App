@@ -10,22 +10,27 @@ import CollectionStyle from './Collection.module.css'
 
 export default function OurCollection({ collectionChars, collectionProd }) {
 
+    // destructuring
     const { g1car, g2car1, g2car2 } = collectionChars;
     const gal1Prod = collectionProd.slice(0, 6);
     const gal2Prod = collectionProd.slice(6);
 
-    const context = useContext(ModalCtx);
-    const { open } = context;
+    // context
+    const { open } = useContext(ModalCtx);
 
+    // Function to show price after image loaded
     function handleHov(className) {
-        if (window.innerWidth <= 1000) {
-            document.getElementsByClassName(className)[0].classList.add(CollectionStyle.hovEffect);
-            document.getElementsByClassName(className)[0].classList.add(CollectionStyle.showPrice);
-        } else {
-            document.getElementsByClassName(className)[0].classList.add(CollectionStyle.hovEffect);
+        if (document.getElementsByClassName(className)[0]) {
+            if (window.innerWidth <= 1000) {
+                document.getElementsByClassName(className)[0].classList.add(CollectionStyle.hovEffect);
+                document.getElementsByClassName(className)[0].classList.add(CollectionStyle.showPrice);
+            } else {
+                document.getElementsByClassName(className)[0].classList.add(CollectionStyle.hovEffect);
+            }
         }
     }
 
+    // adds class showPrice on products based on window size
     useEffect(() => {
         let arr = Array.from(document.getElementsByClassName(CollectionStyle.overHide));
 
@@ -116,7 +121,7 @@ export default function OurCollection({ collectionChars, collectionProd }) {
                         />
                     </div>
                 </div>
-                <ButtonBlack name="see all" clk={'/shop/sunglasses'} />
+                <ButtonBlack name="see all" clk={'/shop/ourCollection'} />
             </div>
         </section>
     )

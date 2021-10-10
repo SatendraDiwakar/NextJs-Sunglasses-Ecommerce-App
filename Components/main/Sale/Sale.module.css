@@ -35,7 +35,8 @@
   display: none;
   padding: 1rem;
   font-size: 1.5rem;
-  border-bottom-left-radius: 30px;
+  letter-spacing: 0.5px;
+  border-bottom-left-radius: 20px;
   color: #fff;
   background: rgb(0 0 0 / 75%);
   position: absolute;
@@ -60,7 +61,7 @@
 }
 
 @media screen and (max-width: 400px) {
-  .price{
+  .price {
     padding-left: 1.5rem;
     font-size: 1.3rem;
   }

@@ -39,6 +39,7 @@ function PlaceOrderComp() {
         }
     }, []);
 
+    // Handles placeorder
     const placeOrderHandler = async () => {
         const postData = {
             orderItems: cartItems,
@@ -69,7 +70,7 @@ function PlaceOrderComp() {
             router.push(`/order/${resData._id}`)
         } catch (error) {
             loaded();
-            alert(error)
+            alert('Sorry some unknown error occured.')
         }
     }
 

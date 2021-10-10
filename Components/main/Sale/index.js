@@ -9,15 +9,16 @@ import ButtonBlack from '../../ui/ButtonBlack'
 import SaleStyle from './Sale.module.css'
 
 
-export default function Sale({ saleProd }) {   
-    
-    const saleProducts = saleProd.map(itm=>{ return {...itm, discountPrice: 49}});
+export default function Sale({ saleProd }) {
+
+    const saleProducts = saleProd.map(itm => { return { ...itm, discountPrice: 49 } });
     // context
     const { open } = useContext(ModalCtx);
 
+    // Function to show price after image loaded
     function handleLoad(itemIndex) {
-        if(document.getElementsByClassName(SaleStyle.price)[itemIndex]){
-            document.getElementsByClassName(SaleStyle.price)[itemIndex].style='display: block';
+        if (document.getElementsByClassName(SaleStyle.price)[itemIndex]) {
+            document.getElementsByClassName(SaleStyle.price)[itemIndex].style = 'display: block';
             document.getElementsByClassName(SaleStyle.saleImage)[itemIndex].classList.add(SaleStyle.hovEffect);
         }
     }
@@ -31,14 +32,14 @@ export default function Sale({ saleProd }) {
                         saleProducts.map((itm, index) => {
                             return <div
                                 key={`saleImage${index}`}
-                                className={SaleStyle.saleImage }
+                                className={SaleStyle.saleImage}
                                 onClick={() => { open(itm) }}
                             >
                                 <Image
                                     src={itm.image}
                                     alt={`Sunglass ${index} on sale`}
                                     layout="fill"
-                                    onLoadingComplete={()=>handleLoad(index)}
+                                    onLoadingComplete={() => handleLoad(index)}
                                 />
                                 <div className={SaleStyle.price}>${itm.discountPrice} <span className={SaleStyle.discountPrice}>${itm.price} <div className={SaleStyle.cutLine} /></span></div>
                             </div>

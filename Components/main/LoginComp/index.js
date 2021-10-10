@@ -5,12 +5,12 @@ import { useRouter } from 'next/router';
 import { StoreCtx } from '../../../utils/Store'
 import { userLogin } from '../../../utils/Actions'
 import { NotifyCtx } from '../../../utils/NotifyCtx'
+import { LoaderCtx } from '../../ui/LoaderCtx';
 // component
 import Notification from '../../ui/Notification'
+import Loader2 from '../../ui/Loader2';
 // style
 import LoginStyle from './LoginComp.module.css'
-import { LoaderCtx } from '../../ui/LoaderCtx';
-import Loader2 from '../../ui/Loader2';
 
 export default function LoginComp() {
 
@@ -47,6 +47,18 @@ export default function LoginComp() {
             }
         }
     }, [inputDetails.email, router.pathname]);
+
+    // handles form's input field changes
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        hide();
+        setInputDetails(prevValue => {
+            return {
+                ...prevValue,
+                [name]: value
+            }
+        });
+    }
 
     // sends ajax req to server to login
     const submitHandler = async (e) => {
@@ -87,18 +99,6 @@ export default function LoginComp() {
             showNotification && hide();
             show(error.message, 'error');
         }
-    }
-
-    // handles form's input field changes
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        hide();
-        setInputDetails(prevValue => {
-            return {
-                ...prevValue,
-                [name]: value
-            }
-        });
     }
 
     return (<>

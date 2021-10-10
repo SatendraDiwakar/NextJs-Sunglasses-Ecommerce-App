@@ -21,7 +21,7 @@
 }
 
 /* price */
-.price{
+.price {
   width: 5.5rem;
   padding: 1rem;
   font-size: 1.5rem;
@@ -33,7 +33,7 @@
   top: 0;
   right: 0;
   transform: translateX(102%);
-  transition: transform .5s;
+  transition: transform 0.5s;
 }
 .overHide {
   background: rgb(236, 230, 230);
@@ -44,16 +44,15 @@
   transform: translateX(0);
 }
 /* hover effect */
-.hovEffect{
+.hovEffect {
   cursor: pointer;
 }
 .hovEffect:hover {
   box-shadow: 3px 3px 6px #5f1f1f;
 }
-.hovEffect:hover >.price{
+.hovEffect:hover > .price {
   transform: translateX(0);
 }
-
 
 .tsm {
   position: relative;
@@ -83,106 +82,106 @@
 }
 
 @media screen and (max-width: 1150px) {
-  .gallery{
+  .gallery {
     width: 60rem;
   }
 }
 @media screen and (max-width: 1100px) {
-  .gallery{
+  .gallery {
     width: 55rem;
   }
-  .tsm{
+  .tsm {
     width: 38rem;
     height: 58rem;
   }
-  .container{
+  .container {
     gap: 0 5rem;
   }
 }
 @media screen and (max-width: 990px) {
-  .gallery{
+  .gallery {
     width: 50rem;
   }
-  .tsm{
+  .tsm {
     width: 36rem;
     height: 56rem;
   }
 }
 @media screen and (max-width: 750px) {
-  .gallery{
+  .gallery {
     width: 45rem;
   }
-  .tsm{
+  .tsm {
     width: 34rem;
     height: 54rem;
   }
-  .ts1{
+  .ts1 {
     min-height: 30rem;
   }
-  .ts2{
+  .ts2 {
     min-height: 23rem;
   }
-  .ts4{
+  .ts4 {
     min-height: 23rem;
   }
 }
 @media screen and (max-width: 650px) {
-  .gallery{
+  .gallery {
     width: 40rem;
   }
-  .tsm{
+  .tsm {
     width: 32rem;
     height: 48rem;
   }
-  .ts1{
+  .ts1 {
     min-height: 25rem;
   }
-  .ts2{
+  .ts2 {
     min-height: 20rem;
   }
-  .ts4{
+  .ts4 {
     min-height: 20rem;
   }
 }
 @media screen and (max-width: 550px) {
-  .gallery{
+  .gallery {
     width: 35rem;
   }
-  .tsm{
+  .tsm {
     height: 46rem;
   }
 }
 @media screen and (max-width: 400px) {
-  .container{
+  .container {
     gap: 0 2rem;
   }
-  .gallery{
+  .gallery {
     width: 32rem;
   }
-  .tsm{
+  .tsm {
     height: 40rem;
-  }  
-  .ts1{
+  }
+  .ts1 {
     min-height: 22rem;
   }
-  .ts2{
+  .ts2 {
     min-height: 18rem;
   }
-  .ts3{
+  .ts3 {
     min-height: 12rem;
   }
-  .ts4{
+  .ts4 {
     min-height: 15rem;
   }
 }
 @media screen and (max-width: 350px) {
-  .container{
+  .container {
     gap: 0 1.5rem;
   }
-  .gallery{
+  .gallery {
     width: 30rem;
   }
-  .tsm{
+  .tsm {
     height: 40rem;
-  }  
+  }
 }

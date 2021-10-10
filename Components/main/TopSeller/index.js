@@ -11,18 +11,21 @@ import TopsellerStyle from './Topseller.module.css';
 export default function TopSeller({ topSellerChar, topSellerProd }) {
 
     // context
-    const context = useContext(ModalCtx);
-    const { open } = context;
+    const { open } = useContext(ModalCtx);
 
+    // Function to show price after image loaded
     function handleImgLoad(className) {
-        if (window.innerWidth <= 1000) {
-            document.getElementsByClassName(className)[0].classList.add(TopsellerStyle.hovEffect);
-            document.getElementsByClassName(className)[0].classList.add(TopsellerStyle.showPrice);
-        } else {
-            document.getElementsByClassName(className)[0].classList.add(TopsellerStyle.hovEffect);
+        if (document.getElementsByClassName(className)[0]) {
+            if (window.innerWidth <= 1000) {
+                document.getElementsByClassName(className)[0].classList.add(TopsellerStyle.hovEffect);
+                document.getElementsByClassName(className)[0].classList.add(TopsellerStyle.showPrice);
+            } else {
+                document.getElementsByClassName(className)[0].classList.add(TopsellerStyle.hovEffect);
+            }
         }
     }
 
+    // adds class showPrice on products based on window size
     useEffect(() => {
         let arr = Array.from(document.getElementsByClassName(TopsellerStyle.overHide));
 
@@ -70,7 +73,7 @@ export default function TopSeller({ topSellerChar, topSellerProd }) {
                             })
                         }
                     </div>
-                    <ButtonBlack name="view all" clk={'/shop/sunglasses'} />
+                    <ButtonBlack name="view all" clk={'/shop/topSeller'} />
                 </div>
                 <div className={TopsellerStyle.tsm}>
                     <Image

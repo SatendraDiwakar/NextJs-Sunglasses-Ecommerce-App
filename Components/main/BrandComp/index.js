@@ -12,6 +12,7 @@ export default function index({ shopItem, brandType }) {
     // context
     const { open } = useContext(ModalCtx);
 
+    // Function to show price after image loaded
     function handleLoad(itemIndex) {
         if (document.getElementsByClassName(BrandStyle.price)[itemIndex]) {
             document.getElementsByClassName(BrandStyle.price)[itemIndex].style = 'display: block';

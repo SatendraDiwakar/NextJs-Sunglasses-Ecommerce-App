@@ -143,6 +143,7 @@
   color: #da5252;
 }
 .menuBtnContainer {
+  margin-left: 2rem;
   font-size: 2.5rem;
   display: none;
   cursor: pointer;
@@ -201,5 +202,8 @@
 @media screen and (max-width: 330px) {
   .navRight {
     gap: 0 2rem;
+  }
+  .menuBtnContainer{
+    margin-left: 1rem;
   }
 }

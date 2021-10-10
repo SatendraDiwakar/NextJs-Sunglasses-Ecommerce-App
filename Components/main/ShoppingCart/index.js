@@ -1,14 +1,17 @@
 import React, { useContext, useEffect, useState } from 'react'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
+import { useRouter } from 'next/router'
 // icons
 import { RiDeleteBin6Line } from 'react-icons/ri'
 // context
+import { NotifyCtx } from '../../../utils/NotifyCtx'
 import { StoreCtx } from '../../../utils/Store'
 import { removeFromCart, incQuantity, decQuantity } from '../../../utils/Actions'
 // style
 import ShoppingCartStyle from './ShoppingCart.module.css'
-import { useRouter } from 'next/router'
+// component
+import Notification from '../../ui/Notification'
 
 function ShoppingCart() {
 
@@ -16,18 +19,21 @@ function ShoppingCart() {
     const [windowSize, setWindowSize] = useState(window.innerWidth);
     // context
     const { state, dispatch, checkStock } = useContext(StoreCtx);
+    const { showNotification, message, show, hide } = useContext(NotifyCtx);
     // router
     const router = useRouter();
 
+    // checks if products is in stock range or not
     async function handleCartItemInc(reqType, id) {
         let checkStk = await checkStock(id);
         if (checkStk < 0) {
-            window.alert('Sorry. Product is out of stock');
+            show('Sorry. Product is out of stock', 'error');
             return;
         }
         dispatch({ type: reqType(), payload: { id } })
     }
 
+    // functionality to show delete button or icon based on window size
     useEffect(() => {
         function updateWindowSize() {
             if (router.pathname === '/cart')
@@ -43,6 +49,9 @@ function ShoppingCart() {
     }, [router.pathname])
 
     return (<>
+        {
+            showNotification && <Notification message={message} />
+        }
         <div className={ShoppingCartStyle.container} id='shoppingCartSection'>
             <div className={ShoppingCartStyle.itemContainer}>
                 <div className={ShoppingCartStyle.headingContainer}>
