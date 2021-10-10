@@ -1,6 +1,8 @@
 import React, { useContext, useEffect } from 'react'
 // context
 import { LoaderCtx } from '../Components/ui/LoaderCtx';
+// components
+import ContactComp from '../Components/main/ContactComp';
 
 export default function Contact() {
 
@@ -14,8 +16,8 @@ export default function Contact() {
     }, []);
 
     return (
-        <div>
-            conotact
-        </div>
+        <>
+            <ContactComp />
+        </>
     )
 }
