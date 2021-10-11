@@ -8,7 +8,7 @@ import StoreProvider from '../utils/Store'
 import LoaderProvider from '../Components/ui/LoaderCtx'
 import { PayPalScriptProvider } from '@paypal/react-paypal-js'
 // component
-import Layout from '../Components/layout'
+import Layout from '../Components/Layout'
 
 
 function MyApp({ Component, pageProps }) {
