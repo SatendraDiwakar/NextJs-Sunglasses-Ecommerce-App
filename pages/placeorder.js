@@ -3,7 +3,7 @@ import React, { useContext, useEffect } from 'react'
 import { LoaderCtx } from '../Components/ui/LoaderCtx';
 // component
 import PlaceOrderComp from '../Components/main/PlaceOrderComp'
-import CheckoutWiz from '../Components/main/CheckOutWiz'
+import CheckoutWiz from '../Components/main/CheckoutWiz'
 
 export default function PlaceOrder() {
 
