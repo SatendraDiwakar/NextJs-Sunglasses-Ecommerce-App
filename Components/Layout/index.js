@@ -17,10 +17,27 @@ export default function Layout({ children }) {
     // ref
     const prevPath = useRef(router.pathname);
 
-    useEffect(() => {
+    useEffect(()=>{
         let heit = window.innerHeight;
-        document.getElementsByTagName('main')[0].style = `min-height: calc(${heit}px - 15rem)`;
+        let decHeit = '15rem';
+        if(heit <= 750){
+            decHeit = '20rem'
+        } else {
+            decHeit = '15rem'
+        }
+        document.getElementsByTagName('main')[0].style = `min-height: calc(${heit}px - ${decHeit})`;
+        window.addEventListener('resize',()=>{
+            heit = window.innerHeight;  
+            if(heit <= 750){
+                decHeit = '20rem';
+            } else {
+                decHeit = '15rem'
+            }
+            document.getElementsByTagName('main')[0].style = `min-height: calc(${heit}px - ${decHeit})`;
+        });
+    },[]);
 
+    useEffect(() => {
         // checking route change
         const handleRouteChange = (url, { shallow }) => {
             window.scrollTo(0, 0);
