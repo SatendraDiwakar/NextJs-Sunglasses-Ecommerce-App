@@ -63,7 +63,7 @@ export default function Brand(props) {
 }
 
 
-export async function getServerSideProps(ctx) {
+export async function getStaticProps(ctx) {
     const { params: { Brand } } = ctx;
     const brandTypes = ['RayBan', 'Burberry', 'Maui-Jim', 'Gucci'];
     if (!brandTypes.includes(Brand)) {
@@ -88,5 +88,9 @@ export async function getServerSideProps(ctx) {
             products: products.map(db.convertDocToObj),
             err: { status: false, msg: '' },
         },
+        // Next.js will attempt to re-generate the page:
+        // - When a request comes in
+        // - At most once every 10 seconds
+        revalidate: 1, // In seconds
     }
 }

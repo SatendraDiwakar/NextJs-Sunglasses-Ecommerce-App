@@ -67,7 +67,7 @@ export default function Shop(props) {
 }
 
 
-export async function getServerSideProps(ctx) {
+export async function getStaticProps(ctx) {
     const { params: { shopType } } = ctx;
     let myQuery;
     const shopTypes = ['sale', 'topSeller', 'ourCollection', 'sunglasses']
@@ -91,5 +91,9 @@ export async function getServerSideProps(ctx) {
             products: products.map(db.convertDocToObj),
             err: false,
         },
+        // Next.js will attempt to re-generate the page:
+        // - When a request comes in
+        // - At most once every 10 seconds
+        revalidate: 1, // In seconds
     }
 }
