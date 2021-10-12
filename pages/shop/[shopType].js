@@ -30,7 +30,7 @@ export default function Shop(props) {
     }, []);
 
     // if error occured then return message
-    if (props.err) {
+    if (props.err.status) {
         return <div
             style={{
                 fontFamily: 'Roboto, sans-serif',
@@ -66,30 +66,48 @@ export default function Shop(props) {
     )
 }
 
+export async function getStaticPaths() {
+
+    const shopTypes = ['sale', 'topSeller', 'ourCollection', 'sunglasses']
+
+    // Get the paths we want to pre-render based on posts
+    const paths = shopTypes.map((type) => ({
+        params: { shopType: type, },
+    }))
+
+    // We'll pre-render only these paths at build time.
+    // { fallback: false } means other routes should 404.
+    return { paths, fallback: false }
+}
 
 export async function getStaticProps(ctx) {
     const { params: { shopType } } = ctx;
     let myQuery;
-    const shopTypes = ['sale', 'topSeller', 'ourCollection', 'sunglasses']
     if (shopType === 'sale') {
         myQuery = { sectionName: 'sale' }
     } else {
         myQuery = { sectionName: 'sunGlassesShop' }
     }
-    if (!shopTypes.includes(shopType)) {
-        return {
-            props: {
-                err: true
-            }
-        }
-    }
     db.connect();
     const products = await ProductModel.find(myQuery).lean();
     db.disconnect();
+
+    if (products.length === 0) {
+        return {
+            props: {
+                err: { status: true, msg: 'Sorry stock is empty.' },
+            },
+            // Next.js will attempt to re-generate the page:
+            // - When a request comes in
+            // - At most once every 10 seconds
+            revalidate: 1, // In seconds
+        }
+    }
+
     return {
         props: {
             products: products.map(db.convertDocToObj),
-            err: false,
+            err: { status: false, msg: '' },
         },
         // Next.js will attempt to re-generate the page:
         // - When a request comes in

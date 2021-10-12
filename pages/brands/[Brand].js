@@ -62,27 +62,39 @@ export default function Brand(props) {
     )
 }
 
+export async function getStaticPaths() {
+
+    const brandTypes = ['RayBan', 'Burberry', 'Maui-Jim', 'Gucci',];
+
+    // Get the paths we want to pre-render based on posts
+    const paths = brandTypes.map((brand) => ({
+        params: { Brand: brand, },
+    }))
+
+    // We'll pre-render only these paths at build time.
+    // { fallback: false } means other routes should 404.
+    return { paths, fallback: false }
+}
 
 export async function getStaticProps(ctx) {
+    // fetch products of specific brands
     const { params: { Brand } } = ctx;
-    const brandTypes = ['RayBan', 'Burberry', 'Maui-Jim', 'Gucci'];
-    if (!brandTypes.includes(Brand)) {
-        return {
-            props: {
-                err: { status: true, msg: 'Page not found.' },
-            }
-        }
-    }
     db.connect();
     const products = await ProductModel.find({ sectionName: 'sunGlassesShop', brand: Brand }).lean();
     db.disconnect();
+
     if (products.length === 0) {
         return {
             props: {
                 err: { status: true, msg: 'Sorry stock is empty.' },
-            }
+            },
+            // Next.js will attempt to re-generate the page:
+            // - When a request comes in
+            // - At most once every 10 seconds
+            revalidate: 1, // In seconds
         }
     }
+
     return {
         props: {
             products: products.map(db.convertDocToObj),
