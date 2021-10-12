@@ -4,7 +4,7 @@ An ecommerce app for sunglasses with lots of beautiful shades. We have Sunglasse
 
 ## Demo
 
-[Satendra's Sunglass Ecommerce]()
+[Satendra's Sunglass Ecommerce](https://satendra-sunglass-ecommerce.vercel.app/)
 
 ### The purpose of this project is to learn and practice concepts related to:
 
@@ -18,25 +18,23 @@ An ecommerce app for sunglasses with lots of beautiful shades. We have Sunglasse
 
 #### More specifically, I used the following:
 
-> - React advanced concepts
-
+ - React advanced concepts
     - Class Based Components
     - Functional Components
     - Contexts
     - hooks
     - portals
 
-> - NextJs concepts
-
+ - NextJs concepts
     - Data Fetching
     - next image
     - next router
     - Custom Error page
     - dynamic exports
 
-> - HTTP (GET, POST, PUT,)
-> - Testing API Endpoints (Postman)
-> - MongoDB Atlas (Database)
+ - HTTP (GET, POST, PUT,)
+ - Testing API Endpoints (Postman)
+ - MongoDB Atlas (Database)
 
 _Note: Please excuse the comments in my code, they are used as notes for later review._
 
