@@ -61,7 +61,7 @@ export default function Home(props) {
   </>
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   db.connect();
   const characters = await HeroPicModel.find({}).lean();
   const products = await ProductModel.find({}).lean();
@@ -71,5 +71,9 @@ export async function getServerSideProps() {
       characters: characters.map(db.convertDocToObj),
       products: products.map(db.convertDocToObj),
     },
+    // Next.js will attempt to re-generate the page:
+    // - When a request comes in
+    // - At most once every 10 seconds
+    revalidate: 1, // In seconds
   }
 }
