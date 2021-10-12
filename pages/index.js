@@ -62,10 +62,10 @@ export default function Home(props) {
 }
 
 export async function getStaticProps() {
-  db.connect();
+  await db.connect();
   const characters = await HeroPicModel.find({}).lean();
   const products = await ProductModel.find({}).lean();
-  db.disconnect();
+  await db.disconnect();
   return {
     props: {
       characters: characters.map(db.convertDocToObj),

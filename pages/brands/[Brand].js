@@ -79,9 +79,9 @@ export async function getStaticPaths() {
 export async function getStaticProps(ctx) {
     // fetch products of specific brands
     const { params: { Brand } } = ctx;
-    db.connect();
+    await db.connect();
     const products = await ProductModel.find({ sectionName: 'sunGlassesShop', brand: Brand }).lean();
-    db.disconnect();
+    await db.disconnect();
 
     if (products.length === 0) {
         return {

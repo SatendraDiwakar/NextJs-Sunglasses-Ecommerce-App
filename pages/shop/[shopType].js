@@ -88,9 +88,9 @@ export async function getStaticProps(ctx) {
     } else {
         myQuery = { sectionName: 'sunGlassesShop' }
     }
-    db.connect();
+    await db.connect();
     const products = await ProductModel.find(myQuery).lean();
-    db.disconnect();
+    await db.disconnect();
 
     if (products.length === 0) {
         return {
