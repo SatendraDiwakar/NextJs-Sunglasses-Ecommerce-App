@@ -35,6 +35,9 @@
 .brandAngleIcon {
   transition: transform 0.6s;
 }
+.brandAngleIconActive{
+  transform: rotate(-180deg);
+}
 .brandsList {
   padding: 0 1rem;
   max-height: 0;

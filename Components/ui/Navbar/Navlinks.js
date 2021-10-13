@@ -48,16 +48,16 @@ export default function Navlinks() {
     function handleLinkClick(linkNm) {
         if (linkNm === 'brands') {
             document.getElementById('brandsLink').style = 'color: inherit';
-            document.getElementsByClassName(NavLinkStyle.brandsList)[0].classList.toggle(NavLinkStyle.anima)
-            document.getElementsByClassName(NavLinkStyle.brandAngleIcon)[0].style = 'transform: rotate(-180deg)';
+            document.getElementsByClassName(NavLinkStyle.brandsList)[0].classList.toggle(NavLinkStyle.anima);
+            document.getElementsByClassName(NavLinkStyle.brandAngleIcon)[0].classList.toggle(NavLinkStyle.brandAngleIconActive);
         } else if (linkNm !== 'brands') {
             if (window.innerWidth <= 620) {
                 document.getElementById('menuBar').style = 'display: block';
                 document.getElementById('closeBtn').style = 'display: none';
             }
             if (document.getElementsByClassName(NavLinkStyle.brandsList)[0].classList.contains(NavLinkStyle.anima)) {
-                document.getElementsByClassName(NavLinkStyle.brandsList)[0].classList.remove(NavLinkStyle.anima)
-                document.getElementsByClassName(NavLinkStyle.brandAngleIcon)[0].style = 'transform: initial';
+                document.getElementsByClassName(NavLinkStyle.brandsList)[0].classList.remove(NavLinkStyle.anima);
+                document.getElementsByClassName(NavLinkStyle.brandAngleIcon)[0].classList.remove(NavLinkStyle.brandAngleIconActive);
             }
         }
     }

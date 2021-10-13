@@ -23,11 +23,12 @@ export default function Navbar() {
     const { state: { userInfo, cart }, dispatch } = useContext(StoreCtx);
     // router
     const router = useRouter();
-    
+
     // reset navbar position to initial if resize event occur
     useEffect(() => {
         window.addEventListener('resize', () => {
-            if (document.getElementsByTagName('html')[0].classList.contains('hideScrollBar')) {
+            if (document.getElementsByTagName('html')[0].classList.contains('hideScrollBar')
+                && !document.getElementById('testLoad')) {
                 document.getElementsByTagName('html')[0].classList.remove('hideScrollBar');
             }
             if (window.innerWidth > 620) {
@@ -51,23 +52,23 @@ export default function Navbar() {
         function userActionBox(e) {
             if (document.getElementById('userActionsContainer')) {
                 if (document.getElementById('userActionsContainer').contains(e.target) ||
-                document.getElementById('userNameBtn').contains(e.target)) {
+                    document.getElementById('userNameBtn').contains(e.target)) {
                     // Clicked in box
                 } else {
                     // Clicked outside the box
                     if (document.getElementById('userActionsContainer').classList.contains(NavStyle.userNameBtnClk))
                         document.getElementById('userActionsContainer').classList.remove(NavStyle.userNameBtnClk);
-                    }
                 }
             }
-            window.addEventListener('click', userActionBox);
-            
+        }
+        window.addEventListener('click', userActionBox);
+
         // cleanup
         return () => {
             window.removeEventListener('click', userActionBox);
         }
     }, [userInfo]);
-    
+
     // user's action click fuctionality
     function handleUserActionClk() {
         if (document.getElementById('userActionsContainer').classList.contains(NavStyle.userNameBtnClk)) {
@@ -82,7 +83,7 @@ export default function Navbar() {
         document.getElementById('navLinks').style = 'transform: translateX(0)';
         document.getElementsByTagName('html')[0].classList.add('hideScrollBar');
     }
-    
+
     // close button icon click functionality
     function handleMenuClose() {
         document.getElementsByClassName(NavStyle.menuBar)[0].style = 'display: block';
