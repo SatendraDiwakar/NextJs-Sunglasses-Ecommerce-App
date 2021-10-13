@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useRef } from 'react'
 import Head from 'next/head';
 // context
 import { LoaderCtx } from '../ui/LoaderCtx';
+import { NotifyCtx } from '../../utils/NotifyCtx';
 // router
 import { useRouter } from 'next/router';
 // components
@@ -14,25 +15,16 @@ export default function Layout({ children }) {
     const router = useRouter();
     // context
     const { isLoading, loading } = useContext(LoaderCtx);
+    const { showNotification, hide } = useContext(NotifyCtx);
     // ref
     const prevPath = useRef(router.pathname);
 
     useEffect(()=>{
         let heit = window.innerHeight;
-        let decHeit = '15rem';
-        if(heit <= 750){
-            decHeit = '20rem'
-        } else {
-            decHeit = '15rem'
-        }
+        let decHeit = '12rem';
         document.getElementsByTagName('main')[0].style = `min-height: calc(${heit}px - ${decHeit})`;
         window.addEventListener('resize',()=>{
             heit = window.innerHeight;  
-            if(heit <= 750){
-                decHeit = '20rem';
-            } else {
-                decHeit = '15rem'
-            }
             document.getElementsByTagName('main')[0].style = `min-height: calc(${heit}px - ${decHeit})`;
         });
     },[]);
@@ -41,6 +33,9 @@ export default function Layout({ children }) {
         // checking route change
         const handleRouteChange = (url, { shallow }) => {
             window.scrollTo(0, 0);
+            if (showNotification) {
+                hide();
+            }
             if (window.innerWidth > 620) {
                 document.getElementById('navLinks').style = '';
             } else {
