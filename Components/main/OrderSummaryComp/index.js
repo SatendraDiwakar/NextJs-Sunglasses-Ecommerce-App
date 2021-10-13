@@ -276,7 +276,7 @@ function OrderSummaryComp({ orderId }) {
                                         style={{ padding: isPending && '1.5rem 0' }}
                                     >
                                         {
-                                            !isPaid && (
+                                            (!isPaid && payMethod === 'PayPal') && (
                                                 isPending ? <Loader2 /> :
                                                     <div style={{ width: '100%' }}>
                                                         <PayPalButtons
