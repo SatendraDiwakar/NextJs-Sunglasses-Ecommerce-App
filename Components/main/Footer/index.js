@@ -14,7 +14,7 @@ export default function Footer() {
         <section id="footer" className={footerStyle.footerSection}>
             <div className={`container ${footerStyle.container}`}>
                 <div className={`${footerStyle.item} ${footerStyle.shop}`}>
-                    <h3>Shop</h3>
+                    <h3 style={{ borderBottom: '1px solid #fff', paddingBottom: '.5rem' }}>Shop</h3>
                     <button
                         style={{ background: 'transparent', border: 'none' }}
                         className={footerStyle.footerText}
@@ -37,7 +37,7 @@ export default function Footer() {
                     >Burberry</button>
                 </div>
                 <div className={`${footerStyle.item} ${footerStyle.company}`}>
-                    <h3>Company</h3>
+                    <h3 style={{ borderBottom: '1px solid #fff', paddingBottom: '.5rem' }}>Company</h3>
                     <button
                         style={{ background: 'transparent', border: 'none' }}
                         className={footerStyle.footerText}
@@ -50,7 +50,7 @@ export default function Footer() {
                     >Contact Us</button>
                 </div>
                 <div className={`${footerStyle.item} ${footerStyle.social}`}>
-                    <h3>Get Social</h3>
+                    <h3 style={{ borderBottom: '1px solid #fff', paddingBottom: '.5rem' }}>Get Social</h3>
                     <div className={footerStyle.socialIconsContainer}>
                         <FaTwitter className={footerStyle.scIcons} onClick={() => window.scrollTo(0, 0)} />
                         <FaPinterest className={footerStyle.scIcons} onClick={() => window.scrollTo(0, 0)} />
