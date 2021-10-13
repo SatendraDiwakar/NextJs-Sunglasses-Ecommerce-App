@@ -38,4 +38,41 @@ An ecommerce app for sunglasses with lots of beautiful shades. We have Sunglasse
 
 _Note: Please excuse the comments in my code, they are used as notes for later review._
 
-### Website Look:
+## Website Look:
+
+- Home
+
+   ![image](https://github.com/Satendra-EXE/ScreenSunG/blob/main/h1.png)
+   ![image](https://github.com/Satendra-EXE/ScreenSunG/blob/main/ts.png)
+   ![image](https://github.com/Satendra-EXE/ScreenSunG/blob/main/sal.png)
+   ![image](https://github.com/Satendra-EXE/ScreenSunG/blob/main/col.png)
+   ![image](https://github.com/Satendra-EXE/ScreenSunG/blob/main/col2.png)
+   ![image](https://github.com/Satendra-EXE/ScreenSunG/blob/main/Footer.png)
+
+- Login
+
+   ![image](https://github.com/Satendra-EXE/ScreenSunG/blob/main/login.png)
+
+- Registration
+
+   ![image](https://github.com/Satendra-EXE/ScreenSunG/blob/main/regi.png)
+
+- Cart
+
+   ![image](https://github.com/Satendra-EXE/ScreenSunG/blob/main/cart.png)
+
+- Shipping Page
+
+   ![image](https://github.com/Satendra-EXE/ScreenSunG/blob/main/shipp.png)
+
+- Payment Method
+
+   ![image](https://github.com/Satendra-EXE/ScreenSunG/blob/main/payMethod.png)
+
+- Placeorder page
+
+   ![image](https://github.com/Satendra-EXE/ScreenSunG/blob/main/placeOrder.png)
+
+- Order Summary page
+
+   ![image](https://github.com/Satendra-EXE/ScreenSunG/blob/main/orderSummary.png)
