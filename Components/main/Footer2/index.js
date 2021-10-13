@@ -26,7 +26,7 @@ export default function Footer2() {
     return (
         <div className={Footer2Style.container} style={footer2Color ? stylF2color : null}>
             <p className={Footer2Style.rights} style={footer2Color ? stylF2color : null}>All rights reserved. Satendra's Sunglasses Ecomm.</p>
-            <p className={Footer2Style.disclaimer}>Disclaimer : This website is not selling anything. This is a dummy website that I built to reflect my web development skills.</p>
+            <p className={Footer2Style.disclaimer}>Disclaimer : This website is not selling anything. This is a dummy website that I built to show my web development skills.</p>
         </div>
     )
 }
