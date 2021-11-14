@@ -1,7 +1,6 @@
 import { useContext, useEffect } from 'react'
 // context
 import { ModalCtx } from '../Components/ModalCtx'
-import { LoaderCtx } from '../Components/ui/LoaderCtx'
 // components
 import Hero from '../Components/main/Hero'
 import TopSeller from '../Components/main/TopSeller'
@@ -26,14 +25,6 @@ export default function Home(props) {
   const collectionProd = products.filter(itm => itm.sectionName === 'ourCollection');
   // context
   const { isOpen } = useContext(ModalCtx);
-  const { loaded } = useContext(LoaderCtx);
-
-  // hides preloader after component mounts
-  useEffect(() => {
-    setTimeout(() => {
-      loaded();
-    }, 500);
-  }, []);
 
   return <>
     <Portal open={isOpen} >

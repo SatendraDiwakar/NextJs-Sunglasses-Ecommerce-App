@@ -27,15 +27,13 @@ export default function Layout({ children }) {
             heit = window.innerHeight;  
             document.getElementsByTagName('main')[0].style = `min-height: calc(${heit}px - ${decHeit})`;
         });
+        console.log(router.pathname);
     },[]);
 
     useEffect(() => {
         // checking route change
         const handleRouteChange = (url, { shallow }) => {
             window.scrollTo(0, 0);
-            if (showNotification) {
-                hide();
-            }
             if (window.innerWidth > 620) {
                 document.getElementById('navLinks').style = '';
             } else {
@@ -58,7 +56,13 @@ export default function Layout({ children }) {
         }
     }, []);
 
-    useEffect(() => {
+    useEffect(()=>{
+        if(showNotification){
+            hide();
+        }
+    },[router.pathname])
+
+    useEffect(() => {    
         if (isLoading)
             document.getElementsByTagName('html')[0].classList.add('hideScrollBar')
         else

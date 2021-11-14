@@ -1,11 +1,31 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Image from 'next/image';
+// context
+import { LoaderCtx } from '../../ui/LoaderCtx';
 // component
 import ButtonBlack from '../../ui/ButtonBlack';
 // style
 import HeroStyle from './Hero.module.css';
 
 export default function Hero({ heroChar, heroBack }) {
+
+    // context
+    const { loaded } = useContext(LoaderCtx);
+    // states
+    const [imgLoading,setImgLoading] = useState(false);
+
+    function imgLoaded(){
+        setImgLoading(true);
+    }
+
+    useEffect(()=>{
+        if(imgLoading){
+            setTimeout(() => {
+                loaded();
+            }, 500);
+        }
+    },[imgLoading]);
+
     return (
         <div className={HeroStyle.hero}>
             <div className={HeroStyle.heroImage}>
@@ -25,6 +45,7 @@ export default function Hero({ heroChar, heroBack }) {
                                 alt="sunglass ecommerce heroImage2"
                                 layout="fill"
                                 priority={true}
+                                onLoadingComplete={imgLoaded}
                             />
                         </div>
                     </div>
