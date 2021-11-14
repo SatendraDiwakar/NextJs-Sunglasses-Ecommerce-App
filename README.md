@@ -13,7 +13,7 @@ An ecommerce app for sunglasses with lots of beautiful shades. We have Sunglasse
 > - NodeJs core
 > - MongoDB, Mongoose
 > - Using Cookies
-> - JWT (JavaScript Web Token)
+> - JWT (JSON Web Token)
 > - Payment Integration through PayPal
 
 #### More specifically, I used the following:
