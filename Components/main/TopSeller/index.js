@@ -68,7 +68,7 @@ export default function TopSeller({ topSellerChar, topSellerProd }) {
                                         layout='fill'
                                         onLoadingComplete={() => handleImgLoad(TopsellerStyle[`ts${index + 1}`])}
                                     />
-                                    <p className={TopsellerStyle.price}>{itm.price}</p>
+                                    <p className={TopsellerStyle.price}>${itm.price}</p>
                                 </div>
                             })
                         }

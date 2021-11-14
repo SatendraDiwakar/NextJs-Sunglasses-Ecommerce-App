@@ -73,7 +73,7 @@ export default function OurCollection({ collectionChars, collectionProd }) {
                                         layout='fill'
                                         onLoadingComplete={() => handleHov(CollectionStyle[`g1col${index + 1}`])}
                                     />
-                                    <p className={CollectionStyle.price}>{itm.price}</p>
+                                    <p className={CollectionStyle.price}>${itm.price}</p>
                                 </div>
                             })
                         }
@@ -108,7 +108,7 @@ export default function OurCollection({ collectionChars, collectionProd }) {
                                         layout='fill'
                                         onLoadingComplete={() => handleHov(CollectionStyle[`g2col${index + 1}`])}
                                     />
-                                    <p className={CollectionStyle.price}>{itm.price}</p>
+                                    <p className={CollectionStyle.price}>${itm.price}</p>
                                 </div>
                             })
                         }
