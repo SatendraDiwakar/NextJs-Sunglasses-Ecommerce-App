@@ -15,7 +15,7 @@ import Navlinks from './Navlinks';
 import NavStyle from './Navbar.module.css';
 import { useRouter } from 'next/router';
 
-export default function Navbar() {
+export default function Navbar({isLoading}) {
 
     // state
     const [cartCount, setCartCount] = useState(0);
@@ -94,7 +94,7 @@ export default function Navbar() {
             document.getElementById('brandsLink').click();
     }
 
-    return <header>
+    return <header style={{filter: isLoading ? 'blur(5px)' : 'unset'}}>
         <div className="container">
             <nav className={NavStyle.nav}>
                 <Link href="/">

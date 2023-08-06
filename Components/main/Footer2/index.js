@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 // style
 import Footer2Style from './Footer2.module.css'
 
-export default function Footer2() {
+export default function Footer2({isLoading}) {
 
     // router
     const router = useRouter();
@@ -24,7 +24,7 @@ export default function Footer2() {
     }, [router.pathname])
 
     return (
-        <div className={Footer2Style.container} style={footer2Color ? stylF2color : null}>
+        <div className={Footer2Style.container} style={footer2Color ? {...stylF2color, filter: isLoading ? 'blur(5px)' : 'unset'} : {filter: isLoading ? 'blur(5px)' : 'unset'}}>
             <p className={Footer2Style.rights} style={footer2Color ? stylF2color : null}>All rights reserved. Satendra's Sunglasses Ecomm.</p>
             <p className={Footer2Style.disclaimer}>Disclaimer : This website is not selling anything. This is a dummy website that I built to show my web development skills.</p>
         </div>

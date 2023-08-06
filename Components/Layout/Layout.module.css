@@ -1,0 +1,12 @@
+.loaderContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(108, 78, 78, 0.8);
+  z-index: 8000;
+}
+.blurStyle {
+  filter: blur(5px);
+}
