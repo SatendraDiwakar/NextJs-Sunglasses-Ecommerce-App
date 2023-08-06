@@ -9,6 +9,8 @@ import { useRouter } from 'next/router';
 import Navbar from '../ui/Navbar';
 import Footer2 from '../main/Footer2';
 import Loader from '../ui/Loader';
+// style
+import LayoutStyle from './Layout.module.css'
 
 export default function Layout({ children }) {
 
@@ -22,38 +24,39 @@ export default function Layout({ children }) {
     useEffect(()=>{
         let heit = window.innerHeight;
         let decHeit = '12rem';
-        document.getElementsByTagName('main')[0].style = `min-height: calc(${heit}px - ${decHeit})`;
+        document.getElementsByTagName('main')[0].style = `min-height: calc(100vh - ${decHeit}); filter: ${isLoading ? 'blur(5px)' : 'unset'}`;
         window.addEventListener('resize',()=>{
             heit = window.innerHeight;  
-            document.getElementsByTagName('main')[0].style = `min-height: calc(${heit}px - ${decHeit})`;
+            document.getElementsByTagName('main')[0].style = `min-height: calc(100vh - ${decHeit}); filter: ${isLoading ? 'blur(5px)' : 'unset'}`;
         });
         console.log(router.pathname);
-    },[]);
+    },[isLoading]);
 
     useEffect(() => {
-        // checking route change
-        const handleRouteChange = (url, { shallow }) => {
-            window.scrollTo(0, 0);
-            if (window.innerWidth > 620) {
-                document.getElementById('navLinks').style = '';
-            } else {
-                if (document.getElementById('navLinks').style.transform === 'translateX(0px)') {
-                    document.getElementById('menuBar').style = 'display: block';
-                    document.getElementById('closeBtn').style = 'display: none';
-                    document.getElementById('navLinks').style = 'transform: translateX(-100%)';
-                }
-            }
-            if (prevPath.current !== url)
-                loading();
-            prevPath.current = url;
-        }
-        router.events.on('routeChangeStart', handleRouteChange)
+        loading();
+        // // checking route change
+        // const handleRouteChange = (url, { shallow }) => {
+        //     window.scrollTo(0, 0);
+        //     if (window.innerWidth > 620) {
+        //         document.getElementById('navLinks').style = '';
+        //     } else {
+        //         if (document.getElementById('navLinks').style.transform === 'translateX(0px)') {
+        //             document.getElementById('menuBar').style = 'display: block';
+        //             document.getElementById('closeBtn').style = 'display: none';
+        //             document.getElementById('navLinks').style = 'transform: translateX(-100%)';
+        //         }
+        //     }
+        //     if (prevPath.current !== url)
+        //         loading();
+        //     prevPath.current = url;
+        // }
+        // router.events.on('routeChangeStart', handleRouteChange)
 
-        // If the component is unmounted, unsubscribe
-        // from the event with the `off` method:
-        return () => {
-            router.events.off('routeChangeStart', handleRouteChange)
-        }
+        // // If the component is unmounted, unsubscribe
+        // // from the event with the `off` method:
+        // return () => {
+        //     router.events.off('routeChangeStart', handleRouteChange)
+        // }
     }, []);
 
     useEffect(()=>{
@@ -73,21 +76,13 @@ export default function Layout({ children }) {
         <Head>
             <title>SunGlass Ecommerce</title>
         </Head>
-        <Navbar />
+        <Navbar {...{isLoading}} />
         {
-            isLoading && <div style={{
-                position: 'absolute',
-                top: '0',
-                left: '0',
-                width: '100vw',
-                height: '100vh',
-                background: 'rgba(0,0,0,0.9)',
-                zIndex: '8000'
-            }}>
+            isLoading && <div className={LayoutStyle.loaderContainer}>
                 <Loader />
             </div>
         }
         <main>{children}</main>
-        <Footer2 />
+        <Footer2 {...{isLoading}} />
     </>
 }
