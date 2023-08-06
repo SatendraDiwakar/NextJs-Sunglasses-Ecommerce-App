@@ -19,7 +19,7 @@ export default function Layout({ children }) {
     const { isLoading, loading } = useContext(LoaderCtx);
     const { showNotification, hide } = useContext(NotifyCtx);
     // ref
-    const prevPath = useRef(router.pathname);
+    // const prevPath = useRef(router.pathname);
 
     useEffect(()=>{
         let heit = window.innerHeight;
