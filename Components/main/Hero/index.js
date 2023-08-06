@@ -51,7 +51,7 @@ export default function Hero({ heroChar, heroBack }) {
                     </div>
                     <div className={HeroStyle.tagLineContainer}>
                         <p className={HeroStyle.headline}>Premium Sun Glasses</p>
-                        <p className={HeroStyle.tagline}>Beat the heat this summer</p>
+                        <p className={HeroStyle.tagline}>Step out in style</p>
                         <ButtonBlack name="shop now" clk={'/shop/sunglasses'} />
                     </div>
                 </div>
